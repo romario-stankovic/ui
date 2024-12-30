@@ -16,9 +16,6 @@ export default {
             control: "select",
             options: ["flat", "soft", "outlined", "colored-outline"],
             description: "Appearance of the button"
-        },
-        color: {
-            control: "color"
         }
     },
     args: {
