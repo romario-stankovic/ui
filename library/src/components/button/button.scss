@@ -1,7 +1,81 @@
 @use "style.scss";
 
-button {
-    background-color: var(--primary);
+.button {
+    color: var(--primary);
+
     border: none;
-    height: 2.25rem;
+    font-size: 0.875rem;
+    line-height: 1.5em;
+    padding: 0.537em 1.074em;
+    border-radius: 0.428em;
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.flat {
+    background-color: currentColor;
+
+    span {
+        color: var(--primary-content);
+    }
+
+    &:hover {
+        background-color: color-mix(in srgb, currentColor, var(--text) 10%);
+    }
+
+    &:active {
+        background-color: color-mix(in srgb, currentColor, var(--text) 20%);
+    }
+}
+
+.soft {
+    background-color: color-mix(in srgb, currentColor, transparent 80%);
+
+    &:hover {
+        background-color: color-mix(in srgb, currentColor, transparent 70%);
+    }
+
+    &:active {
+        background-color: color-mix(in srgb, currentColor, transparent 60%);
+    }
+
+    span {
+        color: currentColor;
+    }
+}
+
+.outlined {
+    outline: 1px solid var(--border);
+    background-color: transparent;
+    outline-offset: -1px;
+
+    &:hover {
+        background-color: color-mix(in srgb, currentColor, transparent 90%);
+    }
+
+    &:active {
+        background-color: color-mix(in srgb, currentColor, transparent 80%);
+    }
+
+    span {
+        color: currentColor;
+    }
+}
+
+.colored-outline {
+    outline: 1px solid color-mix(in srgb, currentColor, var(--border) 50%);
+    background-color: transparent;
+    outline-offset: -1px;
+
+    &:hover {
+        background-color: color-mix(in srgb, currentColor, transparent 90%);
+    }
+
+    &:active {
+        background-color: color-mix(in srgb, currentColor, transparent 80%);
+    }
+
+    span {
+        color: currentColor;
+    }
 }
