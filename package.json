@@ -13,5 +13,8 @@
     "devDependencies": {
         "concurrently": "^9.1.1",
         "vite-tsconfig-paths": "^5.1.4"
+    },
+    "dependencies": {
+        "sass": "^1.83.0"
     }
 }
