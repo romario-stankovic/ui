@@ -1,0 +1,17 @@
+{
+    "name": "@romario-stankovic/ui",
+    "version": "0.0.0",
+    "private": true,
+    "description": "Mitosis mono-repo template",
+    "workspaces": [
+        "library",
+        "tests"
+    ],
+    "scripts": {
+        "dev": "concurrently \"npm run dev -w @ui/library\" \"npm run storybook -w @ui/tests\""
+    },
+    "devDependencies": {
+        "concurrently": "^9.1.1",
+        "vite-tsconfig-paths": "^5.1.4"
+    }
+}
