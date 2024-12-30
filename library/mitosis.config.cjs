@@ -1,4 +1,4 @@
-const { CssCompiler } = require("./src/plugins/css-resolver.cjs");
+const { CssCompiler } = require("./plugins/css-resolver.cjs");
 /**
  * @type {import('@builder.io/mitosis').MitosisConfig}
  */
