@@ -2,7 +2,7 @@ import { Slot } from "@builder.io/mitosis";
 import "src/components/button/button.scss";
 
 interface ButtonProps {
-    variant?: "flat" | "soft" | "outlined" | "colored-outline";
+    variant?: "flat" | "raised" | "soft" | "outlined" | "colored-outline";
 }
 
 export default function Button(props: ButtonProps) {

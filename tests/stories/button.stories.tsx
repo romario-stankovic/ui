@@ -14,7 +14,7 @@ export default {
         },
         variant: {
             control: "select",
-            options: ["flat", "soft", "outlined", "colored-outline"],
+            options: ["flat", "raised", "soft", "outlined", "colored-outline"],
             description: "Appearance of the button"
         }
     },
@@ -28,6 +28,12 @@ export default {
 export const Flat: Story = {
     args: {
         variant: "flat"
+    }
+};
+
+export const Raised: Story = {
+    args: {
+        variant: "raised"
     }
 };
 
