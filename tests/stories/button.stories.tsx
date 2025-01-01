@@ -1,5 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Button } from "@packages/react";
+import { Icon as IconifyIcon } from "@iconify-icon/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
 
 type Story = StoryObj<typeof Button>;
 
@@ -16,11 +19,16 @@ export default {
             control: "select",
             options: ["flat", "raised", "soft", "outlined", "colored-outline"],
             description: "Appearance of the button"
+        },
+        href: {
+            control: "text",
+            description: "Link to navigate to when the button is clicked"
         }
     },
     args: {
         default: "Button",
-        variant: "flat"
+        variant: "flat",
+        href: ""
     },
     render: (args) => <Button {...args}>{args.default}</Button>
 } satisfies Meta;
@@ -53,4 +61,18 @@ export const ColoredOutline: Story = {
     args: {
         variant: "colored-outline"
     }
+};
+
+export const Link: Story = {
+    args: {
+        href: "https://example.com"
+    }
+};
+
+export const IconifyButton: Story = {
+    render: (args) => <Button {...args}><IconifyIcon icon="material-symbols:home-rounded" style={{ fontSize: "1.5em" }} /> {args.default}</Button>
+};
+
+export const FontAwesomeButton: Story = {
+    render: (args) => <Button {...args}><FontAwesomeIcon icon={faHouse} fontSize={"1em"} />{args.default}</Button>
 };
