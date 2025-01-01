@@ -17,7 +17,7 @@ export default {
         },
         variant: {
             control: "select",
-            options: ["flat", "raised", "soft", "outlined", "colored-outline"],
+            options: ["flat", "raised", "soft", "outlined", "colored-outline", "text"],
             description: "Appearance of the button"
         },
         href: {
@@ -60,6 +60,12 @@ export const Outlined: Story = {
 export const ColoredOutline: Story = {
     args: {
         variant: "colored-outline"
+    }
+};
+
+export const Text: Story = {
+    args: {
+        variant: "text"
     }
 };
 

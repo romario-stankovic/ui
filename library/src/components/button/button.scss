@@ -117,3 +117,19 @@
         color: currentColor;
     }
 }
+
+.text {
+    background-color: transparent;
+
+    &:hover {
+        background-color: color-mix(in srgb, currentColor, transparent 90%);
+    }
+
+    &:active {
+        background-color: color-mix(in srgb, currentColor, transparent 80%);
+    }
+
+    span {
+        color: currentColor;
+    }
+}
