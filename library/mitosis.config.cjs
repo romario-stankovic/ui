@@ -7,16 +7,16 @@ module.exports = {
     targets: ["react", "vue"],
     dest: "../packages",
     commonOptions: {
-        typescript: true
+        typescript: true,
+        plugins: [CssCompiler]
     },
     options: {
         react: {
             stylesType: "style-tag",
-            plugins: [CssCompiler]
+            typescript: true
         },
         vue: {
-            api: "composition",
-            plugins: [CssCompiler]
+            api: "composition"
         }
     }
 };
