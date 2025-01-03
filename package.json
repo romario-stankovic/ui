@@ -1,8 +1,16 @@
 {
-    "name": "@romario-stankovic/ui",
+    "name": "@romario-stankovic/ui2",
     "version": "0.0.0",
     "private": true,
-    "description": "Mitosis mono-repo template",
+    "description": "UI library",
+    "type": "module",
+    "files": [
+        "packages"
+    ],
+    "exports": {
+        "react/*": "./packages/react/src/*",
+        "vue/*": "./packages/vue/src/*"
+    },
     "workspaces": [
         "library",
         "tests"

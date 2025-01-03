@@ -8,12 +8,12 @@ module.exports = {
     dest: "../packages",
     commonOptions: {
         typescript: true,
+        prettier: true,
         plugins: [CssCompiler]
     },
     options: {
         react: {
-            stylesType: "style-tag",
-            typescript: true
+            stylesType: "style-tag"
         },
         vue: {
             api: "composition"
