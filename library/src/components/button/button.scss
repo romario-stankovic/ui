@@ -33,3 +33,15 @@
         align-items: center;
     }
 }
+
+.icon-only {
+    padding: 0.5357143em;
+
+    span {
+        min-width: 1.5em;
+        height: 1.5em;
+        justify-content: center;
+        gap: 0;
+        text-indent: -1000vw;
+    }
+}

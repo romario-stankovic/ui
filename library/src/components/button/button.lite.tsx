@@ -7,6 +7,7 @@ interface ButtonProps {
     href?: string;
     target?: string;
     type?: "button" | "submit" | "reset";
+    iconOnly?: boolean;
     disabled?: boolean;
     onClick?: (event: MouseEvent) => void;
 }
@@ -29,7 +30,7 @@ export default function Button(props: ButtonProps) {
                 <a
                     href={props.href}
                     target={props.target}
-                    class={`button ${props.variant} ${props.shape}`}
+                    class={`button ${props.variant} ${props.shape} ${props.iconOnly ? "icon-only" : ""}`}
                     onClick={props.onClick}
                     aria-disabled={props.disabled}
                 >
@@ -41,7 +42,7 @@ export default function Button(props: ButtonProps) {
         >
             <button
                 type={props.type}
-                class={`button ${props.variant} ${props.shape}`}
+                class={`button ${props.variant} ${props.shape} ${props.iconOnly ? "icon-only" : ""}`}
                 onClick={props.onClick}
                 aria-disabled={props.disabled}
                 disabled={props.disabled}

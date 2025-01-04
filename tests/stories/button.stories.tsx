@@ -32,7 +32,12 @@ export default {
         },
         target: {
             control: "select",
-            options: ["_blank", "_self", "_parent", "_top"]
+            options: ["_blank", "_self", "_parent", "_top"],
+            description: "Where to open the linked document"
+        },
+        iconOnly: {
+            control: "boolean",
+            description: "Whether the button only contains an icon"
         },
         disabled: {
             control: "boolean",
@@ -41,7 +46,11 @@ export default {
     },
     args: {
         default: "Button",
-        onClick: fn()
+        variant: "flat",
+        shape: "rounded",
+        href: "",
+        target: "_blank",
+        iconOnly: false
     },
     parameters: {
         docs: {
@@ -223,6 +232,24 @@ export const FontAwesomeButton: Story = {
         docs: {
             description: {
                 story: "A button with a FontAwesome icon"
+            }
+        }
+    }
+};
+
+export const IconOnly: Story = {
+    args: {
+        iconOnly: true
+    },
+    render: (args) => (
+        <Button {...args}>
+            <IconifyIcon icon="material-symbols:home-rounded" style={{ fontSize: "1.5em" }} />
+        </Button>
+    ),
+    parameters: {
+        docs: {
+            description: {
+                story: "A button with only one icon inside of it"
             }
         }
     }
