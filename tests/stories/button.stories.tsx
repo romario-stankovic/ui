@@ -9,7 +9,7 @@ type Story = StoryObj<typeof Button>;
 export default {
     title: "Components/Button",
     component: Button,
-    tags: ['autodocs'],
+    tags: ["autodocs"],
     argTypes: {
         default: {
             control: "text",
@@ -76,9 +76,18 @@ export const Link: Story = {
 };
 
 export const IconifyButton: Story = {
-    render: (args) => <Button {...args}><IconifyIcon icon="material-symbols:home-rounded" style={{ fontSize: "1.5em" }} /> {args.default}</Button>
+    render: (args) => (
+        <Button {...args}>
+            <IconifyIcon icon="material-symbols:home-rounded" style={{ fontSize: "1.5em" }} /> {args.default}
+        </Button>
+    )
 };
 
 export const FontAwesomeButton: Story = {
-    render: (args) => <Button {...args}><FontAwesomeIcon icon={faHouse} fontSize={"1em"} />{args.default}</Button>
+    render: (args) => (
+        <Button {...args}>
+            <FontAwesomeIcon icon={faHouse} fontSize={"1em"} />
+            {args.default}
+        </Button>
+    )
 };

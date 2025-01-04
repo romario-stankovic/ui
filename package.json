@@ -8,8 +8,8 @@
         "packages"
     ],
     "exports": {
-        "react/*": "./packages/react/src/*",
-        "vue/*": "./packages/vue/src/*"
+        "react": "./packages/react/src/index.ts",
+        "vue": "./packages/vue/src/index.ts"
     },
     "workspaces": [
         "library",

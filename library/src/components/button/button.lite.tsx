@@ -10,18 +10,26 @@ interface ButtonProps {
 }
 
 export default function Button(props: ButtonProps) {
-
     return (
         <Show
             when={!props.href}
             else={
-                <a href={props.href} target={props.target} class={`button ${props.variant ?? "flat"}`} onClick={props.onClick}>
-                    <span><Slot /></span>
+                <a
+                    href={props.href}
+                    target={props.target}
+                    class={`button ${props.variant ?? "flat"}`}
+                    onClick={props.onClick}
+                >
+                    <span>
+                        <Slot />
+                    </span>
                 </a>
             }
         >
             <button type={props.type} class={`button ${props.variant ?? "flat"}`} onClick={props.onClick}>
-                <span><Slot /></span>
+                <span>
+                    <Slot />
+                </span>
             </button>
         </Show>
     );
