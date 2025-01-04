@@ -1,15 +1,27 @@
-import { Show, Slot } from "@builder.io/mitosis";
+import { Show, Slot, useDefaultProps } from "@builder.io/mitosis";
 import "src/components/button/button.scss";
 
 interface ButtonProps {
     variant?: "flat" | "raised" | "soft" | "outlined" | "colored-outline" | "text";
+    shape?: "box" | "rounded" | "pill";
     href?: string;
     target?: string;
-    type: "button" | "submit" | "reset";
+    type?: "button" | "submit" | "reset";
+    disabled?: boolean;
     onClick?: (event: MouseEvent) => void;
 }
 
 export default function Button(props: ButtonProps) {
+    useDefaultProps<ButtonProps>({
+        variant: "flat",
+        shape: "rounded",
+        type: "button",
+        disabled: false,
+        href: "",
+        target: "",
+        onClick: () => {}
+    });
+
     return (
         <Show
             when={!props.href}
@@ -17,8 +29,9 @@ export default function Button(props: ButtonProps) {
                 <a
                     href={props.href}
                     target={props.target}
-                    class={`button ${props.variant ?? "flat"}`}
+                    class={`button ${props.variant} ${props.shape}`}
                     onClick={props.onClick}
+                    aria-disabled={props.disabled}
                 >
                     <span>
                         <Slot />
@@ -26,7 +39,13 @@ export default function Button(props: ButtonProps) {
                 </a>
             }
         >
-            <button type={props.type} class={`button ${props.variant ?? "flat"}`} onClick={props.onClick}>
+            <button
+                type={props.type}
+                class={`button ${props.variant} ${props.shape}`}
+                onClick={props.onClick}
+                aria-disabled={props.disabled}
+                disabled={props.disabled}
+            >
                 <span>
                     <Slot />
                 </span>
