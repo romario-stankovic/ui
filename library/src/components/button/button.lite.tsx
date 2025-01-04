@@ -31,7 +31,7 @@ export default function Button(props: ButtonProps) {
                     href={props.href}
                     target={props.target}
                     class={`button ${props.variant} ${props.shape} ${props.iconOnly ? "icon-only" : ""}`}
-                    onClick={props.onClick}
+                    onClick={(e) => props.onClick?.(e)}
                     aria-disabled={props.disabled}
                 >
                     <span>
@@ -43,7 +43,7 @@ export default function Button(props: ButtonProps) {
             <button
                 type={props.type}
                 class={`button ${props.variant} ${props.shape} ${props.iconOnly ? "icon-only" : ""}`}
-                onClick={props.onClick}
+                onClick={(e) => props.onClick?.(e)}
                 aria-disabled={props.disabled}
                 disabled={props.disabled}
             >

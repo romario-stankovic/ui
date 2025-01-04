@@ -50,7 +50,8 @@ export default {
         shape: "rounded",
         href: "",
         target: "_blank",
-        iconOnly: false
+        iconOnly: false,
+        onClick: fn()
     },
     parameters: {
         docs: {
