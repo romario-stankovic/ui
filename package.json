@@ -8,17 +8,33 @@
         "packages"
     ],
     "exports": {
-        "react": "./packages/react/src/index.ts",
-        "vue": "./packages/vue/src/index.ts"
+        "./react": {
+            "types": "./dist/react/index.d.ts",
+            "import": "./dist/react/index.js",
+            "require": "./dist/react/index.umd.cjs"
+        },
+        "./vue": {
+            "types": "./dist/vue/index.d.ts",
+            "import": "./dist/vue/index.js",
+            "require": "./dist/vue/index.umd.cjs"
+        }
     },
     "workspaces": [
         "library",
         "tests"
     ],
     "scripts": {
-        "dev": "concurrently \"npm run dev -w @ui/library\" \"npm run storybook -w @ui/tests\""
+        "dev": "concurrently \"npm run dev -w @ui/library\" \"npm run storybook -w @ui/tests\"",
+        "build": "npm run build:compile && concurrently \"npm run build:react\" \"npm run build:vue\"",
+        "build:compile": "npm run build -w @ui/library",
+        "build:react": "vite build --config react.vite.config.ts ",
+        "build:vue": "vite build --config vue.vite.config.ts && vue-tsc --declaration --emitDeclarationOnly --outDir ./dist/vue ./packages/vue/src/index.ts"
     },
     "devDependencies": {
-        "concurrently": "^9.1.2"
+        "@vitejs/plugin-react": "^4.3.4",
+        "@vitejs/plugin-vue": "^5.2.1",
+        "concurrently": "^9.1.2",
+        "vite-plugin-dts": "^4.5.0",
+        "vue-tsc": "^2.2.0"
     }
 }
