@@ -1,24 +1,23 @@
 {
     "name": "@ui/library",
     "private": true,
+    "type": "module",
     "scripts": {
         "dev": "watch \"npm run build\" ./src",
         "build": "mitosis build --c mitosis.config.cjs",
         "lint": "eslint --fix",
         "format": "prettier --write ."
     },
-    "type": "module",
-    "exports": {
-        "./*": "./output/*/src/index.js"
-    },
     "dependencies": {
-        "@builder.io/eslint-plugin-mitosis": "^0.0.15",
+        "@builder.io/eslint-plugin-mitosis": "^0.0.16",
         "@builder.io/mitosis": "latest",
         "@builder.io/mitosis-cli": "latest",
-        "eslint": "^8.51.0",
+        "eslint": "^9.18.0",
         "prettier": "^3.4.2"
     },
     "devDependencies": {
+        "sass": "^1.83.4",
+        "vite-tsconfig-paths": "^5.1.4",
         "watch": "^1.0.2"
     }
 }

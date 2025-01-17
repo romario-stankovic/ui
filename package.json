@@ -19,10 +19,6 @@
         "dev": "concurrently \"npm run dev -w @ui/library\" \"npm run storybook -w @ui/tests\""
     },
     "devDependencies": {
-        "concurrently": "^9.1.1",
-        "vite-tsconfig-paths": "^5.1.4"
-    },
-    "dependencies": {
-        "sass": "^1.83.0"
+        "concurrently": "^9.1.2"
     }
 }
