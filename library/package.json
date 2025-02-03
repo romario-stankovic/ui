@@ -12,7 +12,7 @@
         "@builder.io/eslint-plugin-mitosis": "^0.0.16",
         "@builder.io/mitosis": "latest",
         "@builder.io/mitosis-cli": "latest",
-        "eslint": "^9.18.0",
+        "eslint": "^9.19.0",
         "prettier": "^3.4.2"
     },
     "devDependencies": {

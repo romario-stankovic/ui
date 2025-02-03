@@ -2,7 +2,7 @@ const sass = require("sass");
 const path = require("path");
 
 /**
- * @type {import('@builder.io/mitosis').Plugin}
+ * @type {import('@builder.io/mitosis').MitosisPlugin}
  */
 function CssResolver(options) {
     return {
