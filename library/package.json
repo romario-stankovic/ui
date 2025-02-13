@@ -10,13 +10,13 @@
     },
     "dependencies": {
         "@builder.io/eslint-plugin-mitosis": "^0.0.16",
-        "@builder.io/mitosis": "latest",
-        "@builder.io/mitosis-cli": "latest",
-        "eslint": "^9.19.0",
-        "prettier": "^3.4.2"
+        "@builder.io/mitosis": "^0.5.36",
+        "@builder.io/mitosis-cli": "^0.5.36",
+        "eslint": "^9.20.1",
+        "prettier": "^3.5.0"
     },
     "devDependencies": {
-        "sass": "^1.83.4",
+        "sass": "^1.84.0",
         "vite-tsconfig-paths": "^5.1.4",
         "watch": "^1.0.2"
     }
