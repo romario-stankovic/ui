@@ -13,7 +13,7 @@ interface ButtonProps {
 }
 
 export default function Button(props: ButtonProps) {
-    useDefaultProps<ButtonProps>({
+    useDefaultProps<typeof props>({
         variant: "flat",
         shape: "rounded",
         type: "button",
