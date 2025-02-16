@@ -9,7 +9,6 @@ function CssResolver(options) {
         json: {
             pre: (json) => {
                 const imports = json.imports || [];
-                console.log(json.pluginData);
                 json.style ??= "";
                 for (const imp of imports) {
                     if (imp.path.endsWith(".css") || imp.path.endsWith(".scss") || imp.path.endsWith(".sass")) {
