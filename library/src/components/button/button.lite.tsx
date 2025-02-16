@@ -1,5 +1,5 @@
 import { Show, Slot, useDefaultProps } from "@builder.io/mitosis";
-import "src/components/button/button.scss";
+import style from "./button.scss";
 
 interface ButtonProps {
     variant?: "flat" | "raised" | "soft" | "outlined" | "colored-outline" | "text";
