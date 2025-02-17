@@ -1,1 +1,3 @@
-{}
+{
+    "references": [{ "path": "./tsconfig.mitosis.json" }, { "path": "./tsconfig.storybook.json" }]
+}

@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "composite": true,
         "target": "ESNext",
         "useDefineForClassFields": true,
         "lib": ["DOM", "DOM.Iterable", "ESNext"],
@@ -18,6 +19,6 @@
             "@packages/react": ["./dist/packages/react/src"]
         }
     },
-    "include": ["**/*.stories.tsx", "vite-env.d.ts"],
+    "include": ["**/*.stories.tsx", "vite-env.d.ts", "./dist/packages"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }

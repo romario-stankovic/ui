@@ -9,14 +9,14 @@
     ],
     "exports": {
         "./react": {
-            "types": "./dist/react/index.d.ts",
-            "import": "./dist/react/index.js",
-            "require": "./dist/react/index.umd.cjs"
+            "types": "./dist/release/react/index.d.ts",
+            "import": "./dist/release/react/index.js",
+            "require": "./dist/release/react/index.umd.cjs"
         },
         "./vue": {
-            "types": "./dist/vue/index.d.ts",
-            "import": "./dist/vue/index.js",
-            "require": "./dist/vue/index.umd.cjs"
+            "types": "./dist/release/vue/index.d.ts",
+            "import": "./dist/release/vue/index.js",
+            "require": "./dist/release/vue/index.umd.cjs"
         }
     },
     "scripts": {
