@@ -5,7 +5,12 @@ const { CssCompiler } = require("./plugins/css-resolver.cjs");
 module.exports = {
     files: "src/**",
     targets: ["react", "vue"],
-    dest: "../packages",
+    dest: "./dist/packages",
+    parserOptions: {
+        jsx: {
+            tsConfigFilePath: "./tsconfig.mitosis.json"
+        }
+    },
     commonOptions: {
         typescript: true,
         prettier: true,

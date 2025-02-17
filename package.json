@@ -19,22 +19,56 @@
             "require": "./dist/vue/index.umd.cjs"
         }
     },
-    "workspaces": [
-        "library",
-        "tests"
-    ],
     "scripts": {
-        "dev": "concurrently \"npm run dev -w @ui/library\" \"npm run storybook -w @ui/tests\"",
+        "dev": "concurrently \"npm run dev:mitosis\" \"npm run dev:storybook\"",
         "build": "npm run build:compile && concurrently \"npm run build:react\" \"npm run build:vue\"",
-        "build:compile": "npm run build -w @ui/library",
+        "dev:mitosis": "watch \"npm run build:mitosis\" ./src",
+        "dev:storybook": "storybook dev -p 6006 --no-open",
+        "build-storybook": "storybook build",
+        "build:compile": "npm run build:mitosis",
+        "build:mitosis": "mitosis build --c mitosis.config.cjs",
         "build:react": "vite build --config react.vite.config.ts ",
-        "build:vue": "vite build --config vue.vite.config.ts && vue-tsc --declaration --emitDeclarationOnly --outDir ./dist/vue ./packages/vue/src/index.ts"
+        "build:vue": "vite build --config vue.vite.config.ts && vue-tsc --declaration --emitDeclarationOnly --outDir ./dist/vue ./packages/vue/src/index.ts",
+        "lint": "eslint --fix",
+        "format": "prettier --write ."
+    },
+    "dependencies": {
+        "@builder.io/eslint-plugin-mitosis": "^0.0.16",
+        "@builder.io/mitosis": "^0.5.38",
+        "@builder.io/mitosis-cli": "^0.5.38",
+        "eslint": "^9.20.1",
+        "prettier": "^3.5.1"
     },
     "devDependencies": {
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "sass": "^1.85.0",
+        "vite-tsconfig-paths": "^5.1.4",
+        "watch": "^1.0.2",
         "@vitejs/plugin-react": "^4.3.4",
         "@vitejs/plugin-vue": "^5.2.1",
         "concurrently": "^9.1.2",
         "vite-plugin-dts": "^4.5.0",
-        "vue-tsc": "^2.2.0"
+        "vue-tsc": "^2.2.0",
+        "@chromatic-com/storybook": "^3.2.4",
+        "@fortawesome/fontawesome-svg-core": "^6.7.2",
+        "@fortawesome/free-brands-svg-icons": "^6.7.2",
+        "@fortawesome/free-regular-svg-icons": "^6.7.2",
+        "@fortawesome/free-solid-svg-icons": "^6.7.2",
+        "@fortawesome/react-fontawesome": "^0.2.2",
+        "@iconify-icon/react": "^2.3.0",
+        "@storybook/addon-essentials": "^8.5.0",
+        "@storybook/addon-interactions": "^8.5.0",
+        "@storybook/addon-onboarding": "^8.5.0",
+        "@storybook/blocks": "^8.5.0",
+        "@storybook/react": "^8.5.0",
+        "@storybook/react-vite": "^8.5.0",
+        "@storybook/test": "^8.5.0",
+        "@types/node": "^22.10.7",
+        "@types/react": "^19.0.7",
+        "@types/react-dom": "^19.0.3",
+        "storybook": "^8.5.0",
+        "typescript": "^5.7.3",
+        "vite": "^6.0.7"
     }
 }

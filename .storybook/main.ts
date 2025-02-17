@@ -29,7 +29,7 @@ const config: StorybookConfig = {
     },
 
     viteFinal: (config) => {
-        config.plugins?.push(tsConfigPaths());
+        config.plugins?.push(tsConfigPaths({ configNames: ["tsconfig.storybook.json"] }));
 
         return config;
     }

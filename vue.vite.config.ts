@@ -6,11 +6,11 @@ export default defineConfig({
     plugins: [vue()],
     build: {
         lib: {
-            entry: "packages/vue/src/index.ts",
+            entry: "dist/packages/vue/src/index.ts",
             name: "@romario-stankovic/ui/vue",
             fileName: "index"
         },
-        outDir: "dist/vue",
+        outDir: "dist/release/vue",
         emptyOutDir: true,
         rollupOptions: {
             external: ["vue"],

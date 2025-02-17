@@ -6,11 +6,11 @@ export default defineConfig({
     plugins: [react()],
     build: {
         lib: {
-            entry: "packages/react/src/index.ts",
+            entry: "dist/packages/react/src/index.ts",
             name: "@romario-stankovic/ui/react",
             fileName: "index"
         },
-        outDir: "dist/react",
+        outDir: "dist/release/react",
         emptyOutDir: true,
         rollupOptions: {
             external: ["react", "react-dom"],
