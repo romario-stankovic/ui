@@ -6,6 +6,7 @@ module.exports = {
     files: "src/**",
     targets: ["react", "vue"],
     dest: "./dist/packages",
+    exclude: ["**/node_modules/**", "**/*.d.ts"],
     parserOptions: {
         jsx: {
             tsConfigFilePath: "./tsconfig.mitosis.json"
