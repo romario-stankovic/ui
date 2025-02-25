@@ -3,14 +3,14 @@ import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
 
 export default defineConfig({
-    plugins: [react()],
+    plugins: [react(), dts({ tsconfigPath: "./tsconfig.app.json" })],
     build: {
         lib: {
-            entry: "dist/packages/react/src/index.ts",
+            entry: "src/index.ts",
             name: "@romario-stankovic/ui/react",
             fileName: "index"
         },
-        outDir: "dist/release/react",
+        outDir: "dist",
         emptyOutDir: true,
         rollupOptions: {
             external: ["react", "react-dom"],

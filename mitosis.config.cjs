@@ -5,7 +5,7 @@ const { CssCompiler } = require("./plugins/css-resolver.cjs");
 module.exports = {
     files: "src/**",
     targets: ["react", "vue"],
-    dest: "./dist/packages",
+    dest: "./packages",
     exclude: ["**/node_modules/**", "**/*.d.ts"],
     parserOptions: {
         jsx: {
