@@ -33,14 +33,10 @@
         "format": "prettier --write .",
         "prepare": "npm run build"
     },
-    "dependencies": {
-        "@builder.io/eslint-plugin-mitosis": "^0.0.16",
-        "@builder.io/mitosis": "^0.5.38",
-        "@builder.io/mitosis-cli": "^0.5.38",
-        "eslint": "^9.20.1",
-        "prettier": "^3.5.1"
-    },
     "devDependencies": {
+        "@builder.io/eslint-plugin-mitosis": "^0.0.16",
+        "@builder.io/mitosis": "^0.6.4",
+        "@builder.io/mitosis-cli": "^0.6.4",
         "@chromatic-com/storybook": "^3.2.4",
         "@fortawesome/fontawesome-svg-core": "^6.7.2",
         "@fortawesome/free-brands-svg-icons": "^6.7.2",
@@ -61,6 +57,8 @@
         "@vitejs/plugin-react": "^4.3.4",
         "@vitejs/plugin-vue": "^5.2.1",
         "concurrently": "^9.1.2",
+        "eslint": "^9.21.0",
+        "prettier": "^3.5.2",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
         "sass": "^1.85.0",
