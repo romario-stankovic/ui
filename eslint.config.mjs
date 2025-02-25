@@ -14,24 +14,27 @@ const compat = new FlatCompat({
     allConfig: js.configs.all
 });
 
-export default [...compat.extends("plugin:@builder.io/mitosis/recommended"), {
-    plugins: {
-        "@builder.io/mitosis": builderIoMitosis,
-    },
-
-    languageOptions: {
-        globals: {
-            ...globals.browser,
+export default [
+    ...compat.extends("plugin:@builder.io/mitosis/recommended"),
+    {
+        plugins: {
+            "@builder.io/mitosis": builderIoMitosis
         },
 
-        parser: tsParser,
-        ecmaVersion: 2018,
-        sourceType: "module",
-
-        parserOptions: {
-            ecmaFeatures: {
-                jsx: true,
+        languageOptions: {
+            globals: {
+                ...globals.browser
             },
-        },
-    },
-}];
+
+            parser: tsParser,
+            ecmaVersion: 2018,
+            sourceType: "module",
+
+            parserOptions: {
+                ecmaFeatures: {
+                    jsx: true
+                }
+            }
+        }
+    }
+];
