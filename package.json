@@ -30,7 +30,8 @@
         "build:react": "vite build --config react.vite.config.ts ",
         "build:vue": "vite build --config vue.vite.config.ts && vue-tsc --declaration --emitDeclarationOnly --outDir ./dist/release/vue ./dist/packages/vue/src/index.ts",
         "lint": "eslint --fix",
-        "format": "prettier --write ."
+        "format": "prettier --write .",
+        "prepare": "npm run build"
     },
     "dependencies": {
         "@builder.io/eslint-plugin-mitosis": "^0.0.16",
