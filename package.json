@@ -17,7 +17,8 @@
             "types": "./packages/vue/dist/index.d.ts",
             "import": "./packages/vue/dist/index.js",
             "require": "./packages/vue/dist/index.umd.cjs"
-        }
+        },
+        "./vue/style.css": "./packages/vue/dist/index.css"
     },
     "scripts": {
         "dev": "concurrently \"npm run dev:mitosis\" \"npm run dev:storybook\"",
