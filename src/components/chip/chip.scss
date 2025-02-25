@@ -4,16 +4,16 @@
 .chip {
     display: inline-block;
     box-sizing: border-box;
-    line-height: 1ch;
-    color: var(--primary);
-
-    text-decoration: none;
-    text-align: center;
 
     border: none;
-    font-size: 0.875rem;
     padding: 0em 0.75em;
     pointer-events: none;
+    color: var(--primary);
+    font-size: 0.875rem;
+    line-height: 1ch;
+    text-align: center;
+
+    text-decoration: none;
 
     &:disabled,
     &[aria-disabled="true"] {
@@ -23,11 +23,11 @@
     }
 
     > span {
-        height: 1.857144em;
-        width: fit-content;
         display: inline-flex;
-        gap: 0.25em;
         align-items: center;
+        gap: 0.25em;
+        width: fit-content;
+        height: 1.857144em;
     }
 }
 
@@ -40,10 +40,10 @@
     padding: 0;
 
     > span {
-        height: 1.857144em;
-        width: 1.857144em;
-        gap: 0;
-        text-indent: -100vw;
         justify-content: center;
+        gap: 0;
+        width: 1.857144em;
+        height: 1.857144em;
+        text-indent: -100vw;
     }
 }

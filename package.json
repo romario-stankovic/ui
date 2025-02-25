@@ -67,6 +67,7 @@
         "globals": "^16.0.0",
         "lefthook": "^1.11.1",
         "prettier": "^3.5.2",
+        "prettier-plugin-css-order": "^2.1.2",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
         "sass": "^1.85.0",

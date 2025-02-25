@@ -3,18 +3,18 @@
 
 .button {
     display: inline-block;
-    box-sizing: border-box;
-    line-height: 1ch;
-    color: var(--primary);
-
-    text-decoration: none;
-    text-align: center;
-
-    border: none;
-    font-size: 0.875rem;
-    padding: 0.5357143em 1em;
     transition-timing-function: ease-in-out;
     cursor: pointer;
+    box-sizing: border-box;
+
+    border: none;
+    padding: 0.5357143em 1em;
+    color: var(--primary);
+    font-size: 0.875rem;
+    line-height: 1ch;
+    text-align: center;
+
+    text-decoration: none;
 
     &:disabled,
     &[aria-disabled="true"] {
@@ -24,11 +24,11 @@
     }
 
     > span {
-        height: 1.5em;
-        width: fit-content;
         display: inline-flex;
-        gap: 0.25em;
         align-items: center;
+        gap: 0.25em;
+        width: fit-content;
+        height: 1.5em;
     }
 }
 
@@ -36,10 +36,10 @@
     padding: 0.5357143em;
 
     > span {
-        min-width: 1.5em;
-        height: 1.5em;
         justify-content: center;
         gap: 0;
+        min-width: 1.5em;
+        height: 1.5em;
         text-indent: -1000vw;
     }
 }
