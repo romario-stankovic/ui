@@ -28,8 +28,8 @@
         "build-storybook": "storybook build",
         "build:mitosis": "mitosis build --c mitosis.config.cjs",
         "build:copy": "copyfiles -u 1 assets/**/* packages",
-        "build:react": "cd packages/react && vite build",
-        "build:vue": "cd packages/vue && vite build",
+        "build:react": "cd packages/react && npm run build",
+        "build:vue": "cd packages/vue && npm run build",
         "lint": "eslint --fix",
         "format": "prettier --write .",
         "prepare": "npm run build"
