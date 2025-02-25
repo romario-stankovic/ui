@@ -1,12 +1,16 @@
 import { Show, Slot, useDefaultProps } from "@builder.io/mitosis";
 import style from "./button.scss";
 
+type ButtonVariant = "flat" | "raised" | "soft" | "outlined" | "colored-outline" | "text";
+type ButtonShape = "box" | "rounded" | "pill";
+type ButtonType = "button" | "submit" | "reset";
+
 interface ButtonProps {
-    variant?: "flat" | "raised" | "soft" | "outlined" | "colored-outline" | "text";
-    shape?: "box" | "rounded" | "pill";
+    variant?: ButtonVariant;
+    shape?: ButtonShape;
     href?: string;
     target?: string;
-    type?: "button" | "submit" | "reset";
+    type?: ButtonType;
     iconOnly?: boolean;
     disabled?: boolean;
     onClick?: (event: MouseEvent) => void;
@@ -20,6 +24,7 @@ export default function Button(props: ButtonProps) {
         disabled: false,
         href: "",
         target: "",
+        iconOnly: false,
         onClick: () => {}
     });
 

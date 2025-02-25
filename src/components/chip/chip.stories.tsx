@@ -1,69 +1,56 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { Button } from "@packages/react";
+import { Meta, StoryObj } from "@storybook/react/*";
+import { Chip } from "@packages/react";
+import { fn } from "@storybook/test";
 import { Icon as IconifyIcon } from "@iconify-icon/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
-import { fn } from "@storybook/test";
 
-type Story = StoryObj<typeof Button>;
+type Story = StoryObj<typeof Chip>;
 
 export default {
-    title: "Components/Button",
-    component: Button,
+    title: "Components/Chip",
+    component: Chip,
     tags: ["autodocs"],
     argTypes: {
         default: {
             control: "text",
-            description: "The text content of the button"
+            description: "The text content of the chip"
         },
         variant: {
             control: "select",
             options: ["flat", "raised", "soft", "outlined", "colored-outline", "text"],
-            description: "Appearance of the button"
+            description: "Appearance of the chip"
         },
         shape: {
             control: "select",
             options: ["box", "rounded", "pill"],
-            description: "Shape of the button"
+            description: "Shape of the chip"
         },
-        href: {
-            control: "text",
-            description: "URL to navigate to when the button is clicked"
-        },
-        target: {
-            control: "select",
-            options: ["_blank", "_self", "_parent", "_top"],
-            description: "Where to open the linked document"
+        interactive: {
+            control: "boolean",
+            description: "Whether the chip is interactive"
         },
         iconOnly: {
             control: "boolean",
-            description: "Whether the button only contains an icon"
+            description: "Whether the chip has only an icon"
         },
         disabled: {
             control: "boolean",
-            description: "Whether the button is disabled"
+            description: "Whether the chip is disabled"
         }
     },
     args: {
-        default: "Button",
+        default: "Chip",
 
         variant: "flat",
-        shape: "rounded",
-        href: "",
-        target: "_blank",
-        iconOnly: false,
+        shape: "pill",
+        interactive: false,
         disabled: false,
+        iconOnly: false,
 
         onClick: fn()
     },
-    parameters: {
-        docs: {
-            description: {
-                component: "A component used to trigger an action or navigate to a new page"
-            }
-        }
-    },
-    render: (args) => <Button {...args}>{args.default}</Button>
+    render: (args) => <Chip {...args}>{args.default}</Chip>
 } satisfies Meta;
 
 export const Flat: Story = {
@@ -73,7 +60,7 @@ export const Flat: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A flat button with no elevation and solid background"
+                story: "A flat chip with no elevation and a solid background"
             }
         }
     }
@@ -86,7 +73,7 @@ export const Raised: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A raised button with a subtle shadow indicating elevation"
+                story: "A raised chip with a subtle shadow indicating elevation"
             }
         }
     }
@@ -99,20 +86,20 @@ export const Soft: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A soft button with a semi-transparent background"
+                story: "A soft chip with a semi-transparent background"
             }
         }
     }
 };
 
-export const Outlined: Story = {
+export const Outline: Story = {
     args: {
         variant: "outlined"
     },
     parameters: {
         docs: {
             description: {
-                story: "An outlined button with a border and transparent background"
+                story: "An outlined chip with a border and transparent background"
             }
         }
     }
@@ -125,7 +112,7 @@ export const ColoredOutline: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A colored outline button with a border that matches the text color"
+                story: "A colored outline chip with a border that matches the text color"
             }
         }
     }
@@ -138,7 +125,7 @@ export const Text: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A text button with no background or border"
+                story: "A text chip with no background or border"
             }
         }
     }
@@ -151,7 +138,7 @@ export const Box: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A box-shaped button with sharp corners"
+                story: "A box-shaped chip with sharp corners"
             }
         }
     }
@@ -164,7 +151,7 @@ export const Rounded: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A rounded button with slightly rounded corners"
+                story: "A rounded chip with slightly rounded corners"
             }
         }
     }
@@ -177,21 +164,20 @@ export const Pill: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A pill-shaped button with fully rounded corners"
+                story: "A pill-shaped chip with fully rounded corners"
             }
         }
     }
 };
 
-export const Link: Story = {
+export const Interactive: Story = {
     args: {
-        href: "https://example.com",
-        target: "_blank"
+        interactive: true
     },
     parameters: {
         docs: {
             description: {
-                story: "A button that navigates to a new page"
+                story: "A chip which can be clicked"
             }
         }
     }
@@ -204,38 +190,38 @@ export const Disabled: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A button that cannot be clicked"
+                story: "A chip that cannot be clicked"
             }
         }
     }
 };
 
-export const IconifyButton: Story = {
+export const IconifyChip: Story = {
     render: (args) => (
-        <Button {...args}>
+        <Chip {...args}>
             <IconifyIcon icon="material-symbols:imagesmode-rounded" style={{ fontSize: "1.5em" }} /> {args.default}
-        </Button>
+        </Chip>
     ),
     parameters: {
         docs: {
             description: {
-                story: "A button with an Iconify icon"
+                story: "A chip with an Iconify icon"
             }
         }
     }
 };
 
-export const FontAwesomeButton: Story = {
+export const FontAwesoneChip: Story = {
     render: (args) => (
-        <Button {...args}>
+        <Chip {...args}>
             <FontAwesomeIcon icon={faImage} fontSize={"1.25em"} />
             {args.default}
-        </Button>
+        </Chip>
     ),
     parameters: {
         docs: {
             description: {
-                story: "A button with a FontAwesome icon"
+                story: "A chip with a FontAwesome icon"
             }
         }
     }
@@ -246,14 +232,14 @@ export const IconOnly: Story = {
         iconOnly: true
     },
     render: (args) => (
-        <Button {...args}>
-            <IconifyIcon icon="material-symbols:imagesmode-rounded" style={{ fontSize: "1.5em" }} />
-        </Button>
+        <Chip {...args}>
+            <IconifyIcon icon="material-symbols:imagesmode-rounded" style={{ fontSize: "1.25em" }} />
+        </Chip>
     ),
     parameters: {
         docs: {
             description: {
-                story: "A button with only one icon inside of it"
+                story: "A chip with only one icon inside of it"
             }
         }
     }

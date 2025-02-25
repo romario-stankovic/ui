@@ -12,7 +12,14 @@
     }
 }
 
+@mixin transition-mixin {
+    transition-property: background-color, box-shadow;
+    transition-duration: 0.2s;
+}
+
 .flat {
+    @include transition-mixin;
+
     background-color: currentColor;
 
     &:hover {
@@ -29,12 +36,13 @@
 }
 
 .raised {
+    @include transition-mixin;
+    @include hover-mixin;
+
     background-color: var(--content);
     box-shadow:
         0px 2px 3px -1px var(--shadow),
         0px 1px 1px 0px var(--shadow);
-
-    @include hover-mixin;
 
     &:hover {
         box-shadow:
@@ -50,6 +58,8 @@
 }
 
 .soft {
+    @include transition-mixin;
+
     background-color: color-mix(in srgb, currentColor, transparent 80%);
 
     &:hover {
@@ -66,23 +76,26 @@
 }
 
 .outlined {
+    @include transition-mixin;
+    @include hover-mixin;
+
     outline: 1px solid var(--border);
     background-color: transparent;
     outline-offset: -1px;
-
-    @include hover-mixin;
 }
 
 .colored-outline {
+    @include transition-mixin;
+    @include hover-mixin;
+
     outline: 1px solid color-mix(in srgb, currentColor, var(--border) 50%);
     background-color: transparent;
     outline-offset: -1px;
-
-    @include hover-mixin;
 }
 
 .text {
-    background-color: transparent;
-
+    @include transition-mixin;
     @include hover-mixin;
+
+    background-color: transparent;
 }

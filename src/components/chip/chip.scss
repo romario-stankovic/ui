@@ -1,7 +1,7 @@
 @use "css/interactive-variants";
 @use "css/shapes";
 
-.button {
+.chip {
     display: inline-block;
     box-sizing: border-box;
     line-height: 1ch;
@@ -12,9 +12,8 @@
 
     border: none;
     font-size: 0.875rem;
-    padding: 0.5357143em 1em;
-    transition-timing-function: ease-in-out;
-    cursor: pointer;
+    padding: 0em 0.75em;
+    pointer-events: none;
 
     &:disabled,
     &[aria-disabled="true"] {
@@ -24,7 +23,7 @@
     }
 
     > span {
-        height: 1.5em;
+        height: 1.857144em;
         width: fit-content;
         display: inline-flex;
         gap: 0.25em;
@@ -32,14 +31,19 @@
     }
 }
 
+.interactive {
+    cursor: pointer;
+    pointer-events: all;
+}
+
 .icon-only {
-    padding: 0.5357143em;
+    padding: 0;
 
     > span {
-        min-width: 1.5em;
-        height: 1.5em;
-        justify-content: center;
+        height: 1.857144em;
+        width: 1.857144em;
         gap: 0;
-        text-indent: -1000vw;
+        text-indent: -100vw;
+        justify-content: center;
     }
 }

@@ -16,9 +16,9 @@
         "isolatedModules": true,
         "jsx": "react-jsx",
         "paths": {
-            "@packages/react": ["./dist/packages/react/src"]
+            "@packages/react": ["./packages/react/src"]
         }
     },
-    "include": ["**/*.stories.tsx", "vite-env.d.ts", "./dist/packages"],
+    "include": ["**/*.stories.tsx", "vite-env.d.ts", "./packages"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }
