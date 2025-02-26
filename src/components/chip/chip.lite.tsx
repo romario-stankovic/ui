@@ -3,11 +3,14 @@ import style from "./chip.scss";
 
 type ChipVariant = "flat" | "raised" | "soft" | "outlined" | "colored-outline" | "text";
 type ChipShape = "box" | "rounded" | "pill";
+type HrefTarget = "_blank" | "_self" | "_parent" | "_top" | string;
 
 interface ChipProps {
     variant?: ChipVariant;
     shape?: ChipShape;
     interactive?: boolean;
+    href?: string;
+    target?: HrefTarget;
     disabled?: boolean;
     iconOnly?: boolean;
     onClick?: (event: MouseEvent) => void;
@@ -18,6 +21,8 @@ export default function Chip(props: ChipProps) {
         variant: "flat",
         shape: "pill",
         interactive: false,
+        href: "",
+        target: "",
         disabled: false,
         onClick: () => {}
     });
@@ -26,20 +31,37 @@ export default function Chip(props: ChipProps) {
         <Show
             when={!props.interactive}
             else={
-                <button
-                    class={`chip ${props.variant} ${props.shape} ${props.interactive ? "interactive" : ""} ${props.iconOnly ? "icon-only" : ""}`}
-                    aria-disabled={props.disabled}
-                    disabled={props.disabled}
-                    onClick={(e) => props.onClick?.(e)}
+                <Show
+                    when={!props.href}
+                    else={
+                        <a
+                            href={props.href}
+                            target={props.target}
+                            class={`chip ${props.variant} ${props.shape} ${props} ${props.iconOnly ? "icon-only" : ""}`}
+                            onClick={(e) => props.onClick?.(e)}
+                            aria-disabled={props.disabled}
+                        >
+                            <span>
+                                <Slot />
+                            </span>
+                        </a>
+                    }
                 >
-                    <span>
-                        <Slot />
-                    </span>
-                </button>
+                    <button
+                        class={`chip ${props.variant} ${props.shape} ${props.iconOnly ? "icon-only" : ""}`}
+                        aria-disabled={props.disabled}
+                        disabled={props.disabled}
+                        onClick={(e) => props.onClick?.(e)}
+                    >
+                        <span>
+                            <Slot />
+                        </span>
+                    </button>
+                </Show>
             }
         >
             <div
-                class={`chip ${props.variant} ${props.shape} ${props.interactive ? "interactive" : ""} ${props.iconOnly ? "icon-only" : ""}`}
+                class={`chip ${props.variant} ${props.shape} ${props.iconOnly ? "icon-only" : ""}`}
                 aria-disabled={props.disabled}
             >
                 <span>

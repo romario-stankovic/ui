@@ -31,7 +31,8 @@
     }
 }
 
-.interactive {
+button.chip,
+a.chip {
     cursor: pointer;
     pointer-events: all;
 }

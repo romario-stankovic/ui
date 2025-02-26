@@ -30,6 +30,15 @@ export default {
             control: "boolean",
             description: "Whether the chip is interactive"
         },
+        href: {
+            control: "text",
+            description: "URL to navigate to when the chip is clicked"
+        },
+        target: {
+            control: "select",
+            options: ["_blank", "_self", "_parent", "_top"],
+            description: "Where to open the linked document"
+        },
         iconOnly: {
             control: "boolean",
             description: "Whether the chip has only an icon"
@@ -45,6 +54,8 @@ export default {
         variant: "flat",
         shape: "pill",
         interactive: false,
+        href: "",
+        target: "_blank",
         disabled: false,
         iconOnly: false,
 
