@@ -37,7 +37,7 @@ export default function Chip(props: ChipProps) {
                         <a
                             href={props.href}
                             target={props.target}
-                            class={`chip ${props.variant} ${props.shape} ${props} ${props.iconOnly ? "icon-only" : ""}`}
+                            class={`chip ${props.variant} ${props.shape} ${props.iconOnly ? "icon-only" : ""}`}
                             onClick={(e) => props.onClick?.(e)}
                             aria-disabled={props.disabled}
                         >
