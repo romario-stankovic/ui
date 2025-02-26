@@ -25,11 +25,11 @@
         "build": "npm run build:mitosis && npm run build:copy && concurrently \"npm run build:react\" \"npm run build:vue\"",
         "dev:mitosis": "watch \"npm run build:mitosis\" ./src",
         "dev:storybook": "storybook dev -p 6006 --no-open",
-        "build-storybook": "storybook build",
+        "build:storybook": "storybook build",
         "build:mitosis": "mitosis build --c mitosis.config.cjs",
         "build:copy": "copyfiles -u 1 assets/**/* packages",
-        "build:react": "cd packages/react && npm run build",
-        "build:vue": "cd packages/vue && npm run build",
+        "build:react": "cd packages/react && npm i",
+        "build:vue": "cd packages/vue && npm i",
         "lint": "eslint --fix",
         "format": "prettier --write .",
         "prepare": "npm run build"
@@ -59,8 +59,6 @@
         "@types/react-dom": "^19.0.3",
         "@typescript-eslint/parser": "^8.25.0",
         "@vitejs/plugin-react": "^4.3.4",
-        "@vitejs/plugin-vue": "^5.2.1",
-        "@vue/tsconfig": "^0.7.0",
         "concurrently": "^9.1.2",
         "copyfiles": "^2.4.1",
         "eslint": "^9.21.0",
@@ -74,9 +72,7 @@
         "storybook": "^8.5.0",
         "typescript": "^5.7.3",
         "vite": "^6.0.7",
-        "vite-plugin-dts": "^4.5.0",
         "vite-tsconfig-paths": "^5.1.4",
-        "vue-tsc": "^2.2.0",
         "watch": "^1.0.2"
     }
 }
