@@ -9,8 +9,15 @@
     --shadow: #c4c4c4;
 
     --content: #ffffff;
+    --background: #f5f5f4;
 
     --text: #080808;
+}
+
+body {
+    margin: 0;
+    background-color: var(--background);
+    padding: 0;
 }
 
 * {

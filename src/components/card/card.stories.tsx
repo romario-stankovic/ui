@@ -28,23 +28,51 @@ export default {
 export const Flat: Story = {
     args: {
         variant: "flat"
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: "A card with default content color and no border"
+            }
+        }
     }
 };
 
 export const Raised: Story = {
     args: {
         variant: "raised"
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: "A raised card with a subtle shadow indicating elevation"
+            }
+        }
     }
 };
 
 export const Soft: Story = {
     args: {
         variant: "soft"
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: "A soft card with a semi-transparent background"
+            }
+        }
     }
 };
 
 export const Outlined: Story = {
     args: {
         variant: "outlined"
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: "An outlined card with a border"
+            }
+        }
     }
 };
