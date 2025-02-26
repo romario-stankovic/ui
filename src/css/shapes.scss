@@ -1,11 +1,13 @@
-.rounded {
-    border-radius: 0.429em;
-}
+@mixin default {
+    &.rounded {
+        border-radius: 0.429em;
+    }
 
-.box {
-    border-radius: 0;
-}
+    &.box {
+        border-radius: 0;
+    }
 
-.pill {
-    border-radius: max(100vw, 100vh);
+    &.pill {
+        border-radius: max(100vw, 100vh);
+    }
 }

@@ -1,7 +1,10 @@
-@use "css/interactive-variants";
-@use "css/shapes";
+@use "css/interactive-variants" as interactive-variants;
+@use "css/shapes" as shapes;
 
 .chip {
+    @include interactive-variants.default;
+    @include shapes.default;
+
     display: inline-block;
     box-sizing: border-box;
 

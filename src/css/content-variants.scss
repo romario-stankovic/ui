@@ -1,20 +1,22 @@
-.flat {
-    background-color: var(--content);
-}
+@mixin default {
+    &.flat {
+        background-color: var(--content);
+    }
 
-.raised {
-    box-shadow:
-        0px 2px 3px -1px var(--shadow),
-        0px 1px 1px 0px var(--shadow);
+    &.raised {
+        box-shadow:
+            0px 2px 3px -1px var(--shadow),
+            0px 1px 1px 0px var(--shadow);
 
-    background-color: var(--content);
-}
+        background-color: var(--content);
+    }
 
-.soft {
-    background-color: color-mix(in srgb, var(--content), currentColor 10%);
-}
+    &.soft {
+        background-color: color-mix(in srgb, var(--content), currentColor 10%);
+    }
 
-.outlined {
-    border: 1px solid var(--border);
-    background-color: var(--content);
+    &.outlined {
+        border: 1px solid var(--border);
+        background-color: var(--content);
+    }
 }

@@ -17,85 +17,88 @@
     transition-property: background-color, box-shadow;
 }
 
-.flat {
-    @include transition-mixin;
+@mixin default {
+    &.flat {
+        @include transition-mixin;
 
-    background-color: currentColor;
+        background-color: currentColor;
 
-    &:hover {
-        background-color: color-mix(in srgb, currentColor, var(--text) 10%);
+        &:hover {
+            background-color: color-mix(in srgb, currentColor, var(--text) 10%);
+        }
+
+        &:active {
+            background-color: color-mix(in srgb, currentColor, var(--text) 20%);
+        }
+
+        span {
+            color: var(--primary-content);
+        }
     }
 
-    &:active {
-        background-color: color-mix(in srgb, currentColor, var(--text) 20%);
-    }
+    &.raised {
+        @include transition-mixin;
+        @include hover-mixin;
 
-    span {
-        color: var(--primary-content);
-    }
-}
-
-.raised {
-    @include transition-mixin;
-    @include hover-mixin;
-    box-shadow:
-        0px 2px 3px -1px var(--shadow),
-        0px 1px 1px 0px var(--shadow);
-
-    background-color: var(--content);
-
-    &:hover {
-        box-shadow:
-            0px 3px 3px -1px var(--shadow),
-            0px 2px 5px 0px var(--shadow);
-    }
-
-    &:active {
         box-shadow:
             0px 2px 3px -1px var(--shadow),
             0px 1px 1px 0px var(--shadow);
+
+        background-color: var(--content);
+
+        &:hover {
+            box-shadow:
+                0px 3px 3px -1px var(--shadow),
+                0px 2px 5px 0px var(--shadow);
+        }
+
+        &:active {
+            box-shadow:
+                0px 2px 3px -1px var(--shadow),
+                0px 1px 1px 0px var(--shadow);
+        }
     }
-}
 
-.soft {
-    @include transition-mixin;
+    &.soft {
+        @include transition-mixin;
 
-    background-color: color-mix(in srgb, currentColor, transparent 80%);
+        background-color: color-mix(in srgb, currentColor, transparent 80%);
 
-    &:hover {
-        background-color: color-mix(in srgb, currentColor, transparent 70%);
+        &:hover {
+            background-color: color-mix(in srgb, currentColor, transparent 70%);
+        }
+
+        &:active {
+            background-color: color-mix(in srgb, currentColor, transparent 60%);
+        }
+
+        span {
+            color: currentColor;
+        }
     }
 
-    &:active {
-        background-color: color-mix(in srgb, currentColor, transparent 60%);
+    &.outlined {
+        @include transition-mixin;
+        @include hover-mixin;
+
+        outline: 1px solid var(--border);
+        outline-offset: -1px;
+        background-color: transparent;
     }
 
-    span {
-        color: currentColor;
+    &.colored-outline {
+        @include transition-mixin;
+        @include hover-mixin;
+
+        outline: 1px solid color-mix(in srgb, currentColor, var(--border) 50%);
+        outline-offset: -1px;
+        background-color: transparent;
     }
-}
 
-.outlined {
-    @include transition-mixin;
-    @include hover-mixin;
+    &.text {
+        @include transition-mixin;
+        @include hover-mixin;
 
-    outline: 1px solid var(--border);
-    outline-offset: -1px;
-    background-color: transparent;
-}
-
-.colored-outline {
-    @include transition-mixin;
-    @include hover-mixin;
-
-    outline: 1px solid color-mix(in srgb, currentColor, var(--border) 50%);
-    outline-offset: -1px;
-    background-color: transparent;
-}
-
-.text {
-    @include transition-mixin;
-    @include hover-mixin;
-
-    background-color: transparent;
+        background-color: transparent;
+    }
 }

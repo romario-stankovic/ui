@@ -1,6 +1,8 @@
-@use "css/content-variants";
+@use "css/content-variants" as content-variants;
 
 .navbar {
+    @include content-variants.default;
+
     display: flex;
     flex-wrap: wrap;
     align-items: center;
