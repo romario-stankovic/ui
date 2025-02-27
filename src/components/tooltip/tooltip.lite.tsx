@@ -86,7 +86,7 @@ export default function Tooltip(props: TooltipProps) {
     }
 
     onMount(() => {
-        if (!window) return;
+        if (typeof window === "undefined") return;
 
         targetRef = document.getElementById(props.target);
 
@@ -99,7 +99,7 @@ export default function Tooltip(props: TooltipProps) {
     });
 
     onUpdate(() => {
-        if (!window) return;
+        if (typeof window === "undefined") return;
 
         const tooltipRect = tooltipRef.getBoundingClientRect();
 

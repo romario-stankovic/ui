@@ -59,7 +59,7 @@ export default function Navbar(props: NavbarProps) {
     }
 
     function registerHandlers() {
-        if (!window) return;
+        if (typeof window === "undefined") return;
 
         if (props.sticky && props.hideOnScroll) {
             window.addEventListener("scroll", handleScrollRef);
@@ -70,7 +70,7 @@ export default function Navbar(props: NavbarProps) {
     }
 
     function removeHandlers() {
-        if (!window) return;
+        if (typeof window === "undefined") return;
 
         window.removeEventListener("scroll", handleScrollRef);
         window.removeEventListener("scrollend", handleScrollStopRef);
