@@ -19,7 +19,8 @@ module.exports = {
     },
     options: {
         react: {
-            stylesType: "style-tag"
+            stylesType: "style-tag",
+            addUseClientDirectiveIfNeeded: false
         },
         vue: {
             api: "composition"
