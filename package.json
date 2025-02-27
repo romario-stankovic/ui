@@ -32,7 +32,7 @@
         "build:vue": "cd packages/vue && npm i",
         "lint": "eslint --fix",
         "format": "prettier --write .",
-        "prepublish": "npm run build"
+        "prepare": "npm run build"
     },
     "devDependencies": {
         "@builder.io/eslint-plugin-mitosis": "^0.0.16",
