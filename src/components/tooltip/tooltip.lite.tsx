@@ -15,11 +15,11 @@ interface TooltipProps {
 }
 
 export default function Tooltip(props: TooltipProps) {
+    const tooltipRef = useRef<HTMLDivElement | undefined>(undefined);
     let targetRef = useRef<HTMLElement | null>(null);
-    const tooltipRef = useRef<HTMLDivElement>(null);
 
-    const [left, setLeft] = useState<number>(0);
-    const [top, setTop] = useState<number>(0);
+    const [x, setX] = useState<number>(0);
+    const [y, setY] = useState<number>(0);
     const [visible, setVisible] = useState<boolean>(false);
 
     let delayTimeout = useRef<NodeJS.Timeout | undefined>(undefined);
@@ -34,9 +34,7 @@ export default function Tooltip(props: TooltipProps) {
     });
 
     function mouseEnterHandler() {
-        if (!targetRef) {
-            return;
-        }
+        if (!targetRef || !tooltipRef) return;
 
         const targetRect = targetRef.getBoundingClientRect();
         const tooltipRect = tooltipRef.getBoundingClientRect();
@@ -46,20 +44,20 @@ export default function Tooltip(props: TooltipProps) {
         switch (props.position) {
             default:
             case "top":
-                setLeft(targetRect.left + targetRect.width / 2 - tooltipRect.width / 2);
-                setTop(targetRect.top - tooltipRect.height - margin);
+                setX(targetRect.left + targetRect.width / 2 - tooltipRect.width / 2);
+                setY(targetRect.top - tooltipRect.height - margin);
                 break;
             case "bottom":
-                setLeft(targetRect.left + targetRect.width / 2 - tooltipRect.width / 2);
-                setTop(targetRect.bottom + margin);
+                setX(targetRect.left + targetRect.width / 2 - tooltipRect.width / 2);
+                setY(targetRect.bottom + margin);
                 break;
             case "left":
-                setLeft(targetRect.left - tooltipRect.width - margin);
-                setTop(targetRect.top + targetRect.height / 2 - tooltipRect.height / 2);
+                setX(targetRect.left - tooltipRect.width - margin);
+                setY(targetRect.top + targetRect.height / 2 - tooltipRect.height / 2);
                 break;
             case "right":
-                setLeft(targetRect.right + margin);
-                setTop(targetRect.top + targetRect.height / 2 - tooltipRect.height / 2);
+                setX(targetRect.right + margin);
+                setY(targetRect.top + targetRect.height / 2 - tooltipRect.height / 2);
                 break;
         }
 
@@ -76,8 +74,8 @@ export default function Tooltip(props: TooltipProps) {
             return;
         }
 
-        setTop(event.clientY + (props.margin ?? 0));
-        setLeft(event.clientX + (props.margin ?? 0));
+        setY(event.clientY + (props.margin ?? 0));
+        setX(event.clientX + (props.margin ?? 0));
     }
 
     function mouseLeaveHandler() {
@@ -99,30 +97,31 @@ export default function Tooltip(props: TooltipProps) {
     });
 
     onUpdate(() => {
+        if (!targetRef || !tooltipRef) return;
         if (typeof window === "undefined") return;
 
         const tooltipRect = tooltipRef.getBoundingClientRect();
 
-        if (left + tooltipRect.width > document.body.clientWidth) {
-            setLeft(document.body.clientWidth - tooltipRect.width);
+        if (x + tooltipRect.width > document.body.clientWidth) {
+            setX(document.body.clientWidth - tooltipRect.width);
         }
 
-        if (top + tooltipRect.height > document.body.clientHeight) {
-            setTop(document.body.clientHeight - tooltipRect.height);
+        if (y + tooltipRect.height > document.body.clientHeight) {
+            setY(document.body.clientHeight - tooltipRect.height);
         }
 
-        if (left < 0) {
-            setLeft(0);
+        if (x < 0) {
+            setX(0);
         }
 
-        if (top < 0) {
-            setTop(0);
+        if (y < 0) {
+            setY(0);
         }
 
-        tooltipRef.style.top = `${top}px`;
-        tooltipRef.style.left = `${left}px`;
+        tooltipRef.style.top = `${y}px`;
+        tooltipRef.style.left = `${x}px`;
         tooltipRef.style.visibility = visible ? "visible" : "hidden";
-    }, [left, top, visible]);
+    }, [x, y, visible]);
 
     onUnMount(() => {
         clearTimeout(delayTimeout);

@@ -16,19 +16,21 @@ export default function Navbar(props: NavbarProps) {
 
     let bodyY = useRef<number>(0);
 
-    const navbarElement = useRef<HTMLDivElement>(null);
-    const navbarPlaceholder = useRef<HTMLDivElement>(null);
+    const navbarRef = useRef<HTMLDivElement | undefined>(undefined);
+    const navbarPlaceholderRef = useRef<HTMLDivElement | undefined>(undefined);
 
     let handleScrollRef = useRef<() => void>(handleScroll);
     let handleScrollStopRef = useRef<() => void>(handleScrollStop);
 
     function handleScroll() {
+        if (!navbarRef) return;
+
         const delta = window.scrollY - bodyY;
         bodyY = window.scrollY;
 
-        const navbarRect = navbarElement.getBoundingClientRect();
+        const navbarRect = navbarRef.getBoundingClientRect();
 
-        const currentTop = Number.parseFloat(navbarElement.computedStyleMap().get("top")?.toString() ?? "0");
+        const currentTop = Number.parseFloat(navbarRef.computedStyleMap().get("top")?.toString() ?? "0");
 
         let newTop = currentTop - delta;
 
@@ -36,15 +38,17 @@ export default function Navbar(props: NavbarProps) {
 
         if (newTop < -navbarRect.height) newTop = -navbarRect.height;
 
-        navbarElement.style.top = `${newTop}px`;
+        navbarRef.style.top = `${newTop}px`;
     }
 
     function handleScrollStop() {
-        const navbarRect = navbarElement.getBoundingClientRect();
+        if (!navbarRef) return;
+
+        const navbarRect = navbarRef.getBoundingClientRect();
 
         if (bodyY <= navbarRect.height) return;
 
-        const currentTop = Number.parseFloat(navbarElement.computedStyleMap().get("top")?.toString() ?? "0");
+        const currentTop = Number.parseFloat(navbarRef.computedStyleMap().get("top")?.toString() ?? "0");
 
         let newTop = currentTop;
 
@@ -54,11 +58,13 @@ export default function Navbar(props: NavbarProps) {
             newTop = 0;
         }
 
-        navbarElement.animate([{ top: `${currentTop}px` }, { top: `${newTop}px` }], { duration: 100 });
-        navbarElement.style.top = `${newTop}px`;
+        navbarRef.animate([{ top: `${currentTop}px` }, { top: `${newTop}px` }], { duration: 100 });
+        navbarRef.style.top = `${newTop}px`;
     }
 
     function registerHandlers() {
+        if (!navbarRef) return;
+
         if (typeof window === "undefined") return;
 
         if (props.sticky && props.hideOnScroll) {
@@ -66,7 +72,9 @@ export default function Navbar(props: NavbarProps) {
             window.addEventListener("scrollend", handleScrollStopRef);
         }
 
-        navbarPlaceholder.style.height = props.sticky ? `${navbarElement.getBoundingClientRect().height}px` : `0px`;
+        if (navbarPlaceholderRef) {
+            navbarPlaceholderRef.style.height = props.sticky ? `${navbarRef.getBoundingClientRect().height}px` : `0px`;
+        }
     }
 
     function removeHandlers() {
@@ -75,7 +83,7 @@ export default function Navbar(props: NavbarProps) {
         window.removeEventListener("scroll", handleScrollRef);
         window.removeEventListener("scrollend", handleScrollStopRef);
 
-        navbarElement?.style.removeProperty("top");
+        navbarRef?.style.removeProperty("top");
     }
 
     onInit(() => {
@@ -98,10 +106,10 @@ export default function Navbar(props: NavbarProps) {
 
     return (
         <>
-            <nav ref={navbarElement} class={`navbar ${props.variant} ${props.sticky ? "sticky" : ""}`}>
+            <nav ref={navbarRef} class={`navbar ${props.variant} ${props.sticky ? "sticky" : ""}`}>
                 <Slot />
             </nav>
-            <div ref={navbarPlaceholder} style={{ width: "100%" }}></div>
+            <div ref={navbarPlaceholderRef} style={{ width: "100%" }}></div>
         </>
     );
 }

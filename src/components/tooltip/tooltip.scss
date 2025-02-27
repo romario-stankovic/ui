@@ -4,15 +4,17 @@
 .tooltip {
     @include content-variants.default;
     @include shapes.default;
-
     position: fixed;
     top: 0;
     left: 0;
     align-content: center;
+    box-sizing: border-box;
     padding: 0 0.5em;
     width: fit-content;
     height: fit-content;
-    height: 1.5em;
+    height: 1.625em;
     pointer-events: none;
+
+    font-size: 1rem;
     white-space: nowrap;
 }
