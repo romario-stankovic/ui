@@ -33,5 +33,5 @@ function CssResolver(options) {
 }
 
 module.exports = {
-    CssCompiler: CssResolver
+    CssResolver: CssResolver
 };

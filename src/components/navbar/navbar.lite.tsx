@@ -26,6 +26,11 @@ export default function Navbar(props: NavbarProps) {
         if (!navbarRef) return;
         if (typeof window === "undefined") return;
 
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            navbarRef.style.top = "0px";
+            return;
+        }
+
         const delta = window.scrollY - bodyY;
         bodyY = window.scrollY;
 
@@ -38,10 +43,6 @@ export default function Navbar(props: NavbarProps) {
         if (newTop > 0) newTop = 0;
 
         if (newTop < -navbarRect.height) newTop = -navbarRect.height;
-
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-            newTop = 0;
-        }
 
         navbarRef.style.top = `${newTop}px`;
     }

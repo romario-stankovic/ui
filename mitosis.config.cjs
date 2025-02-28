@@ -1,4 +1,4 @@
-const { CssCompiler } = require("./plugins/css-resolver.cjs");
+const { CssResolver } = require("./plugins/css-resolver.cjs");
 /**
  * @type {import('@builder.io/mitosis').MitosisConfig}
  */
@@ -15,7 +15,7 @@ module.exports = {
     commonOptions: {
         typescript: true,
         prettier: true,
-        plugins: [CssCompiler]
+        plugins: [CssResolver]
     },
     options: {
         react: {

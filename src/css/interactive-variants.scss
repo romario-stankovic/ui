@@ -15,6 +15,10 @@
 @mixin transition-mixin {
     transition-duration: 0.2s;
     transition-property: background-color, box-shadow;
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
 }
 
 @mixin default {
