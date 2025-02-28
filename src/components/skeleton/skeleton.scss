@@ -1,0 +1,27 @@
+.skeleton {
+    display: inline-block;
+    opacity: 0.15;
+
+    animation: pulse 2s infinite ease-in-out;
+    border-radius: 0.5rem;
+    background-color: var(--text);
+
+    width: 150px;
+    height: 150px;
+
+    @media (prefers-reduced-motion) {
+        animation: none;
+    }
+
+    @keyframes pulse {
+        0% {
+            opacity: 0.05;
+        }
+        50% {
+            opacity: 0.15;
+        }
+        100% {
+            opacity: 0.05;
+        }
+    }
+}

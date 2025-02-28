@@ -97,7 +97,7 @@ export default function Tooltip(props: TooltipProps) {
     });
 
     onUpdate(() => {
-        if (!targetRef || !tooltipRef) return;
+        if (!tooltipRef) return;
         if (typeof window === "undefined") return;
 
         const tooltipRect = tooltipRef.getBoundingClientRect();
@@ -123,7 +123,8 @@ export default function Tooltip(props: TooltipProps) {
     }, [x, y]);
 
     onUpdate(() => {
-        if (!targetRef || !tooltipRef) return;
+        if (typeof window === "undefined") return;
+        if (!tooltipRef) return;
 
         let startX: `${number}em` = "0em";
         let startY: `${number}em` = "0em";
@@ -148,7 +149,7 @@ export default function Tooltip(props: TooltipProps) {
                 break;
         }
 
-        if (visible === true) {
+        if (visible === true && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
             tooltipRef.animate(
                 [
                     { transform: `translate(${startX}, ${startY})`, opacity: 0 },
