@@ -120,8 +120,48 @@ export default function Tooltip(props: TooltipProps) {
 
         tooltipRef.style.top = `${y}px`;
         tooltipRef.style.left = `${x}px`;
+    }, [x, y]);
+
+    onUpdate(() => {
+        if (!targetRef || !tooltipRef) return;
+
+        let startX: `${number}em` = "0em";
+        let startY: `${number}em` = "0em";
+
+        switch (props.position) {
+            default:
+            case "bottom":
+                startX = "0em";
+                startY = "-0.5em";
+                break;
+            case "top":
+                startX = "0em";
+                startY = "-0.5em";
+                break;
+            case "left":
+                startX = "0.5em";
+                startY = "0em";
+                break;
+            case "right":
+                startX = "-0.5em";
+                startY = "0em";
+                break;
+        }
+
+        if (visible === true) {
+            tooltipRef.animate(
+                [
+                    { transform: `translate(${startX}, ${startY})`, opacity: 0 },
+                    { transform: `translate(0, 0)`, opacity: 1 }
+                ],
+                {
+                    duration: 250
+                }
+            );
+        }
+
         tooltipRef.style.visibility = visible ? "visible" : "hidden";
-    }, [x, y, visible]);
+    }, [visible]);
 
     onUnMount(() => {
         clearTimeout(delayTimeout);

@@ -1,5 +1,6 @@
 import { Tooltip } from "@packages/react";
 import { Meta, StoryObj } from "@storybook/react/*";
+import { useId } from "react";
 
 type Story = StoryObj<typeof Tooltip>;
 
@@ -45,7 +46,7 @@ export default {
         position: "bottom"
     },
     render: (args) => {
-        const id = Math.random().toString(36).substring(7);
+        const id = useId();
         return (
             <>
                 <span id={id}>Hover me</span>

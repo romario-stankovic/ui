@@ -1,4 +1,4 @@
-import { Show, Slot, useDefaultProps, useTarget } from "@builder.io/mitosis";
+import { Show, Slot, useDefaultProps } from "@builder.io/mitosis";
 import style from "./button.scss";
 
 type ButtonVariant = "flat" | "raised" | "soft" | "outlined" | "colored-outline" | "text";
