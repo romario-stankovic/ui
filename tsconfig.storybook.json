@@ -15,10 +15,11 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "jsx": "react-jsx",
+        "baseUrl": ".",
         "paths": {
             "@packages/react": ["./packages/react/src"]
         }
     },
-    "include": ["**/*.stories.tsx", "vite-env.d.ts", "./packages"],
+    "include": ["**/*.stories.tsx", "vite-env.d.ts", "./packages", ".storybook/utils/**/*"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }

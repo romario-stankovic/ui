@@ -122,9 +122,9 @@ export default function Tooltip(props: TooltipProps) {
         tooltipRef.style.left = `${x}px`;
     }, [x, y]);
 
-    onUpdate(() => {
-        if (typeof window === "undefined") return;
+    function animate() {
         if (!tooltipRef) return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
         let startX: `${number}em` = "0em";
         let startY: `${number}em` = "0em";
@@ -149,16 +149,23 @@ export default function Tooltip(props: TooltipProps) {
                 break;
         }
 
-        if (visible === true && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-            tooltipRef.animate(
-                [
-                    { transform: `translate(${startX}, ${startY})`, opacity: 0 },
-                    { transform: `translate(0, 0)`, opacity: 1 }
-                ],
-                {
-                    duration: 250
-                }
-            );
+        tooltipRef.animate(
+            [
+                { transform: `translate(${startX}, ${startY})`, opacity: 0 },
+                { transform: `translate(0, 0)`, opacity: 1 }
+            ],
+            {
+                duration: 250
+            }
+        );
+    }
+
+    onUpdate(() => {
+        if (typeof window === "undefined") return;
+        if (!tooltipRef) return;
+
+        if (visible === true) {
+            animate();
         }
 
         tooltipRef.style.visibility = visible ? "visible" : "hidden";

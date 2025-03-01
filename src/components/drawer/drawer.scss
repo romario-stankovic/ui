@@ -1,0 +1,66 @@
+@use "css/content-variants";
+
+.drawer {
+    @include content-variants.default;
+
+    position: fixed;
+    box-sizing: border-box;
+    margin: 0;
+    border: none;
+    max-width: 100dvw;
+    max-height: 100dvh;
+
+    &:focus-visible {
+        outline: none;
+    }
+
+    &[open] {
+        &::backdrop {
+            // TODO: Add close animation
+            animation: show 0.15s forwards;
+
+            @media (prefers-reduced-motion: reduce) {
+                animation: none;
+            }
+
+            @keyframes show {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &::backdrop {
+        backdrop-filter: blur(0.25rem);
+        background-color: var(--backdrop);
+    }
+
+    &.left {
+        top: 0;
+        left: 0;
+        width: fit-content;
+        height: 100dvh;
+    }
+
+    &.right {
+        margin-left: auto;
+        width: fit-content;
+        height: 100dvh;
+    }
+
+    &.top {
+        top: 0;
+        width: 100%;
+        height: fit-content;
+    }
+
+    &.bottom {
+        margin-top: auto;
+        width: 100%;
+        height: fit-content;
+    }
+}
