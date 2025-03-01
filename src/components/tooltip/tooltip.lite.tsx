@@ -15,15 +15,6 @@ interface TooltipProps {
 }
 
 export default function Tooltip(props: TooltipProps) {
-    const tooltipRef = useRef<HTMLDivElement | undefined>(undefined);
-    let targetRef = useRef<HTMLElement | null>(null);
-
-    const [x, setX] = useState<number>(0);
-    const [y, setY] = useState<number>(0);
-    const [visible, setVisible] = useState<boolean>(false);
-
-    let delayTimeout = useRef<NodeJS.Timeout | undefined>(undefined);
-
     useDefaultProps<typeof props>({
         target: "",
         variant: "outlined",
@@ -32,6 +23,15 @@ export default function Tooltip(props: TooltipProps) {
         delay: 0,
         position: "mouse"
     });
+
+    const tooltipRef = useRef<HTMLDivElement | undefined>(undefined);
+    let targetRef = useRef<HTMLElement | null>(null);
+
+    const [x, setX] = useState<number>(0);
+    const [y, setY] = useState<number>(0);
+    const [visible, setVisible] = useState<boolean>(false);
+
+    let delayTimeout = useRef<NodeJS.Timeout | undefined>(undefined);
 
     function mouseEnterHandler() {
         if (!targetRef || !tooltipRef) return;
@@ -169,7 +169,7 @@ export default function Tooltip(props: TooltipProps) {
     });
 
     return (
-        <div class={`tooltip ${props.variant} ${props.shape}`} ref={tooltipRef}>
+        <div role="tooltip" class={`tooltip ${props.variant} ${props.shape}`} ref={tooltipRef}>
             <Slot />
         </div>
     );

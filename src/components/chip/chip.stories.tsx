@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react/*";
+import { Meta, StoryObj } from "@storybook/react";
 import { Chip } from "@packages/react";
 import { fn } from "@storybook/test";
 import { Icon as IconifyIcon } from "@iconify-icon/react";
@@ -56,8 +56,8 @@ export default {
         interactive: false,
         href: "",
         target: "_blank",
-        disabled: false,
         iconOnly: false,
+        disabled: false,
 
         onClick: fn()
     },

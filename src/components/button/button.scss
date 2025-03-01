@@ -1,5 +1,5 @@
 @use "css/shapes";
-@use "css/interactive-variants" as interactive-variants;
+@use "css/interactive-variants";
 
 .button {
     @include interactive-variants.default;
@@ -33,16 +33,16 @@
         width: fit-content;
         height: 1.5em;
     }
-}
 
-.icon-only {
-    padding: 0.5357143em;
+    &.icon-only {
+        padding: 0.5357143em;
 
-    > span {
-        justify-content: center;
-        gap: 0;
-        min-width: 1.5em;
-        height: 1.5em;
-        text-indent: -1000vw;
+        > span {
+            justify-content: center;
+            gap: 0;
+            min-width: 1.5em;
+            height: 1.5em;
+            text-indent: -1000vw;
+        }
     }
 }

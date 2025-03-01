@@ -26,6 +26,10 @@ export default {
             options: ["box", "rounded", "pill"],
             description: "Shape of the button"
         },
+        type: {
+            control: "select",
+            options: ["button", "reset", "submit"]
+        },
         href: {
             control: "text",
             description: "URL to navigate to when the button is clicked"
@@ -49,6 +53,7 @@ export default {
 
         variant: "flat",
         shape: "rounded",
+        type: "button",
         href: "",
         target: "_blank",
         iconOnly: false,

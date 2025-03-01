@@ -12,7 +12,7 @@
     }
 
     &.soft {
-        background-color: color-mix(in srgb, var(--content), currentColor 10%);
+        background-color: color-mix(in srgb, currentColor, transparent 80%);
     }
 
     &.outlined {

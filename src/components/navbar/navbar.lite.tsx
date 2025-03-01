@@ -1,4 +1,4 @@
-import { onInit, onMount, onUnMount, onUpdate, Show, Slot, useDefaultProps, useRef } from "@builder.io/mitosis";
+import { onInit, onMount, onUnMount, onUpdate, Slot, useDefaultProps, useRef } from "@builder.io/mitosis";
 import style from "./navbar.scss";
 
 type NavbarVariant = "flat" | "raised" | "soft" | "outlined";
@@ -11,7 +11,9 @@ interface NavbarProps {
 
 export default function Navbar(props: NavbarProps) {
     useDefaultProps<typeof props>({
-        variant: "outlined"
+        variant: "outlined",
+        sticky: false,
+        hideOnScroll: false
     });
 
     let bodyY = useRef<number>(0);

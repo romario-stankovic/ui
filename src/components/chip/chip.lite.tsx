@@ -11,8 +11,8 @@ interface ChipProps {
     interactive?: boolean;
     href?: string;
     target?: HrefTarget;
-    disabled?: boolean;
     iconOnly?: boolean;
+    disabled?: boolean;
     onClick?: (event: MouseEvent) => void;
 }
 

@@ -1,0 +1,62 @@
+@use "css/content-variants";
+@use "css/shapes";
+
+.progress-bar {
+    @include content-variants.default;
+    @include shapes.default;
+    position: relative;
+
+    box-sizing: border-box;
+
+    height: 0.5rem;
+    overflow: hidden;
+    color: var(--primary);
+
+    &::after {
+        display: block;
+        position: absolute;
+
+        transition: width 0.25s;
+        inset: 0;
+        border-radius: inherit;
+        background-color: currentColor;
+        width: var(--progress);
+        height: 100%;
+        content: "";
+    }
+
+    &::before {
+        display: block;
+        position: absolute;
+        opacity: 0.5;
+
+        transition: width 0.25s;
+        inset: 0;
+        border-radius: inherit;
+        background-color: currentColor;
+        width: var(--buffered);
+        height: 100%;
+        content: "";
+    }
+
+    &.indeterminate {
+        &::after {
+            animation: indeterminate 1.75s infinite linear;
+            margin-left: -25%;
+            width: 25%;
+        }
+
+        &::before {
+            display: none;
+        }
+
+        @keyframes indeterminate {
+            0% {
+                margin-left: -25%;
+            }
+            100% {
+                margin-left: 100%;
+            }
+        }
+    }
+}

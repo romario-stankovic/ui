@@ -1,4 +1,4 @@
-@use "css/content-variants" as content-variants;
+@use "css/content-variants";
 
 .navbar {
     @include content-variants.default;
@@ -16,10 +16,10 @@
         border-right: none;
         border-left: none;
     }
-}
 
-.sticky {
-    position: fixed;
-    top: 0;
-    z-index: 9999;
+    &.sticky {
+        position: fixed;
+        top: 0;
+        z-index: 9999;
+    }
 }
