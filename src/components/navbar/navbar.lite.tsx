@@ -1,5 +1,6 @@
 import { onInit, onMount, onUnMount, onUpdate, Slot, useDefaultProps, useRef } from "@builder.io/mitosis";
 import style from "./navbar.scss";
+import { useScrollLock } from "../../utils/scroll";
 
 type NavbarVariant = "flat" | "raised" | "soft" | "outlined";
 
@@ -8,6 +9,8 @@ interface NavbarProps {
     sticky?: boolean;
     hideOnScroll?: boolean;
 }
+
+const scrollLock = useScrollLock();
 
 export default function Navbar(props: NavbarProps) {
     useDefaultProps<typeof props>({
@@ -27,6 +30,7 @@ export default function Navbar(props: NavbarProps) {
     function handleScroll() {
         if (!navbarRef) return;
         if (typeof window === "undefined") return;
+        if (scrollLock.isLocked()) return;
 
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
             navbarRef.style.top = "0px";

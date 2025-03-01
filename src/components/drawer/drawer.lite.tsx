@@ -1,5 +1,6 @@
 import { onUpdate, Slot, useDefaultProps, useRef } from "@builder.io/mitosis";
 import style from "./drawer.scss";
+import { useScrollLock } from "../../utils/scroll";
 
 type DrawerPosition = "top" | "right" | "bottom" | "left";
 type DrawerVariant = "flat" | "raised" | "outlined";
@@ -12,6 +13,8 @@ interface DrawerProps {
     onClosed?: () => void;
 }
 
+const scrollLock = useScrollLock();
+
 export default function Drawer(props: DrawerProps) {
     useDefaultProps<typeof props>({
         variant: "flat",
@@ -22,49 +25,6 @@ export default function Drawer(props: DrawerProps) {
     });
 
     const dialogRef = useRef<HTMLDialogElement | undefined>(undefined);
-
-    function hasOpenModals() {
-        const openModals = Array.from(document.getElementsByTagName("dialog")).filter((d) =>
-            d.hasAttribute("open")
-        ).length;
-        return openModals > 0;
-    }
-
-    function blockScroll() {
-        if (typeof window === "undefined") return;
-
-        if (hasOpenModals()) return;
-
-        const top = window.scrollY;
-        const left = window.scrollX;
-        const overflowX = document.body.scrollWidth > document.body.clientWidth;
-        const overflowY = document.body.scrollHeight > document.body.clientHeight;
-
-        document.body.style.position = "fixed";
-        document.body.style.width = "100%";
-        document.body.style.height = "100%";
-        document.body.style.top = `-${top}px`;
-        document.body.style.left = `-${left}px`;
-        document.body.style.overflow = `${overflowX ? "scroll" : "hidden"} ${overflowY ? "scroll" : "hidden"}`;
-    }
-
-    function unblockScroll() {
-        if (typeof window === "undefined") return;
-
-        if (hasOpenModals()) return;
-
-        const top = Math.abs(parseFloat(document.body.style.getPropertyValue("top").replace("px", "")));
-        const left = Math.abs(parseFloat(document.body.style.getPropertyValue("left").replace("px", "")));
-
-        document.body.style.removeProperty("position");
-        document.body.style.removeProperty("width");
-        document.body.style.removeProperty("height");
-        document.body.style.removeProperty("top");
-        document.body.style.removeProperty("left");
-        document.body.style.removeProperty("overflow");
-
-        window.scrollTo({ behavior: "instant", left: left, top: top });
-    }
 
     function animateOpen() {
         if (!dialogRef) return;
@@ -157,13 +117,14 @@ export default function Drawer(props: DrawerProps) {
         if (!dialogRef) return;
 
         if (props.open) {
-            blockScroll();
+            scrollLock.lock();
             animateOpen();
             dialogRef.showModal();
+            dialogRef.focus();
         } else {
             animateClose(() => {
                 dialogRef.close();
-                unblockScroll();
+                scrollLock.unlock();
             });
         }
     }, [props.open]);

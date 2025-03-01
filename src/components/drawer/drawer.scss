@@ -44,23 +44,45 @@
         left: 0;
         width: fit-content;
         height: 100dvh;
+
+        &.outlined {
+            border-top: none;
+            border-bottom: none;
+            border-left: none;
+        }
     }
 
     &.right {
         margin-left: auto;
         width: fit-content;
         height: 100dvh;
+
+        &.outlined {
+            border-top: none;
+            border-right: none;
+            border-bottom: none;
+        }
     }
 
     &.top {
         top: 0;
         width: 100%;
         height: fit-content;
+        &.outlined {
+            border-top: none;
+            border-right: none;
+            border-left: none;
+        }
     }
 
     &.bottom {
         margin-top: auto;
         width: 100%;
         height: fit-content;
+        &.outlined {
+            border-right: none;
+            border-bottom: none;
+            border-left: none;
+        }
     }
 }
