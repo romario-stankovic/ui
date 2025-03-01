@@ -1,10 +1,15 @@
 @mixin hover-mixin {
-    &:hover {
+    &:hover,
+    &:focus {
         background-color: color-mix(in srgb, currentColor, transparent 90%);
     }
 
     &:active {
         background-color: color-mix(in srgb, currentColor, transparent 80%);
+    }
+
+    &:focus-visible {
+        outline: none;
     }
 
     span {
@@ -15,10 +20,6 @@
 @mixin transition-mixin {
     transition-duration: 0.2s;
     transition-property: background-color, box-shadow;
-
-    @media (prefers-reduced-motion: reduce) {
-        transition: none;
-    }
 }
 
 @mixin default {
@@ -27,8 +28,13 @@
 
         background-color: currentColor;
 
-        &:hover {
+        &:hover,
+        &:focus {
             background-color: color-mix(in srgb, currentColor, var(--text) 10%);
+        }
+
+        &:focus-visible {
+            outline: none;
         }
 
         &:active {
@@ -68,8 +74,13 @@
 
         background-color: color-mix(in srgb, currentColor, transparent 80%);
 
-        &:hover {
+        &:hover,
+        &:focus {
             background-color: color-mix(in srgb, currentColor, transparent 70%);
+        }
+
+        &:focus-visible {
+            outline: none;
         }
 
         &:active {
@@ -88,6 +99,11 @@
         outline: 1px solid var(--border);
         outline-offset: -1px;
         background-color: transparent;
+
+        &:focus-visible {
+            outline: 1px solid var(--border);
+            outline-offset: -1px;
+        }
     }
 
     &.colored-outline {
@@ -97,6 +113,11 @@
         outline: 1px solid color-mix(in srgb, currentColor, var(--border) 50%);
         outline-offset: -1px;
         background-color: transparent;
+
+        &:focus-visible {
+            outline: 1px solid color-mix(in srgb, currentColor, var(--border) 50%);
+            outline-offset: -1px;
+        }
     }
 
     &.text {
