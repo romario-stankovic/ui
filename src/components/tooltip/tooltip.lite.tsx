@@ -61,6 +61,7 @@ export default function Tooltip(props: TooltipProps) {
                 break;
         }
 
+        clearTimeout(delayTimeout);
         delayTimeout = setTimeout(
             () => {
                 setVisible(true);
