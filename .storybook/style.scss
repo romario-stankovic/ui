@@ -15,6 +15,15 @@
     --backdrop: #00000022;
 
     --text: #080808;
+    --text-900: color-mix(in srgb, var(--text), white 10%);
+    --text-800: color-mix(in srgb, var(--text), white 20%);
+    --text-700: color-mix(in srgb, var(--text), white 30%);
+    --text-600: color-mix(in srgb, var(--text), white 40%);
+    --text-500: color-mix(in srgb, var(--text), white 50%);
+    --text-400: color-mix(in srgb, var(--text), white 60%);
+    --text-300: color-mix(in srgb, var(--text), white 70%);
+    --text-200: color-mix(in srgb, var(--text), white 80%);
+    --text-100: color-mix(in srgb, var(--text), white 90%);
 }
 
 body {

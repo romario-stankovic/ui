@@ -12,7 +12,7 @@ export default {
     argTypes: {
         variant: {
             control: "select",
-            options: ["flat", "raised", "outlined"],
+            options: ["flat", "raised", "soft", "outlined"],
             description: "The appearance of the drawer"
         },
         position: {
@@ -57,6 +57,12 @@ export const Flat: Story = {
 export const Raised: Story = {
     args: {
         variant: "raised"
+    }
+};
+
+export const Soft: Story = {
+    args: {
+        variant: "soft"
     }
 };
 

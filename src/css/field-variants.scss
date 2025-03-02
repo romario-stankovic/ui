@@ -1,0 +1,33 @@
+@use "css/content-variants";
+
+@mixin default {
+    @include content-variants.default;
+
+    &.outlined {
+        outline: 1px solid var(--border);
+        outline-offset: -1px;
+        border: none;
+    }
+
+    &:focus {
+        outline: 2px solid var(--primary);
+        outline-offset: -1px;
+    }
+
+    &:is(:-webkit-autofill, :autofill) {
+        -webkit-box-shadow: 0 0 0 30px color-mix(in srgb, var(--primary), transparent 95%) inset !important;
+
+        &::first-line {
+            font-family: inherit;
+        }
+    }
+
+    &:invalid,
+    &:user-invalid {
+        outline-color: var(--danger);
+    }
+
+    &:disabled {
+        opacity: 0.5;
+    }
+}

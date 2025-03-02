@@ -1,0 +1,14 @@
+@use "css/field-variants";
+@use "css/shapes";
+
+.input {
+    @include field-variants.default;
+    @include shapes.default;
+
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    padding: 0.5357143em 0.75em;
+    font-size: 0.875rem;
+    line-height: 1.5em;
+}

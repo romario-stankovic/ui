@@ -3,7 +3,7 @@ import style from "./drawer.scss";
 import { useScrollLock } from "../../utils/scroll";
 
 type DrawerPosition = "top" | "right" | "bottom" | "left";
-type DrawerVariant = "flat" | "raised" | "outlined";
+type DrawerVariant = "flat" | "raised" | "soft" | "outlined";
 
 interface DrawerProps {
     variant?: DrawerVariant;
