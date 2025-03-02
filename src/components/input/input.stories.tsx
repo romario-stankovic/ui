@@ -4,7 +4,7 @@ import { Meta, StoryObj } from "@storybook/react";
 type Story = StoryObj<typeof Input>;
 
 export default {
-    title: "Components/TextInput",
+    title: "Components/Input",
     component: Input,
     tags: ["autodocs"],
     argTypes: {
