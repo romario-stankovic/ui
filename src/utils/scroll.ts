@@ -11,6 +11,8 @@ export function useScrollLock() {
         const overflowX = document.documentElement.scrollWidth > document.documentElement.clientWidth;
         const overflowY = document.documentElement.scrollHeight > document.documentElement.clientHeight;
 
+        document.body.style.width = "100%";
+        document.body.style.height = "100%";
         document.body.style.position = "fixed";
         document.body.style.top = `-${top}px`;
         document.body.style.left = `-${left}px`;
@@ -24,6 +26,8 @@ export function useScrollLock() {
         const top = Math.abs(parseFloat(document.body.style.getPropertyValue("top").replace("px", "")));
         const left = Math.abs(parseFloat(document.body.style.getPropertyValue("left").replace("px", "")));
 
+        document.body.style.removeProperty("width");
+        document.body.style.removeProperty("height");
         document.body.style.removeProperty("position");
         document.body.style.removeProperty("top");
         document.body.style.removeProperty("left");

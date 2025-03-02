@@ -122,9 +122,9 @@ export default function Drawer(props: DrawerProps) {
             dialogRef.showModal();
             dialogRef.focus();
         } else {
+            scrollLock.unlock();
             animateClose(() => {
                 dialogRef.close();
-                scrollLock.unlock();
             });
         }
     }, [props.open]);
