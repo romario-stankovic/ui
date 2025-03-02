@@ -88,6 +88,10 @@ export default function Input(props: InputProps) {
             }
             setDirty(false);
         };
+
+        inputRef.form.onreset = (e) => {
+            setDirty(false);
+        };
     });
 
     onUpdate(() => {

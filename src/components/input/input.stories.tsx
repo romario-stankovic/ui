@@ -141,6 +141,7 @@ export const Form: Story = {
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
+                    e.currentTarget.reset();
                 }}
             >
                 <Input {...args} />
