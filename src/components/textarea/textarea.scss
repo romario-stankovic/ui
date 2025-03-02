@@ -1,0 +1,19 @@
+@use "css/field-variants";
+@use "css/shapes";
+
+.textarea {
+    @include field-variants.default;
+    @include shapes.default;
+
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    padding: 0.5357143em 0.75em;
+    min-height: 2.5714285714em;
+    resize: none;
+    font-size: 0.875rem;
+
+    &.resizable {
+        resize: vertical;
+    }
+}

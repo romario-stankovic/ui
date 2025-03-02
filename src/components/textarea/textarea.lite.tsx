@@ -1,72 +1,58 @@
 import { onMount, onUpdate, useDefaultProps, useRef, useState } from "@builder.io/mitosis";
-import style from "./input.scss";
+import style from "./textarea.scss";
 
-type InputVariant = "flat" | "raised" | "soft" | "outlined";
-type InputShape = "box" | "rounded" | "pill";
+type TextareaVariant = "flat" | "raised" | "soft" | "outlined";
 
-type InputType =
-    | "color"
-    | "date"
-    | "datetime-local"
-    | "email"
-    | "file"
-    | "hidden"
-    | "month"
-    | "number"
-    | "password"
-    | "tel"
-    | "text"
-    | "time"
-    | "url"
-    | "week";
+type TextareaShape = "box" | "rounded";
 
-interface InputProps {
-    variant?: InputVariant;
-    shape?: InputShape;
+interface TextareaProps {
+    variant?: TextareaVariant;
+    shape?: TextareaShape;
     value?: string;
     name?: string;
     placeholder?: string;
-    type?: InputType;
     disabled?: boolean;
+    resizable?: boolean;
     valid?: boolean | ((value: string) => boolean);
     onChange?: (value: string) => void;
 }
 
-export default function Input(props: InputProps) {
+export default function Textarea(props: TextareaProps) {
     useDefaultProps<typeof props>({
         variant: "outlined",
         shape: "rounded",
         name: "",
         placeholder: "",
-        type: "text",
         disabled: false,
+        resizable: false,
         valid: true
     });
 
-    const inputRef = useRef<HTMLInputElement | undefined>(undefined);
+    const textareaRef = useRef<HTMLTextAreaElement | undefined>(undefined);
 
     const [dirty, setDirty] = useState<boolean>(false);
 
     function validate(value: string) {
-        if (!inputRef) return;
+        if (!textareaRef) return;
+
         const isValid = typeof props.valid === "boolean" ? props.valid : (props.valid?.(value) ?? true);
 
         if (!isValid) {
-            inputRef.setCustomValidity(" ");
-            inputRef.checkValidity();
+            textareaRef.setCustomValidity(" ");
+            textareaRef.checkValidity();
         } else {
-            inputRef.setCustomValidity("");
-            inputRef.checkValidity();
+            textareaRef.setCustomValidity("");
+            textareaRef.checkValidity();
         }
 
         return isValid;
     }
 
     function handleInput() {
-        if (!inputRef) return;
+        if (!textareaRef) return;
 
-        props.onChange?.(inputRef.value);
-        validate(inputRef.value);
+        props.onChange?.(textareaRef.value);
+        validate(textareaRef.value);
     }
 
     function handleBlur() {
@@ -74,40 +60,39 @@ export default function Input(props: InputProps) {
     }
 
     onMount(() => {
-        if (!inputRef) return;
-        if (!inputRef.form) return;
+        if (!textareaRef) return;
+        if (!textareaRef.form) return;
 
-        inputRef.form.onsubmit = (e) => {
+        textareaRef.form.onsubmit = (e) => {
             e.preventDefault();
-            if (!validate(inputRef.value)) {
+            if (!validate(textareaRef.value)) {
                 e.stopImmediatePropagation();
             }
             setDirty(false);
         };
 
-        inputRef.form.onreset = (e) => {
+        textareaRef.form.onreset = (e) => {
             setDirty(false);
         };
     });
 
     onUpdate(() => {
-        if (!inputRef) return;
+        if (!textareaRef) return;
         if (!dirty) return;
 
-        validate(inputRef.value);
+        validate(textareaRef.value);
     }, [dirty]);
 
     return (
-        <input
-            ref={inputRef}
+        <textarea
+            ref={textareaRef}
             value={props.value}
             onInput={(e) => handleInput()}
             onBlur={(e) => handleBlur()}
             name={props.name}
-            type={props.type}
             placeholder={props.placeholder}
             disabled={props.disabled}
-            class={`input ${props.variant} ${props.shape}`}
+            class={`textarea ${props.resizable ? "resizable" : ""} ${props.variant} ${props.shape}`}
         />
     );
 }
