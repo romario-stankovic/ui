@@ -4,4 +4,12 @@
     & > * {
         scroll-snap-align: var(--child-snap-align);
     }
+
+    &.hide-scrollbar {
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
 }

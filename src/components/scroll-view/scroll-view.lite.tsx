@@ -166,10 +166,10 @@ export default function ScrollView(props: ScrollViewProps) {
         const scrollX = divRef.scrollLeft;
         const scrollY = divRef.scrollTop;
 
-        const leftMask = props.scrollShadowX && scrollX > 0 ? "3rem" : "0rem";
-        const rightMask = props.scrollShadowX && scrollX < width - 1 ? "3rem" : "0rem";
-        const topMask = props.scrollShadowY && scrollY > 0 ? "3rem" : "0rem";
-        const bottomMask = props.scrollShadowY && scrollY < height - 1 ? "3rem" : "0rem";
+        const leftMask: `${number}rem` = props.scrollShadowX && scrollX > 0 ? "3rem" : "0rem";
+        const rightMask: `${number}rem` = props.scrollShadowX && scrollX < width - 1 ? "3rem" : "0rem";
+        const topMask: `${number}rem` = props.scrollShadowY && scrollY > 0 ? "3rem" : "0rem";
+        const bottomMask: `${number}rem` = props.scrollShadowY && scrollY < height - 1 ? "3rem" : "0rem";
 
         const leftRightMask = `linear-gradient(to right, transparent, white ${leftMask}, white calc(100% - ${rightMask}), transparent)`;
         const topBottomMask = `linear-gradient(to bottom, transparent, white ${topMask}, white calc(100% - ${bottomMask}), transparent)`;
@@ -197,6 +197,11 @@ export default function ScrollView(props: ScrollViewProps) {
         let childSnapY = props.snapPointY ?? "center";
 
         divRef.style.setProperty("--child-snap-align", `${childSnapX} ${childSnapY}`);
+
+        if (props.scrollShadowX || props.scrollShadowY) {
+            divRef.classList.add("hide-scrollbar");
+        }
+
         showShadows();
     });
 
