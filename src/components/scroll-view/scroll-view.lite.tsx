@@ -1,4 +1,4 @@
-import { onMount, onUnMount, Slot, useDefaultProps, useRef } from "@builder.io/mitosis";
+import { onMount, onUnMount, Slot, useDefaultProps, useRef, useState } from "@builder.io/mitosis";
 import style from "./scroll-view.scss";
 
 type SnapPoint = "start" | "center" | "end";
@@ -31,9 +31,9 @@ export default function ScrollView(props: ScrollViewProps) {
     const divRef = useRef<HTMLDivElement | undefined>(undefined);
     let snapTimeout = useRef<NodeJS.Timeout | undefined>(undefined);
 
-    const position = useRef({
-        scrollX: 0,
-        scrollY: 0,
+    const [position] = useState({
+        left: 0,
+        top: 0,
         x: 0,
         y: 0
     });
@@ -109,8 +109,8 @@ export default function ScrollView(props: ScrollViewProps) {
         divRef.style.userSelect = "none";
         divRef.style.cursor = "grabbing";
 
-        position.scrollX = divRef.scrollLeft;
-        position.scrollY = divRef.scrollTop;
+        position.left = divRef.scrollLeft;
+        position.top = divRef.scrollTop;
         position.x = event.clientX;
         position.y = event.clientY;
 
@@ -125,12 +125,12 @@ export default function ScrollView(props: ScrollViewProps) {
 
         if (props.scrollX) {
             const deltaX = event.clientX - position.x;
-            divRef.scrollLeft = position.scrollX - deltaX;
+            divRef.scrollLeft = position.left - deltaX;
         }
 
         if (props.scrollY) {
             const deltaY = event.clientY - position.y;
-            divRef.scrollTop = position.scrollY - deltaY;
+            divRef.scrollTop = position.top - deltaY;
         }
     }
 
@@ -163,13 +163,13 @@ export default function ScrollView(props: ScrollViewProps) {
 
         const width = divRef.scrollWidth - divRef.clientWidth;
         const height = divRef.scrollHeight - divRef.clientHeight;
-        const scrollX = divRef.scrollLeft;
-        const scrollY = divRef.scrollTop;
+        const left = divRef.scrollLeft;
+        const top = divRef.scrollTop;
 
-        const leftMask: `${number}rem` = props.scrollShadowX && scrollX > 0 ? "3rem" : "0rem";
-        const rightMask: `${number}rem` = props.scrollShadowX && scrollX < width - 1 ? "3rem" : "0rem";
-        const topMask: `${number}rem` = props.scrollShadowY && scrollY > 0 ? "3rem" : "0rem";
-        const bottomMask: `${number}rem` = props.scrollShadowY && scrollY < height - 1 ? "3rem" : "0rem";
+        const leftMask: `${number}rem` = props.scrollShadowX && left > 0 ? "3rem" : "0rem";
+        const rightMask: `${number}rem` = props.scrollShadowX && left < width - 1 ? "3rem" : "0rem";
+        const topMask: `${number}rem` = props.scrollShadowY && top > 0 ? "3rem" : "0rem";
+        const bottomMask: `${number}rem` = props.scrollShadowY && top < height - 1 ? "3rem" : "0rem";
 
         const leftRightMask = `linear-gradient(to right, transparent, white ${leftMask}, white calc(100% - ${rightMask}), transparent)`;
         const topBottomMask = `linear-gradient(to bottom, transparent, white ${topMask}, white calc(100% - ${bottomMask}), transparent)`;
