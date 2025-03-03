@@ -45,10 +45,9 @@ export default function Input(props: InputProps) {
 
     const inputRef = useRef<HTMLInputElement | undefined>(undefined);
 
-    const [dirty, setDirty] = useState<boolean>(false);
-
     function validate(value: string) {
         if (!inputRef) return;
+
         const isValid = typeof props.valid === "boolean" ? props.valid : (props.valid?.(value) ?? true);
 
         if (!isValid) {
@@ -70,7 +69,8 @@ export default function Input(props: InputProps) {
     }
 
     function handleBlur() {
-        setDirty(true);
+        if (!inputRef) return;
+        validate(inputRef.value);
     }
 
     onMount(() => {
@@ -82,27 +82,21 @@ export default function Input(props: InputProps) {
             if (!validate(inputRef.value)) {
                 e.stopImmediatePropagation();
             }
-            setDirty(false);
         };
 
         inputRef.form.onreset = (e) => {
-            setDirty(false);
+            inputRef.value = "";
+            inputRef.setCustomValidity("");
+            props.onChange?.("");
         };
     });
-
-    onUpdate(() => {
-        if (!inputRef) return;
-        if (!dirty) return;
-
-        validate(inputRef.value);
-    }, [dirty]);
 
     return (
         <input
             ref={inputRef}
             value={props.value}
-            onInput={(e) => handleInput()}
-            onBlur={(e) => handleBlur()}
+            onInput={() => handleInput()}
+            onBlur={() => handleBlur()}
             name={props.name}
             type={props.type}
             placeholder={props.placeholder}

@@ -30,8 +30,6 @@ export default function Textarea(props: TextareaProps) {
 
     const textareaRef = useRef<HTMLTextAreaElement | undefined>(undefined);
 
-    const [dirty, setDirty] = useState<boolean>(false);
-
     function validate(value: string) {
         if (!textareaRef) return;
 
@@ -56,7 +54,8 @@ export default function Textarea(props: TextareaProps) {
     }
 
     function handleBlur() {
-        setDirty(true);
+        if (!textareaRef) return;
+        validate(textareaRef.value);
     }
 
     onMount(() => {
@@ -68,27 +67,21 @@ export default function Textarea(props: TextareaProps) {
             if (!validate(textareaRef.value)) {
                 e.stopImmediatePropagation();
             }
-            setDirty(false);
         };
 
         textareaRef.form.onreset = (e) => {
-            setDirty(false);
+            textareaRef.value = "";
+            textareaRef.setCustomValidity("");
+            props.onChange?.("");
         };
     });
-
-    onUpdate(() => {
-        if (!textareaRef) return;
-        if (!dirty) return;
-
-        validate(textareaRef.value);
-    }, [dirty]);
 
     return (
         <textarea
             ref={textareaRef}
             value={props.value}
-            onInput={(e) => handleInput()}
-            onBlur={(e) => handleBlur()}
+            onInput={() => handleInput()}
+            onBlur={() => handleBlur()}
             name={props.name}
             placeholder={props.placeholder}
             disabled={props.disabled}
