@@ -6,6 +6,7 @@ export { default as Input } from "./components/input/input.lite";
 export { default as Label } from "./components/label/label.lite";
 export { default as Navbar } from "./components/navbar/navbar.lite";
 export { default as ProgressBar } from "./components/progress-bar/progress-bar.lite";
+export { default as ScrollView } from "./components/scroll-view/scroll-view.lite";
 export { default as Skeleton } from "./components/skeleton/skeleton.lite";
 export { default as Textarea } from "./components/textarea/textarea.lite";
 export { default as Tooltip } from "./components/tooltip/tooltip.lite";
