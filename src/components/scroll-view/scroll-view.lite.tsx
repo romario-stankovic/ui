@@ -203,6 +203,10 @@ export default function ScrollView(props: ScrollViewProps) {
         }
 
         showShadows();
+
+        if (typeof window === "undefined") return;
+
+        window.addEventListener("resize", showShadows);
     });
 
     onUnMount(() => {
