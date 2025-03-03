@@ -13,8 +13,7 @@
     "./style.css": "./dist/index.css"
   },
   "scripts": {
-    "build": "vite build",
-    "prepare": "npm run build"
+    "build": "npm i --ignore-scripts && vite build"
   },
   "dependencies": {
     "vue": "^3.5.13"

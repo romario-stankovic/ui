@@ -7,6 +7,7 @@
     "files": [
         "packages"
     ],
+    "workspaces": ["packages/*"],
     "exports": {
         "./react": {
             "types": "./packages/react/dist/index.d.ts",
@@ -22,14 +23,13 @@
     },
     "scripts": {
         "dev": "concurrently \"npm run dev:mitosis\" \"npm run dev:storybook\"",
-        "build": "npm run build:mitosis && npm run build:copy && concurrently \"npm run build:react\" \"npm run build:vue\"",
+        "build": "npm run build:mitosis && npm run build:copy && npm run build:packages",
         "dev:mitosis": "watch \"npm run build:mitosis\" ./src",
         "dev:storybook": "storybook dev -p 6006 --no-open",
         "build:storybook": "storybook build",
         "build:mitosis": "mitosis build --c mitosis.config.cjs",
         "build:copy": "copyfiles -u 1 assets/**/* packages",
-        "build:react": "cd packages/react && npm i",
-        "build:vue": "cd packages/vue && npm i",
+        "build:packages": "npm run build -ws",
         "lint": "eslint --fix",
         "format": "prettier --write .",
         "prepare": "npm run build"
