@@ -1,33 +1,27 @@
-import { Drawer } from "@packages/react";
+import { syncArgs } from ".storybook/utils/utils.storybook";
+import { Dialog } from "@packages/react";
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { syncArgs } from "../../../.storybook/utils/utils.storybook";
 
-type Story = StoryObj<typeof Drawer>;
+type Story = StoryObj<typeof Dialog>;
 
 export default {
-    title: "Components/Drawer",
-    component: Drawer,
+    title: "Components/Dialog",
+    component: Dialog,
     tags: ["autodocs"],
     argTypes: {
         variant: {
             control: "select",
             options: ["flat", "raised", "soft", "outlined"],
-            description: "The appearance of the drawer"
-        },
-        position: {
-            control: "select",
-            options: ["top", "right", "bottom", "left"],
-            description: "The position of the drawer"
+            description: "The appearance of the dialog"
         },
         open: {
             control: "boolean",
-            description: "Is the drawer open"
+            description: "Is the dialog open"
         }
     },
     args: {
         variant: "flat",
-        position: "left",
         open: false,
         onDismiss: fn(),
         onClosed: fn()
@@ -42,9 +36,9 @@ export default {
                 }
                 `}
             </style>
-            <Drawer {...args}>
-                <p>Drawer</p>
-            </Drawer>
+            <Dialog {...args}>
+                <p>Dialog</p>
+            </Dialog>
         </>
     ),
     decorators: [syncArgs("onDismiss", "open", false)]
@@ -71,29 +65,5 @@ export const Soft: Story = {
 export const Outlined: Story = {
     args: {
         variant: "outlined"
-    }
-};
-
-export const Top: Story = {
-    args: {
-        position: "top"
-    }
-};
-
-export const Right: Story = {
-    args: {
-        position: "right"
-    }
-};
-
-export const Bottom: Story = {
-    args: {
-        position: "bottom"
-    }
-};
-
-export const Left: Story = {
-    args: {
-        position: "left"
     }
 };

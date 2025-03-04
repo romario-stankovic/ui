@@ -57,10 +57,10 @@ export default function Drawer(props: DrawerProps) {
         });
     }
 
-    function animateClose(finishCallback?: () => void) {
+    function animateClose(callback?: () => void) {
         if (!dialogRef) return;
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-            finishCallback?.();
+            callback?.();
             return;
         }
 
@@ -90,7 +90,7 @@ export default function Drawer(props: DrawerProps) {
             .animate([{ transform: `translate(0, 0)` }, { transform: `translate(${endX}, ${endY})` }], {
                 duration: 150
             })
-            .addEventListener("finish", () => finishCallback?.());
+            .addEventListener("finish", () => callback?.());
     }
 
     function handleClick(event: MouseEvent) {
