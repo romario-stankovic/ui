@@ -1,5 +1,4 @@
 .scroll-view {
-    mask-clip: view-box;
     mask-composite: intersect;
     & > * {
         scroll-snap-align: var(--child-snap-align);

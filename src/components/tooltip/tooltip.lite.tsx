@@ -84,8 +84,15 @@ export default function Tooltip(props: TooltipProps) {
         clearTimeout(delayTimeout);
     }
 
-    onMount(() => {
+    onUpdate(() => {
         if (typeof window === "undefined") return;
+
+        if (targetRef) {
+            targetRef.removeEventListener("mouseenter", mouseEnterHandler);
+            targetRef.removeEventListener("mouseleave", mouseLeaveHandler);
+            targetRef.removeEventListener("mousemove", mouseMoveHandler);
+            window.removeEventListener("touchmove", mouseLeaveHandler);
+        }
 
         targetRef = document.getElementById(props.target);
 
@@ -95,7 +102,7 @@ export default function Tooltip(props: TooltipProps) {
             targetRef.addEventListener("mousemove", mouseMoveHandler);
             window.addEventListener("touchmove", mouseLeaveHandler);
         }
-    });
+    }, [props.target]);
 
     onUpdate(() => {
         if (!tooltipRef) return;
