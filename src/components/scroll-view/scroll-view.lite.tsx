@@ -85,7 +85,7 @@ export default function ScrollView(props: ScrollViewProps) {
             return false;
         }
 
-        if (divRef.scrollWidth < divRef.clientWidth && divRef.scrollHeight < divRef.clientHeight) {
+        if (divRef.scrollWidth <= divRef.clientWidth && divRef.scrollHeight <= divRef.clientHeight) {
             return false;
         }
 
@@ -94,9 +94,12 @@ export default function ScrollView(props: ScrollViewProps) {
 
     function handleMouseEnter() {
         if (!divRef) return;
-        if (!canDrag()) return;
 
-        divRef.style.cursor = "grab";
+        if (canDrag()) {
+            divRef.style.cursor = "grab";
+        } else {
+            divRef.style.removeProperty("cursor");
+        }
     }
 
     function handleMouseDown(event: MouseEvent) {
