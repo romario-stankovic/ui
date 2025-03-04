@@ -52,8 +52,13 @@ export default function Drawer(props: DrawerProps) {
                 break;
         }
 
+        const animationDuration = Number.parseFloat(getComputedStyle(dialogRef).animationDuration ?? 0) * 1000;
+
+        dialogRef.classList.add("open");
+        dialogRef.classList.remove("close");
+
         dialogRef.animate([{ transform: `translate(${startX}, ${startY})` }, { transform: `translate(0, 0)` }], {
-            duration: 150
+            duration: animationDuration
         });
     }
 
@@ -86,9 +91,14 @@ export default function Drawer(props: DrawerProps) {
                 break;
         }
 
+        const animationDuration = Number.parseFloat(getComputedStyle(dialogRef).animationDuration ?? 0) * 1000;
+
+        dialogRef.classList.remove("open");
+        dialogRef.classList.add("close");
+
         dialogRef
             .animate([{ transform: `translate(0, 0)` }, { transform: `translate(${endX}, ${endY})` }], {
-                duration: 150
+                duration: animationDuration
             })
             .addEventListener("finish", () => callback?.());
     }

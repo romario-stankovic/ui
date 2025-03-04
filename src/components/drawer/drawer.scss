@@ -4,6 +4,11 @@
     @include content-variants.default;
 
     position: fixed;
+
+    animation-duration: 0.15s;
+
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
     box-sizing: border-box;
     margin: 0;
     border: none;
@@ -16,29 +21,42 @@
         outline: none;
     }
 
-    &[open] {
+    &::backdrop {
+        backdrop-filter: blur(0.25rem);
+        animation-duration: inherit;
+        animation-timing-function: inherit;
+        animation-fill-mode: inherit;
+        background-color: var(--backdrop);
+    }
+
+    &.open {
         &::backdrop {
-            // TODO: Add close animation
-            animation: show 0.15s forwards;
+            animation-name: dialog-backdrop-open;
+        }
 
-            @media (prefers-reduced-motion: reduce) {
-                animation: none;
+        @keyframes dialog-backdrop-open {
+            0% {
+                opacity: 0;
             }
-
-            @keyframes show {
-                0% {
-                    opacity: 0;
-                }
-                100% {
-                    opacity: 1;
-                }
+            100% {
+                opacity: 1;
             }
         }
     }
 
-    &::backdrop {
-        backdrop-filter: blur(0.25rem);
-        background-color: var(--backdrop);
+    &.close {
+        &::backdrop {
+            animation-name: dialog-backdrop-close;
+        }
+
+        @keyframes dialog-backdrop-close {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
     }
 
     &.left {
