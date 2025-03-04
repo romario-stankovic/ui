@@ -8,6 +8,8 @@
     box-sizing: border-box;
     border: none;
     padding: 0;
+    max-width: 100dvw;
+    max-height: 100dvh;
     color: unset;
 
     &:focus-visible {
