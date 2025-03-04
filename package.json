@@ -7,7 +7,9 @@
     "files": [
         "packages"
     ],
-    "workspaces": ["packages/*"],
+    "workspaces": [
+        "packages/*"
+    ],
     "exports": {
         "./react": {
             "types": "./packages/react/dist/index.d.ts",
@@ -74,5 +76,8 @@
         "vite": "^6.2.0",
         "vite-tsconfig-paths": "^5.1.4",
         "watch": "^1.0.2"
+    },
+    "dependencies": {
+        "marked": "^15.0.7"
     }
 }

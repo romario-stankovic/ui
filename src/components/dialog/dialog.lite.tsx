@@ -36,11 +36,12 @@ export default function Dialog(props: DialogProps) {
 
         dialogRef.animate(
             [
-                { scale: 0.75, opacity: 0 },
+                { scale: 0.9, opacity: 0 },
                 { scale: 1, opacity: 1 }
             ],
             {
-                duration: animationDuration
+                duration: animationDuration,
+                easing: "ease-in"
             }
         );
     }
@@ -61,10 +62,11 @@ export default function Dialog(props: DialogProps) {
             .animate(
                 [
                     { scale: 1, opacity: 1 },
-                    { scale: 0.75, opacity: 0 }
+                    { scale: 0.9, opacity: 0 }
                 ],
                 {
-                    duration: animationDuration
+                    duration: animationDuration,
+                    easing: "ease-out"
                 }
             )
             .addEventListener("finish", () => callback?.());
