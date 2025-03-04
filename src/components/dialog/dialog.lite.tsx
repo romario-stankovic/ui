@@ -1,4 +1,4 @@
-import { useScrollLock } from "src/utils/scroll";
+import { useScrollLock } from "../../utils/scroll";
 import style from "./dialog.scss";
 import { onUpdate, Slot, useDefaultProps, useRef } from "@builder.io/mitosis";
 
