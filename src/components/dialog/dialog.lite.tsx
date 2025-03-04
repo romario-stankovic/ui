@@ -3,9 +3,11 @@ import style from "./dialog.scss";
 import { onUpdate, Slot, useDefaultProps, useRef } from "@builder.io/mitosis";
 
 type DialogVariant = "flat" | "raised" | "soft" | "outlined";
+type DialogShape = "box" | "rounded";
 
 interface DialogProps {
     variant?: DialogVariant;
+    shape?: DialogShape;
     open?: boolean;
     onDismiss?: () => void;
     onClosed?: () => void;
@@ -97,7 +99,7 @@ export default function Dialog(props: DialogProps) {
     return (
         <dialog
             ref={dialogRef}
-            class={`dialog ${props.variant}`}
+            class={`dialog ${props.variant} ${props.shape}`}
             onClick={(e) => handleClick(e)}
             onKeyDown={(e) => handleKeyDown(e)}
         >

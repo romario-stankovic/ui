@@ -15,6 +15,11 @@ export default {
             options: ["flat", "raised", "soft", "outlined"],
             description: "The appearance of the dialog"
         },
+        shape: {
+            control: "select",
+            options: ["box", "rounded"],
+            description: "The shape of the dialog"
+        },
         open: {
             control: "boolean",
             description: "Is the dialog open"
@@ -65,5 +70,17 @@ export const Soft: Story = {
 export const Outlined: Story = {
     args: {
         variant: "outlined"
+    }
+};
+
+export const Box: Story = {
+    args: {
+        shape: "box"
+    }
+};
+
+export const Rounded: Story = {
+    args: {
+        shape: "rounded"
     }
 };
