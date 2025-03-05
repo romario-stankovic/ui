@@ -20,7 +20,7 @@ export default function Tooltip(props: TooltipProps) {
         target: "",
         variant: "outlined",
         shape: "rounded",
-        margin: 0,
+        margin: 4,
         delay: 0,
         position: "mouse"
     });

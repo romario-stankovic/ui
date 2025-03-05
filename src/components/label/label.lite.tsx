@@ -9,8 +9,8 @@ interface LabelProps {
 
 export default function Label(props: LabelProps) {
     useDefaultProps<typeof props>({
-        required: false,
-        target: ""
+        target: "",
+        required: false
     });
 
     return (

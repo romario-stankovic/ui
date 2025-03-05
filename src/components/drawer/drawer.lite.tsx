@@ -20,9 +20,7 @@ export default function Drawer(props: DrawerProps) {
     useDefaultProps<typeof props>({
         variant: "flat",
         position: "left",
-        open: false,
-        onDismiss: () => {},
-        onClosed: () => {}
+        open: false
     });
 
     const dialogRef = useRef<HTMLDialogElement | undefined>(undefined);

@@ -9,8 +9,8 @@ interface TextareaProps {
     id?: string;
     variant?: TextareaVariant;
     shape?: TextareaShape;
-    value?: string;
     name?: string;
+    value?: string;
     placeholder?: string;
     disabled?: boolean;
     resizable?: boolean;
@@ -23,6 +23,7 @@ export default function Textarea(props: TextareaProps) {
         variant: "outlined",
         shape: "rounded",
         name: "",
+        value: "",
         placeholder: "",
         disabled: false,
         resizable: false,

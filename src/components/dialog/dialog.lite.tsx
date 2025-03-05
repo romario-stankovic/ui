@@ -19,9 +19,8 @@ const scrollLock = useScrollLock();
 export default function Dialog(props: DialogProps) {
     useDefaultProps<typeof props>({
         variant: "flat",
-        open: false,
-        onDismiss: () => {},
-        onClosed: () => {}
+        shape: "rounded",
+        open: false
     });
 
     const dialogRef = useRef<HTMLDialogElement | undefined>(undefined);

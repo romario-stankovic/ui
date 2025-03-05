@@ -24,8 +24,8 @@ interface InputProps {
     id?: string;
     variant?: InputVariant;
     shape?: InputShape;
-    value?: string;
     name?: string;
+    value?: string;
     placeholder?: string;
     type?: InputType;
     disabled?: boolean;
@@ -38,6 +38,7 @@ export default function Input(props: InputProps) {
         variant: "outlined",
         shape: "rounded",
         name: "",
+        value: "",
         placeholder: "",
         type: "text",
         disabled: false,

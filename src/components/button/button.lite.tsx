@@ -26,8 +26,7 @@ export default function Button(props: ButtonProps) {
         href: "",
         target: "",
         iconOnly: false,
-        disabled: false,
-        onClick: () => {}
+        disabled: false
     });
 
     return (

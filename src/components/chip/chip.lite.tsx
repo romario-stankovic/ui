@@ -24,8 +24,8 @@ export default function Chip(props: ChipProps) {
         interactive: false,
         href: "",
         target: "",
-        disabled: false,
-        onClick: () => {}
+        iconOnly: false,
+        disabled: false
     });
 
     return (

@@ -13,8 +13,8 @@ interface MarkdownProps {
 export default function Markdown(props: MarkdownProps) {
     useDefaultProps<typeof props>({
         markdown: "",
-        markedOptions: undefined,
-        sanitizeOptions: undefined
+        markedOptions: {},
+        sanitizeOptions: {}
     });
 
     function getMarkdown() {
