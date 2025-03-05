@@ -22,6 +22,48 @@
     transition-property: background-color, box-shadow;
 }
 
+@mixin static {
+    &.flat {
+        background-color: currentColor;
+
+        span {
+            color: var(--primary-content);
+        }
+    }
+
+    &.raised {
+        box-shadow:
+            0px 2px 3px -1px var(--shadow),
+            0px 1px 1px 0px var(--shadow);
+
+        background-color: var(--content);
+    }
+
+    &.soft {
+        background-color: color-mix(in srgb, currentColor, transparent 80%);
+
+        span {
+            color: currentColor;
+        }
+    }
+
+    &.outlined {
+        outline: 1px solid var(--border);
+        outline-offset: -1px;
+        background-color: transparent;
+    }
+
+    &.colored-outline {
+        outline: 1px solid color-mix(in srgb, currentColor, var(--border) 50%);
+        outline-offset: -1px;
+        background-color: transparent;
+    }
+
+    &.text {
+        background-color: transparent;
+    }
+}
+
 @mixin default {
     &.flat {
         @include transition-mixin;

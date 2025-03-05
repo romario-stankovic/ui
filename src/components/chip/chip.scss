@@ -2,7 +2,7 @@
 @use "css/shapes" as shapes;
 
 .chip {
-    @include interactive-variants.default;
+    @include interactive-variants.static;
     @include shapes.default;
 
     display: inline-block;
@@ -10,7 +10,6 @@
 
     border: none;
     padding: 0em 0.75em;
-    pointer-events: none;
     color: var(--primary);
     font-size: 0.875rem;
     line-height: 1ch;
@@ -49,6 +48,7 @@
 
 button.chip,
 a.chip {
+    @include interactive-variants.default;
     cursor: pointer;
     pointer-events: all;
 }
