@@ -7,6 +7,7 @@ export { default as Input } from "./components/input/input.lite";
 export { default as Markdown } from "./components/markdown/markdown.lite";
 export { default as Label } from "./components/label/label.lite";
 export { default as Navbar } from "./components/navbar/navbar.lite";
+export { default as Paginator } from "./components/paginator/paginator.lite";
 export { default as ProgressBar } from "./components/progress-bar/progress-bar.lite";
 export { default as ScrollView } from "./components/scroll-view/scroll-view.lite";
 export { default as Skeleton } from "./components/skeleton/skeleton.lite";

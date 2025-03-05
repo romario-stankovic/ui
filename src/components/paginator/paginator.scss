@@ -1,0 +1,55 @@
+@use "css/interactive-variants";
+@use "css/shapes";
+
+.paginator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary);
+    font-size: 0.875rem;
+
+    button {
+        @include interactive-variants.default;
+        @include shapes.default;
+
+        display: inline-block;
+        transition-timing-function: ease-in-out;
+        cursor: pointer;
+        box-sizing: border-box;
+
+        border: none;
+        padding: 0.5357143em 0.5357143em;
+        min-width: 2.571429em;
+        color: inherit;
+        font-size: inherit;
+        line-height: 1ch;
+
+        text-decoration: none;
+
+        > span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25em;
+            width: fit-content;
+            height: 1.5em;
+            text-wrap: nowrap;
+        }
+    }
+
+    &:disabled,
+    &[aria-disabled="true"] {
+        opacity: 0.6;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    span {
+        display: inline-block;
+        vertical-align: baseline;
+        box-sizing: border-box;
+        width: 2.5714285714em;
+        color: initial;
+        font-size: inherit;
+        text-align: center;
+    }
+}
