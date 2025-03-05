@@ -6,6 +6,7 @@
     @include shapes.default;
 
     display: inline-block;
+    flex-shrink: 0;
     transition-timing-function: ease-in-out;
     cursor: pointer;
     box-sizing: border-box;
@@ -33,7 +34,7 @@
         gap: 0.25em;
         width: fit-content;
         height: 1.5em;
-        text-wrap: nowrap;
+        white-space: nowrap;
     }
 
     &.icon-only {
