@@ -1,6 +1,6 @@
 import { useScrollLock } from "../../utils/scroll";
 import style from "./dialog.scss";
-import { onUpdate, Slot, useDefaultProps, useRef } from "@builder.io/mitosis";
+import { onUnMount, onUpdate, Slot, useDefaultProps, useRef } from "@builder.io/mitosis";
 
 type DialogVariant = "flat" | "raised" | "soft" | "outlined";
 type DialogShape = "box" | "rounded";
@@ -111,6 +111,12 @@ export default function Dialog(props: DialogProps) {
             });
         }
     }, [props.open]);
+
+    onUnMount(() => {
+        if (props.open) {
+            scrollLock.unlock();
+        }
+    });
 
     return (
         <dialog

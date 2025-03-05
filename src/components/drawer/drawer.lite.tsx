@@ -1,4 +1,4 @@
-import { onUpdate, Slot, useDefaultProps, useRef } from "@builder.io/mitosis";
+import { onUnMount, onUpdate, Slot, useDefaultProps, useRef } from "@builder.io/mitosis";
 import style from "./drawer.scss";
 import { useScrollLock } from "../../utils/scroll";
 
@@ -141,6 +141,12 @@ export default function Drawer(props: DrawerProps) {
             });
         }
     }, [props.open]);
+
+    onUnMount(() => {
+        if (props.open) {
+            scrollLock.unlock();
+        }
+    });
 
     return (
         <dialog
