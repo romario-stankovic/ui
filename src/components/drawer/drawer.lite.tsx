@@ -27,6 +27,11 @@ export default function Drawer(props: DrawerProps) {
 
     function animateOpen() {
         if (!dialogRef) return;
+        if (typeof window === "undefined") return;
+
+        dialogRef.classList.add("open");
+        dialogRef.classList.remove("close");
+
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
         let startX: `${number}%` = "0%";
@@ -53,9 +58,6 @@ export default function Drawer(props: DrawerProps) {
 
         const animationDuration = Number.parseFloat(getComputedStyle(dialogRef).animationDuration ?? 0) * 1000;
 
-        dialogRef.classList.add("open");
-        dialogRef.classList.remove("close");
-
         dialogRef.animate([{ transform: `translate(${startX}, ${startY})` }, { transform: `translate(0, 0)` }], {
             duration: animationDuration
         });
@@ -63,6 +65,11 @@ export default function Drawer(props: DrawerProps) {
 
     function animateClose(callback?: () => void) {
         if (!dialogRef) return;
+        if (typeof window === "undefined") return;
+
+        dialogRef.classList.remove("open");
+        dialogRef.classList.add("close");
+
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
             callback?.();
             return;
@@ -91,9 +98,6 @@ export default function Drawer(props: DrawerProps) {
         }
 
         const animationDuration = Number.parseFloat(getComputedStyle(dialogRef).animationDuration ?? 0) * 1000;
-
-        dialogRef.classList.remove("open");
-        dialogRef.classList.add("close");
 
         dialogRef
             .animate([{ transform: `translate(0, 0)` }, { transform: `translate(${endX}, ${endY})` }], {

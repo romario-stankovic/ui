@@ -32,6 +32,11 @@
     &.open {
         &::backdrop {
             animation-name: dialog-backdrop-open;
+
+            @media (prefers-reduced-motion: reduce) {
+                opacity: 1;
+                animation: none;
+            }
         }
 
         @keyframes dialog-backdrop-open {
@@ -47,6 +52,11 @@
     &.close {
         &::backdrop {
             animation-name: dialog-backdrop-close;
+
+            @media (prefers-reduced-motion: reduce) {
+                opacity: 0;
+                animation: none;
+            }
         }
 
         @keyframes dialog-backdrop-close {

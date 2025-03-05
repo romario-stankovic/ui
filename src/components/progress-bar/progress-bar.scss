@@ -23,6 +23,10 @@
         width: var(--progress);
         height: 100%;
         content: "";
+
+        @media (prefers-reduced-motion: reduce) {
+            transition: none;
+        }
     }
 
     &::before {
@@ -37,6 +41,10 @@
         width: var(--buffered);
         height: 100%;
         content: "";
+
+        @media (prefers-reduced-motion: reduce) {
+            transition: none;
+        }
     }
 
     &.indeterminate {

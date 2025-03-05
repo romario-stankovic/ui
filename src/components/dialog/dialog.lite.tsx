@@ -27,12 +27,14 @@ export default function Dialog(props: DialogProps) {
 
     function animateOpen() {
         if (!dialogRef) return;
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-        const animationDuration = Number.parseFloat(getComputedStyle(dialogRef).animationDuration ?? 0) * 1000;
+        if (typeof window === "undefined") return;
 
         dialogRef.classList.add("open");
         dialogRef.classList.remove("close");
+
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+        const animationDuration = Number.parseFloat(getComputedStyle(dialogRef).animationDuration ?? 0) * 1000;
 
         dialogRef.animate(
             [
@@ -48,15 +50,17 @@ export default function Dialog(props: DialogProps) {
 
     function animateClose(callback?: () => void) {
         if (!dialogRef) return;
-        if (window.matchMedia("prefers-reduced-motion: reduce").matches) {
+        if (typeof window === "undefined") return;
+
+        dialogRef.classList.remove("open");
+        dialogRef.classList.add("close");
+
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
             callback?.();
             return;
         }
 
         const animationDuration = Number.parseFloat(getComputedStyle(dialogRef).animationDuration ?? 0) * 1000;
-
-        dialogRef.classList.remove("open");
-        dialogRef.classList.add("close");
 
         dialogRef
             .animate(
