@@ -173,6 +173,9 @@ export default function Tooltip(props: TooltipProps) {
         if (typeof window === "undefined") return;
         if (!tooltipRef) return;
 
+        tooltipRef.popover = "manual";
+        tooltipRef.showPopover();
+
         if (visible === true) {
             animate();
         }
