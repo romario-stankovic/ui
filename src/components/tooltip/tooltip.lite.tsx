@@ -6,6 +6,7 @@ type TooltipVariant = "flat" | "raised" | "soft" | "outlined" | "colored-outline
 type TooltipShape = "box" | "rounded" | "pill";
 
 interface TooltipProps {
+    id?: string;
     target: string;
     variant?: TooltipVariant;
     shape?: TooltipShape;
@@ -184,7 +185,7 @@ export default function Tooltip(props: TooltipProps) {
     });
 
     return (
-        <div role="tooltip" class={`tooltip ${props.variant} ${props.shape}`} ref={tooltipRef}>
+        <div id={props.id} role="tooltip" class={`tooltip ${props.variant} ${props.shape}`} ref={tooltipRef}>
             <Slot />
         </div>
     );

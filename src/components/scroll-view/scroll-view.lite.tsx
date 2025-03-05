@@ -4,6 +4,7 @@ import style from "./scroll-view.scss";
 type SnapPoint = "start" | "center" | "end";
 
 interface ScrollViewProps {
+    id?: string;
     scrollX?: boolean;
     scrollY?: boolean;
     draggable?: boolean;
@@ -217,7 +218,7 @@ export default function ScrollView(props: ScrollViewProps) {
     });
 
     return (
-        <div ref={divRef} class="scroll-view" onScroll={() => handleScroll()}>
+        <div id={props.id} ref={divRef} class="scroll-view" onScroll={() => handleScroll()}>
             <Slot />
         </div>
     );

@@ -4,6 +4,7 @@ import style from "./markdown.scss";
 import insane, { SanitizeOptions } from "insane";
 
 interface MarkdownProps {
+    id?: string;
     markdown?: string;
     markedOptions?: Omit<MarkedOptions, "async">;
     sanitizeOptions?: SanitizeOptions;
@@ -23,5 +24,5 @@ export default function Markdown(props: MarkdownProps) {
         );
     }
 
-    return <div class="markdown" innerHTML={getMarkdown()} />;
+    return <div id={props.id} class="markdown" innerHTML={getMarkdown()} />;
 }

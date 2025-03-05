@@ -5,6 +5,7 @@ import { useScrollLock } from "../../utils/scroll";
 type NavbarVariant = "flat" | "raised" | "soft" | "outlined";
 
 interface NavbarProps {
+    id?: string;
     variant?: NavbarVariant;
     sticky?: boolean;
     hideOnScroll?: boolean;
@@ -117,7 +118,7 @@ export default function Navbar(props: NavbarProps) {
 
     return (
         <>
-            <nav ref={navbarRef} class={`navbar ${props.variant} ${props.sticky ? "sticky" : ""}`}>
+            <nav id={props.id} ref={navbarRef} class={`navbar ${props.variant} ${props.sticky ? "sticky" : ""}`}>
                 <Slot />
             </nav>
             <div ref={navbarPlaceholderRef} style={{ width: "100%" }}></div>

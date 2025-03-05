@@ -1,5 +1,9 @@
 import style from "./skeleton.scss";
 
-export default function Skeleton() {
-    return <div class="skeleton" />;
+interface SkeletonProps {
+    id?: string;
+}
+
+export default function Skeleton(props: SkeletonProps) {
+    return <div id={props.id} class="skeleton" />;
 }

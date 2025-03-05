@@ -6,6 +6,7 @@ type DrawerPosition = "top" | "right" | "bottom" | "left";
 type DrawerVariant = "flat" | "raised" | "soft" | "outlined";
 
 interface DrawerProps {
+    id?: string;
     variant?: DrawerVariant;
     position?: DrawerPosition;
     open?: boolean;
@@ -141,6 +142,7 @@ export default function Drawer(props: DrawerProps) {
 
     return (
         <dialog
+            id={props.id}
             ref={dialogRef}
             class={`drawer ${props.position} ${props.variant}`}
             onClick={(e) => handleClick(e)}

@@ -21,6 +21,7 @@ type InputType =
     | "week";
 
 interface InputProps {
+    id?: string;
     variant?: InputVariant;
     shape?: InputShape;
     value?: string;
@@ -93,6 +94,7 @@ export default function Input(props: InputProps) {
 
     return (
         <input
+            id={props.id}
             ref={inputRef}
             value={props.value}
             onInput={() => handleInput()}

@@ -6,6 +6,7 @@ type DialogVariant = "flat" | "raised" | "soft" | "outlined";
 type DialogShape = "box" | "rounded";
 
 interface DialogProps {
+    id?: string;
     variant?: DialogVariant;
     shape?: DialogShape;
     open?: boolean;
@@ -110,6 +111,7 @@ export default function Dialog(props: DialogProps) {
 
     return (
         <dialog
+            id={props.id}
             ref={dialogRef}
             class={`dialog ${props.variant} ${props.shape}`}
             onClick={(e) => handleClick(e)}

@@ -7,6 +7,7 @@ type ButtonType = "button" | "submit" | "reset";
 type HrefTarget = "_blank" | "_self" | "_parent" | "_top" | string;
 
 interface ButtonProps {
+    id?: string;
     variant?: ButtonVariant;
     shape?: ButtonShape;
     type?: ButtonType;
@@ -34,6 +35,7 @@ export default function Button(props: ButtonProps) {
             when={!props.href}
             else={
                 <a
+                    id={props.id}
                     href={props.href}
                     target={props.target}
                     class={`button ${props.variant} ${props.shape} ${props.iconOnly ? "icon-only" : ""}`}
@@ -47,6 +49,7 @@ export default function Button(props: ButtonProps) {
             }
         >
             <button
+                id={props.id}
                 type={props.type}
                 class={`button ${props.variant} ${props.shape} ${props.iconOnly ? "icon-only" : ""}`}
                 onClick={(e) => props.onClick?.(e)}

@@ -5,6 +5,7 @@ type ProgressBarVariant = "flat" | "raised" | "soft" | "outlined";
 type ProgressBarShape = "box" | "pill";
 
 interface ProgressBarProps {
+    id?: string;
     variant?: ProgressBarVariant;
     shape?: ProgressBarShape;
     value?: number;
@@ -40,6 +41,7 @@ export default function ProgressBar(props: ProgressBarProps) {
 
     return (
         <div
+            id={props.id}
             ref={progressBarRef}
             role="progressbar"
             class={`progress-bar ${props.variant} ${props.shape} ${props.indeterminate ? "indeterminate" : ""}`}

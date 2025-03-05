@@ -6,6 +6,7 @@ type TextareaVariant = "flat" | "raised" | "soft" | "outlined";
 type TextareaShape = "box" | "rounded";
 
 interface TextareaProps {
+    id?: string;
     variant?: TextareaVariant;
     shape?: TextareaShape;
     value?: string;
@@ -78,6 +79,7 @@ export default function Textarea(props: TextareaProps) {
 
     return (
         <textarea
+            id={props.id}
             ref={textareaRef}
             value={props.value}
             onInput={() => handleInput()}

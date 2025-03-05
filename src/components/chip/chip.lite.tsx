@@ -6,6 +6,7 @@ type ChipShape = "box" | "rounded" | "pill";
 type HrefTarget = "_blank" | "_self" | "_parent" | "_top" | string;
 
 interface ChipProps {
+    id?: string;
     variant?: ChipVariant;
     shape?: ChipShape;
     interactive?: boolean;
@@ -35,6 +36,7 @@ export default function Chip(props: ChipProps) {
                     when={!props.href}
                     else={
                         <a
+                            id={props.id}
                             href={props.href}
                             target={props.target}
                             class={`chip ${props.variant} ${props.shape} ${props.iconOnly ? "icon-only" : ""}`}
@@ -48,6 +50,7 @@ export default function Chip(props: ChipProps) {
                     }
                 >
                     <button
+                        id={props.id}
                         class={`chip ${props.variant} ${props.shape} ${props.iconOnly ? "icon-only" : ""}`}
                         aria-disabled={props.disabled}
                         disabled={props.disabled}
@@ -61,6 +64,7 @@ export default function Chip(props: ChipProps) {
             }
         >
             <div
+                id={props.id}
                 class={`chip ${props.variant} ${props.shape} ${props.iconOnly ? "icon-only" : ""}`}
                 aria-disabled={props.disabled}
             >
