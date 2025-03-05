@@ -146,7 +146,7 @@ export default function Tooltip(props: TooltipProps) {
                 break;
             case "top":
                 startX = "0em";
-                startY = "-0.5em";
+                startY = "0.5em";
                 break;
             case "left":
                 startX = "0.5em";

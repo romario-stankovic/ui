@@ -2,6 +2,12 @@
 @use "css/shapes";
 
 .tooltip {
+    &[popover] {
+        margin: 0;
+        border: none;
+        color: currentColor;
+    }
+
     @include content-variants.default;
     @include shapes.default;
 
@@ -19,10 +25,4 @@
 
     font-size: 0.875rem;
     white-space: nowrap;
-
-    &[popover] {
-        margin: 0;
-        border: none;
-        color: currentColor;
-    }
 }
