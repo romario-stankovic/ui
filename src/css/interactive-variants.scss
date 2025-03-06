@@ -1,15 +1,13 @@
 @mixin hover-mixin {
+    outline: none;
+
     &:hover,
-    &:focus {
+    &:focus-visible {
         background-color: color-mix(in srgb, currentColor, transparent 90%);
     }
 
     &:active {
         background-color: color-mix(in srgb, currentColor, transparent 80%);
-    }
-
-    &:focus-visible {
-        outline: none;
     }
 
     span {
@@ -77,12 +75,9 @@
         background-color: currentColor;
 
         &:hover,
-        &:focus {
-            background-color: color-mix(in srgb, currentColor, var(--text) 10%);
-        }
-
         &:focus-visible {
             outline: none;
+            background-color: color-mix(in srgb, currentColor, var(--text) 10%);
         }
 
         &:active {
@@ -98,6 +93,7 @@
         @include transition-mixin;
         @include hover-mixin;
 
+        outline: none;
         box-shadow:
             0px 2px 3px -1px var(--shadow),
             0px 1px 1px 0px var(--shadow);
@@ -120,15 +116,13 @@
     &.soft {
         @include transition-mixin;
 
+        outline: none;
+
         background-color: color-mix(in srgb, currentColor, transparent 80%);
 
         &:hover,
-        &:focus {
-            background-color: color-mix(in srgb, currentColor, transparent 70%);
-        }
-
         &:focus-visible {
-            outline: none;
+            background-color: color-mix(in srgb, currentColor, transparent 70%);
         }
 
         &:active {
@@ -147,11 +141,6 @@
         outline: 1px solid var(--border);
         outline-offset: -1px;
         background-color: transparent;
-
-        &:focus-visible {
-            outline: 1px solid var(--border);
-            outline-offset: -1px;
-        }
     }
 
     &.colored-outline {
@@ -161,11 +150,6 @@
         outline: 1px solid color-mix(in srgb, currentColor, var(--border) 50%);
         outline-offset: -1px;
         background-color: transparent;
-
-        &:focus-visible {
-            outline: 1px solid color-mix(in srgb, currentColor, var(--border) 50%);
-            outline-offset: -1px;
-        }
     }
 
     &.text {
