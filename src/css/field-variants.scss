@@ -3,6 +3,8 @@
 @mixin default {
     @include content-variants.default;
 
+    color: currentColor;
+
     &.outlined {
         outline: 1px solid var(--border);
         outline-offset: -1px;
