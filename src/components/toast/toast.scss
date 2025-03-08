@@ -1,0 +1,59 @@
+@use "css/content-variants";
+@use "css/shapes";
+
+.toast {
+    &[popover] {
+        margin: 0;
+        border: none;
+        color: currentColor;
+    }
+
+    @include content-variants.default;
+    @include shapes.default;
+
+    position: fixed;
+    z-index: 9999;
+    box-sizing: border-box;
+    padding: 0.5em;
+
+    &.top-left {
+        top: 1rem;
+        left: 1rem;
+    }
+
+    &.top {
+        top: 1rem;
+        left: 50%;
+        translate: -50% 0;
+    }
+
+    &.top-right {
+        top: 1rem;
+        right: 1rem;
+        left: auto;
+    }
+
+    &.bottom-left {
+        top: auto;
+        bottom: 1rem;
+        left: 1rem;
+    }
+
+    &.bottom {
+        top: auto;
+        bottom: 1rem;
+        left: 50%;
+        translate: -50% 0;
+    }
+
+    &.bottom-right {
+        top: auto;
+        right: 1rem;
+        bottom: 1rem;
+        left: auto;
+    }
+
+    @media screen and (max-width: 480px) {
+        width: calc(100% - 2rem);
+    }
+}
