@@ -11,6 +11,11 @@
         border: none;
     }
 
+    &:focus {
+        outline: 2px solid var(--primary);
+        outline-offset: -1px;
+    }
+
     &:focus-visible {
         outline: 2px solid var(--primary);
         outline-offset: -1px;
@@ -30,6 +35,6 @@
     }
 
     &:disabled {
-        opacity: 0.5;
+        opacity: 0.6;
     }
 }

@@ -1,4 +1,4 @@
-import { onMount, onUpdate, useDefaultProps, useRef, useState } from "@builder.io/mitosis";
+import { onMount, useDefaultProps, useRef } from "@builder.io/mitosis";
 import style from "./textarea.scss";
 
 type TextareaVariant = "flat" | "raised" | "soft" | "outlined";

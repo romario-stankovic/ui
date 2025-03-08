@@ -17,7 +17,8 @@ export default {
         },
         shape: {
             control: "select",
-            options: ["box", "rounded", "pill"]
+            options: ["box", "rounded", "pill"],
+            description: "Shape of the select input"
         },
         value: {
             control: "text",

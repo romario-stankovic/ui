@@ -1,0 +1,73 @@
+@use "css/field-variants";
+@use "css/shapes";
+
+.select {
+    @include field-variants.default;
+    @include shapes.default;
+
+    position: relative;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    padding: 0.5357143em 0.75em;
+
+    width: fit-content;
+    height: 2.5714285714em;
+    font-size: 0.875rem;
+    line-height: 1.5em;
+
+    .value {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        .arrow {
+            margin-left: auto;
+            font-size: 0.875em;
+        }
+    }
+
+    &.open {
+        .value {
+            .arrow {
+                rotate: 180deg;
+            }
+        }
+    }
+
+    .content {
+        @include field-variants.default;
+        @include shapes.default;
+
+        position: absolute;
+        top: calc(100% + 0.25em);
+        left: 0;
+        box-sizing: border-box;
+        padding: 0.25em;
+        width: fit-content;
+        text-align: left;
+
+        optgroup {
+            text-indent: 0.5em;
+        }
+
+        option {
+            transition: background-color 0.15s ease-in-out;
+            cursor: pointer;
+            border-radius: 0.429em;
+            padding: 0.3928571429em 1em;
+            color: currentColor;
+            line-height: 1.5;
+
+            &:not([disabled]):hover {
+                background-color: color-mix(in srgb, currentColor, transparent 95%);
+            }
+
+            &:disabled {
+                opacity: 0.6;
+                cursor: unset;
+                pointer-events: none;
+            }
+        }
+    }
+}
