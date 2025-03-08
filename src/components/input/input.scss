@@ -12,4 +12,9 @@
     height: 2.5714285714em;
     font-size: 0.875rem;
     line-height: 1.5em;
+
+    &::placeholder {
+        opacity: 0.65;
+        color: currentColor;
+    }
 }
