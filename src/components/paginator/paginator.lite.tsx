@@ -141,17 +141,17 @@ export default function Paginator(props: PaginatorProps) {
                 </button>
             </Show>
             <For each={pages}>
-                {(page, idx) => (
+                {(currentPage, idx) => (
                     <Fragment key={`${idx}`}>
                         <Show when={pages[idx] - pages[idx - 1] > 1}>
                             <span innerHTML="&mldr;" />
                         </Show>
                         <button
-                            class={`${props.page === page ? "flat" : props.variant} ${props.shape}`}
+                            class={`${props.page === currentPage ? "flat" : props.variant} ${props.shape}`}
                             type="button"
-                            onClick={(e) => props.onChange?.(page)}
+                            onClick={(e) => props.onChange?.(currentPage)}
                         >
-                            <span>{page}</span>
+                            <span>{currentPage}</span>
                         </button>
                     </Fragment>
                 )}
