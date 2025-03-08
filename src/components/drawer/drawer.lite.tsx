@@ -103,7 +103,7 @@ export default function Drawer(props: DrawerProps) {
             .animate([{ transform: `translate(0, 0)` }, { transform: `translate(${endX}, ${endY})` }], {
                 duration: animationDuration
             })
-            .addEventListener("finish", () => callback?.());
+            .addEventListener("finish", () => callback?.(), { once: true });
     }
 
     function handleClick(event: MouseEvent) {

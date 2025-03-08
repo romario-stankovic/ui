@@ -73,7 +73,7 @@ export default function Dialog(props: DialogProps) {
                     easing: "ease-out"
                 }
             )
-            .addEventListener("finish", () => callback?.());
+            .addEventListener("finish", () => callback?.(), { once: true });
     }
 
     function handleClick(event: MouseEvent) {

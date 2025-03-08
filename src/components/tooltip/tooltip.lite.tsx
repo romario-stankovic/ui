@@ -85,6 +85,44 @@ export default function Tooltip(props: TooltipProps) {
         clearTimeout(delayTimeout);
     }
 
+    function animate() {
+        if (!tooltipRef) return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+        let startX: `${number}em` = "0em";
+        let startY: `${number}em` = "0em";
+
+        switch (props.position) {
+            default:
+            case "bottom":
+                startX = "0em";
+                startY = "-0.5em";
+                break;
+            case "top":
+                startX = "0em";
+                startY = "0.5em";
+                break;
+            case "left":
+                startX = "0.5em";
+                startY = "0em";
+                break;
+            case "right":
+                startX = "-0.5em";
+                startY = "0em";
+                break;
+        }
+
+        tooltipRef.animate(
+            [
+                { transform: `translate(${startX}, ${startY})`, opacity: 0 },
+                { transform: `translate(0, 0)`, opacity: 1 }
+            ],
+            {
+                duration: 250
+            }
+        );
+    }
+
     onUpdate(() => {
         if (typeof window === "undefined") return;
 
@@ -131,44 +169,6 @@ export default function Tooltip(props: TooltipProps) {
         tooltipRef.style.left = `${x}px`;
     }, [x, y]);
 
-    function animate() {
-        if (!tooltipRef) return;
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-        let startX: `${number}em` = "0em";
-        let startY: `${number}em` = "0em";
-
-        switch (props.position) {
-            default:
-            case "bottom":
-                startX = "0em";
-                startY = "-0.5em";
-                break;
-            case "top":
-                startX = "0em";
-                startY = "0.5em";
-                break;
-            case "left":
-                startX = "0.5em";
-                startY = "0em";
-                break;
-            case "right":
-                startX = "-0.5em";
-                startY = "0em";
-                break;
-        }
-
-        tooltipRef.animate(
-            [
-                { transform: `translate(${startX}, ${startY})`, opacity: 0 },
-                { transform: `translate(0, 0)`, opacity: 1 }
-            ],
-            {
-                duration: 250
-            }
-        );
-    }
-
     onUpdate(() => {
         if (typeof window === "undefined") return;
         if (!tooltipRef) return;
@@ -188,7 +188,7 @@ export default function Tooltip(props: TooltipProps) {
     });
 
     return (
-        <div id={props.id} role="tooltip" class={`tooltip ${props.variant} ${props.shape}`} ref={tooltipRef}>
+        <div id={props.id} ref={tooltipRef} role="tooltip" class={`tooltip ${props.variant} ${props.shape}`}>
             <Slot />
         </div>
     );
