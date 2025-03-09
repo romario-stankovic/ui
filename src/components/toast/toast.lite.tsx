@@ -1,4 +1,4 @@
-import { onUnMount, onUpdate, Slot, useDefaultProps, useRef } from "@builder.io/mitosis";
+import { onMount, onUnMount, onUpdate, Slot, useDefaultProps, useRef } from "@builder.io/mitosis";
 import style from "./toast.scss";
 
 type ToastVariant = "flat" | "raised" | "soft" | "outlined";
@@ -73,6 +73,11 @@ export default function Toast(props: ToastProps) {
             })
             .addEventListener("finish", () => callback?.(), { once: true });
     }
+
+    onMount(() => {
+        if (!toastRef) return;
+        toastRef.style.display = "none";
+    });
 
     onUpdate(() => {
         if (!toastRef) return;
