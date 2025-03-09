@@ -76,6 +76,8 @@ export default function Select(props: SelectProps) {
             });
         });
 
+        contentRef.style.display = "none";
+
         setInitialized(true);
     });
 

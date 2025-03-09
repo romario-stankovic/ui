@@ -51,7 +51,12 @@
             text-indent: 0.5em;
         }
 
-        option {
+        /* Vue deep child styling */
+        :deep(optgroup) {
+            text-indent: 0.5em;
+        }
+
+        @mixin option-mixin {
             transition: background-color 0.15s ease-in-out;
             cursor: pointer;
             border-radius: 0.429em;
@@ -68,6 +73,15 @@
                 cursor: unset;
                 pointer-events: none;
             }
+        }
+
+        option {
+            @include option-mixin();
+        }
+
+        /* Vue deep child styling */
+        :deep(option) {
+            @include option-mixin();
         }
     }
 }
