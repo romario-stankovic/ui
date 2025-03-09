@@ -13,5 +13,6 @@ export { default as ProgressBar } from "./components/progress-bar/progress-bar.l
 export { default as ScrollView } from "./components/scroll-view/scroll-view.lite";
 export { default as Select } from "./components/select/select.lite";
 export { default as Skeleton } from "./components/skeleton/skeleton.lite";
+export { default as Table } from "./components/table/table.lite";
 export { default as Textarea } from "./components/textarea/textarea.lite";
 export { default as Tooltip } from "./components/tooltip/tooltip.lite";
