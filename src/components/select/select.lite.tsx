@@ -55,6 +55,23 @@ export default function Select(props: SelectProps) {
         return getAllOptions().find((opt) => opt.value === value)?.innerText ?? "";
     }
 
+    function handleClick(e: MouseEvent) {
+        if (!fieldRef) return;
+
+        const fieldRect = fieldRef.getBoundingClientRect();
+
+        if (
+            e.clientX < fieldRect.left ||
+            e.clientY > fieldRect.right ||
+            e.clientY < fieldRect.top ||
+            e.clientY > fieldRect.bottom
+        ) {
+            return;
+        }
+
+        setOpen(!open);
+    }
+
     onMount(() => {
         if (!contentRef) return;
         if (!fieldRef) return;
@@ -70,9 +87,11 @@ export default function Select(props: SelectProps) {
                 setVal(opt.value);
             }
 
-            opt.addEventListener("click", (ev) => {
+            opt.addEventListener("click", () => {
                 setVal(opt.value);
+                setOpen(false);
                 props.onChange?.(opt.value);
+                fieldRef.blur();
             });
         });
 
@@ -109,7 +128,8 @@ export default function Select(props: SelectProps) {
             ref={fieldRef}
             role="combobox"
             class={`select ${props.variant} ${props.shape} ${open ? "open" : ""}`}
-            onClick={(e) => setOpen(!open)}
+            onClick={(e) => handleClick(e)}
+            onBlur={(e) => setOpen(false)}
             disabled={props.disabled}
         >
             <div className="value">
