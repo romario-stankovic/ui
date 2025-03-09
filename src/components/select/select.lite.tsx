@@ -124,6 +124,7 @@ export default function Select(props: SelectProps) {
 
     return (
         <button
+            type="button"
             id={props.id}
             ref={fieldRef}
             role="combobox"
