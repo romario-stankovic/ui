@@ -37,6 +37,35 @@ export default function Tooltip(props: TooltipProps) {
     function mouseEnterHandler() {
         if (!targetRef || !tooltipRef) return;
 
+        clearTimeout(delayTimeout);
+        delayTimeout = setTimeout(
+            () => {
+                setVisible(true);
+            },
+            (props.delay ?? 0) * 1000
+        );
+    }
+
+    function mouseMoveHandler(event: MouseEvent) {
+        if (props.position !== "mouse") {
+            return;
+        }
+
+        setY(event.clientY + (props.margin ?? 0));
+        setX(event.clientX + (props.margin ?? 0));
+    }
+
+    function mouseLeaveHandler() {
+        setVisible(false);
+        clearTimeout(delayTimeout);
+    }
+
+    function showTooltip() {
+        if (!targetRef) return;
+        if (!tooltipRef) return;
+
+        tooltipRef.showPopover();
+
         const targetRect = targetRef.getBoundingClientRect();
         const tooltipRect = tooltipRef.getBoundingClientRect();
 
@@ -62,27 +91,7 @@ export default function Tooltip(props: TooltipProps) {
                 break;
         }
 
-        clearTimeout(delayTimeout);
-        delayTimeout = setTimeout(
-            () => {
-                setVisible(true);
-            },
-            (props.delay ?? 0) * 1000
-        );
-    }
-
-    function mouseMoveHandler(event: MouseEvent) {
-        if (props.position !== "mouse") {
-            return;
-        }
-
-        setY(event.clientY + (props.margin ?? 0));
-        setX(event.clientX + (props.margin ?? 0));
-    }
-
-    function mouseLeaveHandler() {
-        setVisible(false);
-        clearTimeout(delayTimeout);
+        animate();
     }
 
     function animate() {
@@ -173,15 +182,17 @@ export default function Tooltip(props: TooltipProps) {
         if (typeof window === "undefined") return;
         if (!tooltipRef) return;
 
-        tooltipRef.popover = "manual";
-        tooltipRef.showPopover();
-
         if (visible === true) {
-            animate();
+            showTooltip();
+        } else {
+            tooltipRef.hidePopover();
         }
-
-        tooltipRef.style.visibility = visible ? "visible" : "hidden";
     }, [visible]);
+
+    onMount(() => {
+        if (!tooltipRef) return;
+        tooltipRef.popover = "manual";
+    });
 
     onUnMount(() => {
         clearTimeout(delayTimeout);
