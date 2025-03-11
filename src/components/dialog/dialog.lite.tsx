@@ -78,6 +78,11 @@ export default function Dialog(props: DialogProps) {
 
     function handleClick(event: MouseEvent) {
         if (!dialogRef) return;
+
+        if (event.target !== dialogRef) {
+            return;
+        }
+
         const rect = dialogRef.getBoundingClientRect();
         if (
             event.clientY < rect.top ||

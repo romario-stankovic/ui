@@ -108,6 +108,11 @@ export default function Drawer(props: DrawerProps) {
 
     function handleClick(event: MouseEvent) {
         if (!dialogRef) return;
+
+        if (event.target !== dialogRef) {
+            return;
+        }
+
         const rect = dialogRef.getBoundingClientRect();
         if (
             event.clientY < rect.top ||
