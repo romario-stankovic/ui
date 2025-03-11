@@ -63,20 +63,9 @@ export default function Select(props: SelectProps) {
             setOpen(false);
             props.onChange?.((e.target as HTMLOptionElement).value);
             fieldRef.blur();
+        } else if (e.target == fieldRef) {
+            setOpen(!open);
         }
-
-        const fieldRect = fieldRef.getBoundingClientRect();
-
-        if (
-            e.clientX < fieldRect.left ||
-            e.clientY > fieldRect.right ||
-            e.clientY < fieldRect.top ||
-            e.clientY > fieldRect.bottom
-        ) {
-            return;
-        }
-
-        setOpen(!open);
     }
 
     onMount(() => {
