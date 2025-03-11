@@ -39,13 +39,19 @@
         @include field-variants.default;
         @include shapes.default;
 
-        position: absolute;
-        top: calc(100% + 0.25em);
+        position: fixed;
+        top: 0;
         left: 0;
         box-sizing: border-box;
+        margin: 0.5em 0 0 0;
         padding: 0.25em;
         width: fit-content;
         text-align: left;
+
+        &[popover] {
+            border: none;
+            color: currentColor;
+        }
 
         optgroup {
             text-indent: 0.5em;

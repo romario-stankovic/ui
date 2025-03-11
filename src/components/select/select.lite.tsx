@@ -95,6 +95,7 @@ export default function Select(props: SelectProps) {
             }
         });
 
+        contentRef.popover = "manual";
         contentRef.style.display = "none";
 
         setInitialized(true);
@@ -104,11 +105,17 @@ export default function Select(props: SelectProps) {
         if (!contentRef) return;
         if (!fieldRef) return;
 
+        const fieldRect = fieldRef.getBoundingClientRect();
+
         if (open) {
             contentRef.style.display = "block";
+            contentRef.style.top = `${fieldRect.bottom}px`;
+            contentRef.style.left = `${fieldRect.left}px`;
             contentRef.style.minWidth = `${fieldRef.clientWidth}px`;
+            contentRef.showPopover();
         } else {
             contentRef.style.display = "none";
+            contentRef.hidePopover();
         }
     }, [open]);
 
