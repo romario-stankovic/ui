@@ -55,8 +55,15 @@ export default function Select(props: SelectProps) {
         return getAllOptions().find((opt) => opt.value === value)?.innerText ?? "";
     }
 
-    function handleClick(e: MouseEvent) {
+    function handleClick(e: MouseEvent & { target: HTMLElement }) {
         if (!fieldRef) return;
+
+        if (e.target.tagName === "OPTION") {
+            setVal((e.target as HTMLOptionElement).value);
+            setOpen(false);
+            props.onChange?.((e.target as HTMLOptionElement).value);
+            fieldRef.blur();
+        }
 
         const fieldRect = fieldRef.getBoundingClientRect();
 
@@ -86,13 +93,6 @@ export default function Select(props: SelectProps) {
             if (opt.selected) {
                 setVal(opt.value);
             }
-
-            opt.addEventListener("click", () => {
-                setVal(opt.value);
-                setOpen(false);
-                props.onChange?.(opt.value);
-                fieldRef.blur();
-            });
         });
 
         contentRef.style.display = "none";
