@@ -88,6 +88,14 @@ export default function Select(props: SelectProps) {
         contentRef.style.display = "none";
 
         setInitialized(true);
+
+        if (props.value) {
+            if (getAllOptions().find((opt) => opt.value === props.value) === undefined) {
+                return;
+            }
+
+            setVal(props.value);
+        }
     });
 
     onUpdate(() => {
