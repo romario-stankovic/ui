@@ -50,6 +50,7 @@ export default function Chip(props: ChipProps) {
                     }
                 >
                     <button
+                        type="button"
                         id={props.id}
                         class={`chip ${props.variant} ${props.shape} ${props.iconOnly ? "icon-only" : ""}`}
                         aria-disabled={props.disabled}
