@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react/*";
 import { Chip } from "@packages/react";
 import { fn } from "@storybook/test";
 import { Icon as IconifyIcon } from "@iconify-icon/react";

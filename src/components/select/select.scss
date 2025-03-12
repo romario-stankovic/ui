@@ -5,13 +5,14 @@
     @include field-variants.default;
     @include shapes.default;
 
+    display: inline-block;
     position: relative;
     box-sizing: border-box;
     outline: none;
     border: none;
     padding: 0.5357143em 0.75em;
+    width: auto;
 
-    width: fit-content;
     height: 2.5714285714em;
     font-size: 0.875rem;
     line-height: 1.5em;

@@ -1,5 +1,5 @@
 import { Tooltip } from "@packages/react";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react/*";
 import { useId } from "react";
 
 type Story = StoryObj<typeof Tooltip>;

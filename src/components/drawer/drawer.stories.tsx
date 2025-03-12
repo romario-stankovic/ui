@@ -1,5 +1,5 @@
 import { Drawer } from "@packages/react";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react/*";
 import { fn } from "@storybook/test";
 import { syncArgs } from "../../../.storybook/utils/utils.storybook";
 

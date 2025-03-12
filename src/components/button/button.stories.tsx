@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react/*";
 import { Button } from "@packages/react";
 import { Icon as IconifyIcon } from "@iconify-icon/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

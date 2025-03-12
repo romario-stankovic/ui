@@ -3,6 +3,7 @@ export { default as Card } from "./components/card/card.lite";
 export { default as Chip } from "./components/chip/chip.lite";
 export { default as Dialog } from "./components/dialog/dialog.lite";
 export { default as Drawer } from "./components/drawer/drawer.lite";
+export { default as FormField } from "./components/form-field/form-field.lite";
 export { default as Input } from "./components/input/input.lite";
 export { default as Markdown } from "./components/markdown/markdown.lite";
 export { default as Label } from "./components/label/label.lite";

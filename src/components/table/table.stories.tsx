@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react/*";
 import { Table } from "@packages/react";
 
 type Story = StoryObj<typeof Table>;

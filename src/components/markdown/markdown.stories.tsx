@@ -1,5 +1,5 @@
 import { Markdown } from "@packages/react";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react/*";
 import { title } from "process";
 
 type Story = StoryObj<typeof Markdown>;

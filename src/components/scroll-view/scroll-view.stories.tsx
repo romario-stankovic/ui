@@ -1,5 +1,5 @@
 import { ScrollView } from "@packages/react";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react/*";
 
 type Story = StoryObj<typeof ScrollView>;
 

@@ -1,6 +1,6 @@
 import { syncArgs } from ".storybook/utils/utils.storybook";
 import { Input } from "@packages/react";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react/*";
 import { fn } from "@storybook/test";
 
 type Story = StoryObj<typeof Input>;
