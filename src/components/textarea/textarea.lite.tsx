@@ -60,22 +60,19 @@ export default function Textarea(props: TextareaProps) {
         validate(textareaRef.value);
     }
 
+    function handleFormReset() {
+        if (!textareaRef) return;
+        textareaRef.value = "";
+        textareaRef.setCustomValidity("");
+        props.onChange?.("");
+    }
+
     onMount(() => {
         if (!textareaRef) return;
         if (!textareaRef.form) return;
 
-        textareaRef.form.onsubmit = (e) => {
-            e.preventDefault();
-            if (!validate(textareaRef.value)) {
-                e.stopImmediatePropagation();
-            }
-        };
-
-        textareaRef.form.onreset = (e) => {
-            textareaRef.value = "";
-            textareaRef.setCustomValidity("");
-            props.onChange?.("");
-        };
+        textareaRef.form.addEventListener("validate", (e) => validate(textareaRef.value) || e.preventDefault());
+        textareaRef.form.addEventListener("reset", handleFormReset);
     });
 
     return (

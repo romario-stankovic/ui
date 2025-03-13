@@ -127,6 +127,7 @@ export const Form: Story = {
                 onSubmit={(e) => {
                     e.preventDefault();
                     e.currentTarget.reset();
+                    alert("Form submitted!");
                 }}
             >
                 <Textarea {...args} />

@@ -75,22 +75,19 @@ export default function Input(props: InputProps) {
         validate(inputRef.value);
     }
 
+    function handleFormReset() {
+        if (!inputRef) return;
+        inputRef.value = "";
+        inputRef.setCustomValidity("");
+        props.onChange?.("");
+    }
+
     onMount(() => {
         if (!inputRef) return;
         if (!inputRef.form) return;
 
-        inputRef.form.onsubmit = (e) => {
-            e.preventDefault();
-            if (!validate(inputRef.value)) {
-                e.stopImmediatePropagation();
-            }
-        };
-
-        inputRef.form.onreset = (e) => {
-            inputRef.value = "";
-            inputRef.setCustomValidity("");
-            props.onChange?.("");
-        };
+        inputRef.form.addEventListener("validate", (e) => validate(inputRef.value) || e.preventDefault());
+        inputRef.form.addEventListener("reset", handleFormReset);
     });
 
     return (
