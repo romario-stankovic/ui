@@ -17,7 +17,7 @@ interface ToastProps {
 
 export default function Toast(props: ToastProps) {
     useDefaultProps<typeof props>({
-        variant: "flat",
+        variant: "outlined",
         shape: "rounded",
         position: "bottom-right",
         open: false,
@@ -76,13 +76,11 @@ export default function Toast(props: ToastProps) {
 
     onMount(() => {
         if (!toastRef) return;
-        toastRef.style.display = "none";
+        toastRef.popover = "manual";
     });
 
     onUpdate(() => {
         if (!toastRef) return;
-
-        toastRef.popover = "manual";
 
         if (props.open) {
             toastRef.style.display = "block";

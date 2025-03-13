@@ -18,7 +18,7 @@ const scrollLock = useScrollLock();
 
 export default function Dialog(props: DialogProps) {
     useDefaultProps<typeof props>({
-        variant: "flat",
+        variant: "outlined",
         shape: "rounded",
         open: false
     });

@@ -19,7 +19,7 @@ interface ChipProps {
 
 export default function Chip(props: ChipProps) {
     useDefaultProps<typeof props>({
-        variant: "flat",
+        variant: "outlined",
         shape: "pill",
         interactive: false,
         href: "",

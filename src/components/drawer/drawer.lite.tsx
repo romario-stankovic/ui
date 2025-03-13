@@ -18,7 +18,7 @@ const scrollLock = useScrollLock();
 
 export default function Drawer(props: DrawerProps) {
     useDefaultProps<typeof props>({
-        variant: "flat",
+        variant: "outlined",
         position: "left",
         open: false
     });
