@@ -158,24 +158,27 @@ export default function Tooltip(props: TooltipProps) {
 
         const tooltipRect = tooltipRef.getBoundingClientRect();
 
+        let newX = x;
+        let newY = y;
+
         if (x + tooltipRect.width > document.body.clientWidth) {
-            setX(document.body.clientWidth - tooltipRect.width);
+            newX = document.body.clientWidth - tooltipRect.width;
         }
 
         if (y + tooltipRect.height > document.body.clientHeight) {
-            setY(document.body.clientHeight - tooltipRect.height);
+            newY = document.body.clientHeight - tooltipRect.height;
         }
 
-        if (x < 0) {
-            setX(0);
+        if (newX < 0) {
+            newX = 0;
         }
 
-        if (y < 0) {
-            setY(0);
+        if (newY < 0) {
+            newY = 0;
         }
 
-        tooltipRef.style.top = `${y}px`;
-        tooltipRef.style.left = `${x}px`;
+        tooltipRef.style.top = `${newY}px`;
+        tooltipRef.style.left = `${newX}px`;
     }, [x, y]);
 
     onUpdate(() => {
