@@ -1,12 +1,13 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
+import path from "path";
 
 export default defineConfig({
     plugins: [react(), dts({ tsconfigPath: "./tsconfig.app.json" })],
     build: {
         lib: {
-            entry: "src/index.ts",
+            entry: "src",
             name: "@romario-stankovic/ui/react",
             fileName: "index"
         },
@@ -20,6 +21,11 @@ export default defineConfig({
                     "react-dom": "ReactDOM"
                 }
             }
+        }
+    },
+    resolve: {
+        alias: {
+            src: path.resolve(__dirname, "./src")
         }
     }
 });

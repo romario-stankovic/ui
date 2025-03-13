@@ -1,6 +1,6 @@
 import { onInit, onMount, onUnMount, onUpdate, Slot, useDefaultProps, useRef } from "@builder.io/mitosis";
 import style from "./navbar.scss";
-import { useScrollLock } from "../../utils/scroll";
+import { useScrollLock } from "src/utils/scroll";
 
 type NavbarVariant = "flat" | "raised" | "soft" | "outlined";
 

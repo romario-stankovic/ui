@@ -1,6 +1,6 @@
-import { useScrollLock } from "../../utils/scroll";
-import style from "./dialog.scss";
 import { onUnMount, onUpdate, Slot, useDefaultProps, useRef } from "@builder.io/mitosis";
+import style from "./dialog.scss";
+import { useScrollLock } from "src/utils/scroll";
 
 type DialogVariant = "flat" | "raised" | "soft" | "outlined";
 type DialogShape = "box" | "rounded";

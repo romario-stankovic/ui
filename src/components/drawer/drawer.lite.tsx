@@ -1,6 +1,6 @@
 import { onUnMount, onUpdate, Slot, useDefaultProps, useRef } from "@builder.io/mitosis";
 import style from "./drawer.scss";
-import { useScrollLock } from "../../utils/scroll";
+import { useScrollLock } from "src/utils/scroll";
 
 type DrawerPosition = "top" | "right" | "bottom" | "left";
 type DrawerVariant = "flat" | "raised" | "soft" | "outlined";
