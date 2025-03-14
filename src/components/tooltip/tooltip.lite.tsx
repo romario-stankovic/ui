@@ -1,5 +1,7 @@
-import { onMount, onUnMount, onUpdate, Slot, useDefaultProps, useRef, useState } from "@builder.io/mitosis";
+import { onUnMount, onUpdate, Slot, useDefaultProps, useRef, useState } from "@builder.io/mitosis";
 import style from "./tooltip.scss";
+import PopoverCore from "src/core/popover/popover.core.lite";
+import { isBrowser } from "src/utils/browser";
 
 type TooltipPosition = "top" | "right" | "bottom" | "left" | "mouse";
 type TooltipVariant = "flat" | "raised" | "soft" | "outlined" | "colored-outline";
@@ -25,28 +27,25 @@ export default function Tooltip(props: TooltipProps) {
         position: "mouse"
     });
 
-    const tooltipRef = useRef<HTMLDivElement | undefined>(undefined);
     let targetRef = useRef<HTMLElement | null>(null);
 
+    const [open, setOpen] = useState<boolean>(false);
     const [x, setX] = useState<number>(0);
     const [y, setY] = useState<number>(0);
-    const [visible, setVisible] = useState<boolean>(false);
 
     let delayTimeout = useRef<NodeJS.Timeout | undefined>(undefined);
 
-    function mouseEnterHandler() {
-        if (!targetRef || !tooltipRef) return;
-
+    function handleMouseEnter() {
         clearTimeout(delayTimeout);
         delayTimeout = setTimeout(
             () => {
-                setVisible(true);
+                setOpen(true);
             },
             (props.delay ?? 0) * 1000
         );
     }
 
-    function mouseMoveHandler(event: MouseEvent) {
+    function handleMouseMove(event: MouseEvent) {
         if (props.position !== "mouse") {
             return;
         }
@@ -55,75 +54,68 @@ export default function Tooltip(props: TooltipProps) {
         setX(event.clientX + (props.margin ?? 0));
     }
 
-    function mouseLeaveHandler() {
-        setVisible(false);
+    function handleMouseLeave() {
+        setOpen(false);
         clearTimeout(delayTimeout);
     }
 
-    function showTooltip() {
+    function handlePopoverOpen(popover: HTMLDivElement) {
         if (!targetRef) return;
-        if (!tooltipRef) return;
-
-        tooltipRef.showPopover();
 
         const targetRect = targetRef.getBoundingClientRect();
-        const tooltipRect = tooltipRef.getBoundingClientRect();
 
         const margin = props.margin ?? 0;
 
+        const popoverRect = popover.getBoundingClientRect();
+
         switch (props.position) {
             default:
             case "top":
-                setX(targetRect.left + targetRect.width / 2 - tooltipRect.width / 2);
-                setY(targetRect.top - tooltipRect.height - margin);
+                setX(targetRect.left + targetRect.width / 2 - popoverRect.width / 2);
+                setY(targetRect.top - popoverRect.height - margin);
                 break;
             case "bottom":
-                setX(targetRect.left + targetRect.width / 2 - tooltipRect.width / 2);
+                setX(targetRect.left + targetRect.width / 2 - popoverRect.width / 2);
                 setY(targetRect.bottom + margin);
                 break;
             case "left":
-                setX(targetRect.left - tooltipRect.width - margin);
-                setY(targetRect.top + targetRect.height / 2 - tooltipRect.height / 2);
+                setX(targetRect.left - popoverRect.width - margin);
+                setY(targetRect.top + targetRect.height / 2 - popoverRect.height / 2);
                 break;
             case "right":
                 setX(targetRect.right + margin);
-                setY(targetRect.top + targetRect.height / 2 - tooltipRect.height / 2);
+                setY(targetRect.top + targetRect.height / 2 - popoverRect.height / 2);
                 break;
         }
 
-        animate();
-    }
-
-    function animate() {
-        if (!tooltipRef) return;
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-        let startX: `${number}em` = "0em";
-        let startY: `${number}em` = "0em";
+        let startX: number = 0;
+        let startY: number = 0;
 
         switch (props.position) {
             default:
             case "bottom":
-                startX = "0em";
-                startY = "-0.5em";
+                startX = 0;
+                startY = -0.5;
                 break;
             case "top":
-                startX = "0em";
-                startY = "0.5em";
+                startX = 0;
+                startY = 0.5;
                 break;
             case "left":
-                startX = "0.5em";
-                startY = "0em";
+                startX = 0.5;
+                startY = 0;
                 break;
             case "right":
-                startX = "-0.5em";
-                startY = "0em";
+                startX = -0.5;
+                startY = 0;
                 break;
         }
 
-        tooltipRef.animate(
+        popover.animate(
             [
-                { transform: `translate(${startX}, ${startY})`, opacity: 0 },
+                { transform: `translate(${startX}em, ${startY}em)`, opacity: 0 },
                 { transform: `translate(0, 0)`, opacity: 1 }
             ],
             {
@@ -133,77 +125,47 @@ export default function Tooltip(props: TooltipProps) {
     }
 
     onUpdate(() => {
-        if (typeof window === "undefined") return;
+        if (!isBrowser()) return;
 
         if (targetRef) {
-            targetRef.removeEventListener("mouseenter", mouseEnterHandler);
-            targetRef.removeEventListener("mouseleave", mouseLeaveHandler);
-            targetRef.removeEventListener("mousemove", mouseMoveHandler);
-            window.removeEventListener("touchmove", mouseLeaveHandler);
+            targetRef.removeEventListener("mouseenter", handleMouseEnter);
+            targetRef.removeEventListener("mouseleave", handleMouseLeave);
+            targetRef.removeEventListener("mousemove", handleMouseMove);
+            window.removeEventListener("touchmove", handleMouseLeave);
         }
 
         targetRef = document.getElementById(props.target);
 
         if (targetRef) {
-            targetRef.addEventListener("mouseenter", mouseEnterHandler);
-            targetRef.addEventListener("mouseleave", mouseLeaveHandler);
-            targetRef.addEventListener("mousemove", mouseMoveHandler);
-            window.addEventListener("touchmove", mouseLeaveHandler);
-        }
-    }, [props.target]);
-
-    onUpdate(() => {
-        if (!tooltipRef) return;
-        if (typeof window === "undefined") return;
-
-        const tooltipRect = tooltipRef.getBoundingClientRect();
-
-        let newX = x;
-        let newY = y;
-
-        if (x + tooltipRect.width > document.body.clientWidth) {
-            newX = document.body.clientWidth - tooltipRect.width;
+            targetRef.addEventListener("mouseenter", handleMouseEnter);
+            targetRef.addEventListener("mouseleave", handleMouseLeave);
+            targetRef.addEventListener("mousemove", handleMouseMove);
+            window.addEventListener("touchmove", handleMouseLeave);
         }
 
-        if (y + tooltipRect.height > document.body.clientHeight) {
-            newY = document.body.clientHeight - tooltipRect.height;
-        }
-
-        if (newX < 0) {
-            newX = 0;
-        }
-
-        if (newY < 0) {
-            newY = 0;
-        }
-
-        tooltipRef.style.top = `${newY}px`;
-        tooltipRef.style.left = `${newX}px`;
-    }, [x, y]);
-
-    onUpdate(() => {
-        if (typeof window === "undefined") return;
-        if (!tooltipRef) return;
-
-        if (visible === true) {
-            showTooltip();
-        } else {
-            tooltipRef.hidePopover();
-        }
-    }, [visible]);
-
-    onMount(() => {
-        if (!tooltipRef) return;
-        tooltipRef.popover = "manual";
-    });
+        return () => {
+            targetRef?.removeEventListener("mouseenter", handleMouseEnter);
+            targetRef?.removeEventListener("mouseleave", handleMouseLeave);
+            targetRef?.removeEventListener("mousemove", handleMouseMove);
+            window.removeEventListener("touchmove", handleMouseLeave);
+        };
+    }, [props.target, props.position]);
 
     onUnMount(() => {
         clearTimeout(delayTimeout);
     });
 
     return (
-        <div id={props.id} ref={tooltipRef} role="tooltip" class={`tooltip ${props.variant} ${props.shape}`}>
+        // @ts-ignore - Ignores no children on element error
+        <PopoverCore
+            x={x}
+            y={y}
+            open={open}
+            id={props.id}
+            cls={`tooltip ${props.variant} ${props.shape}`}
+            onOpen={(el) => handlePopoverOpen(el)}
+        >
             <Slot />
-        </div>
+        </PopoverCore>
     );
 }

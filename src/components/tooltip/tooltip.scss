@@ -2,20 +2,10 @@
 @use "css/shapes";
 
 .tooltip {
-    &[popover] {
-        margin: 0;
-        border: none;
-        color: currentColor;
-    }
-
     @include content-variants.default;
     @include shapes.default;
 
-    position: fixed;
-    top: 0;
-    left: 0;
     align-content: center;
-    z-index: 9999;
     box-sizing: border-box;
     padding: 0 0.5em;
     width: fit-content;
