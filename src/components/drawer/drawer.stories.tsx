@@ -15,6 +15,11 @@ export default {
             options: ["flat", "raised", "soft", "outlined"],
             description: "The appearance of the drawer"
         },
+        shape: {
+            control: "select",
+            options: ["box", "rounded"],
+            description: "The shape of the drawer"
+        },
         position: {
             control: "select",
             options: ["top", "right", "bottom", "left"],
@@ -27,6 +32,7 @@ export default {
     },
     args: {
         variant: "flat",
+        shape: "box",
         position: "left",
         open: false,
         onClose: fn()
@@ -94,5 +100,17 @@ export const Bottom: Story = {
 export const Left: Story = {
     args: {
         position: "left"
+    }
+};
+
+export const Box: Story = {
+    args: {
+        shape: "box"
+    }
+};
+
+export const Rounded: Story = {
+    args: {
+        shape: "rounded"
     }
 };

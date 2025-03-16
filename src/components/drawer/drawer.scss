@@ -1,7 +1,9 @@
 @use "css/content-variants";
+@use "css/shapes";
 
 .drawer {
     @include content-variants.default;
+    @include shapes.default;
 
     position: fixed;
 
@@ -86,6 +88,11 @@
                 2px 0px 3px -1px var(--shadow),
                 1px 0px 1px 0px var(--shadow);
         }
+
+        &.rounded {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
     }
 
     &.right {
@@ -104,16 +111,27 @@
                 -2px 0px 3px -1px var(--shadow),
                 -1px 0px 1px 0px var(--shadow);
         }
+
+        &.rounded {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
     }
 
     &.top {
         top: 0;
         width: 100%;
         height: fit-content;
+
         &.outlined {
             border-top: none;
             border-right: none;
             border-left: none;
+        }
+
+        &.rounded {
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
         }
     }
 
@@ -132,6 +150,11 @@
             box-shadow:
                 0px -2px 3px -1px var(--shadow),
                 0px -1px 1px 0px var(--shadow);
+        }
+
+        &.rounded {
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
         }
     }
 }

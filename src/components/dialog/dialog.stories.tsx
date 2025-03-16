@@ -27,6 +27,7 @@ export default {
     },
     args: {
         variant: "flat",
+        shape: "rounded",
         open: false,
         onClose: fn()
     },

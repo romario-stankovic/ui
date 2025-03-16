@@ -43,6 +43,7 @@ export default function Dialog(props: DialogProps) {
     }
 
     async function handleClose(el: HTMLDialogElement) {
+        //TODO: Fix double event emit
         props.onClose?.();
         el.classList.remove("open");
         el.classList.add("close");

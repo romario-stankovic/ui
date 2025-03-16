@@ -4,10 +4,12 @@ import ModalCore from "src/core/modal/modal.core.lite";
 
 type DrawerPosition = "top" | "right" | "bottom" | "left";
 type DrawerVariant = "flat" | "raised" | "soft" | "outlined";
+type DrawerShape = "box" | "rounded";
 
 interface DrawerProps {
     id?: string;
     variant?: DrawerVariant;
+    shape?: DrawerShape;
     position?: DrawerPosition;
     open?: boolean;
     onClose?: () => void;
@@ -16,6 +18,7 @@ export default function Drawer(props: DrawerProps) {
     useDefaultProps<typeof props>({
         variant: "outlined",
         position: "left",
+        shape: "box",
         open: false
     });
 
@@ -57,6 +60,7 @@ export default function Drawer(props: DrawerProps) {
     }
 
     function handleClose(el: HTMLDialogElement) {
+        //TODO: Fix double event emit
         props.onClose?.();
         el.classList.remove("open");
         el.classList.add("close");
@@ -101,7 +105,7 @@ export default function Drawer(props: DrawerProps) {
         //@ts-ignore - Ignore Mitosis missing children error
         <ModalCore
             id={props.id}
-            cls={`drawer ${props.position} ${props.variant}`}
+            cls={`drawer ${props.position} ${props.variant} ${props.shape}`}
             open={props.open}
             onOpen={(el) => handleOpen(el)}
             onClose={(el) => handleClose(el)}
