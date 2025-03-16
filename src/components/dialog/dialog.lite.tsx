@@ -54,7 +54,7 @@ export default function Dialog(props: DialogProps) {
 
         const animationDuration = Number.parseFloat(getComputedStyle(el).animationDuration ?? 0) * 1000;
 
-        return new Promise<undefined>((res) => {
+        return new Promise<void>((res) => {
             el.animate(
                 [
                     { scale: 1, opacity: 1 },
@@ -64,7 +64,7 @@ export default function Dialog(props: DialogProps) {
                     duration: animationDuration,
                     easing: "ease-out"
                 }
-            ).addEventListener("finish", () => res(undefined), { once: true });
+            ).addEventListener("finish", () => res(), { once: true });
         });
     }
 

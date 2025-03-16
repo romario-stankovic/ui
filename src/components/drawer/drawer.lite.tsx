@@ -90,10 +90,10 @@ export default function Drawer(props: DrawerProps) {
 
         const animationDuration = Number.parseFloat(getComputedStyle(el).animationDuration ?? 0) * 1000;
 
-        return new Promise<undefined>((res) => {
+        return new Promise<void>((res) => {
             el.animate([{ transform: `translate(0, 0)` }, { transform: `translate(${endX}, ${endY})` }], {
                 duration: animationDuration
-            }).addEventListener("finish", () => res(undefined), { once: true });
+            }).addEventListener("finish", () => res(), { once: true });
         });
     }
 
