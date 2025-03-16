@@ -1,6 +1,6 @@
-import { onUnMount, onUpdate, Slot, useDefaultProps, useRef } from "@builder.io/mitosis";
+import { Slot, useDefaultProps } from "@builder.io/mitosis";
 import style from "./dialog.scss";
-import { useScrollLock } from "src/utils/scroll";
+import ModalCore from "src/core/modal/modal.core.lite";
 
 type DialogVariant = "flat" | "raised" | "soft" | "outlined";
 type DialogShape = "box" | "rounded";
@@ -10,11 +10,8 @@ interface DialogProps {
     variant?: DialogVariant;
     shape?: DialogShape;
     open?: boolean;
-    onDismiss?: () => void;
-    onClosed?: () => void;
+    onClose?: () => void;
 }
-
-const scrollLock = useScrollLock();
 
 export default function Dialog(props: DialogProps) {
     useDefaultProps<typeof props>({
@@ -23,20 +20,17 @@ export default function Dialog(props: DialogProps) {
         open: false
     });
 
-    const dialogRef = useRef<HTMLDialogElement | undefined>(undefined);
-
-    function animateOpen() {
-        if (!dialogRef) return;
+    function handleOpen(el: HTMLDialogElement) {
         if (typeof window === "undefined") return;
 
-        dialogRef.classList.add("open");
-        dialogRef.classList.remove("close");
+        el.classList.add("open");
+        el.classList.remove("close");
 
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-        const animationDuration = Number.parseFloat(getComputedStyle(dialogRef).animationDuration ?? 0) * 1000;
+        const animationDuration = Number.parseFloat(getComputedStyle(el).animationDuration ?? 0) * 1000;
 
-        dialogRef.animate(
+        el.animate(
             [
                 { scale: 0.9, opacity: 0 },
                 { scale: 1, opacity: 1 }
@@ -48,22 +42,20 @@ export default function Dialog(props: DialogProps) {
         );
     }
 
-    function animateClose(callback?: () => void) {
-        if (!dialogRef) return;
+    async function handleClose(el: HTMLDialogElement) {
+        props.onClose?.();
+        el.classList.remove("open");
+        el.classList.add("close");
+
         if (typeof window === "undefined") return;
-
-        dialogRef.classList.remove("open");
-        dialogRef.classList.add("close");
-
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-            callback?.();
             return;
         }
 
-        const animationDuration = Number.parseFloat(getComputedStyle(dialogRef).animationDuration ?? 0) * 1000;
+        const animationDuration = Number.parseFloat(getComputedStyle(el).animationDuration ?? 0) * 1000;
 
-        dialogRef
-            .animate(
+        return new Promise<undefined>((res) => {
+            el.animate(
                 [
                     { scale: 1, opacity: 1 },
                     { scale: 0.9, opacity: 0 }
@@ -72,66 +64,20 @@ export default function Dialog(props: DialogProps) {
                     duration: animationDuration,
                     easing: "ease-out"
                 }
-            )
-            .addEventListener("finish", () => callback?.(), { once: true });
+            ).addEventListener("finish", () => res(undefined), { once: true });
+        });
     }
-
-    function handleClick(event: MouseEvent) {
-        if (!dialogRef) return;
-
-        if (event.target !== dialogRef) {
-            return;
-        }
-
-        const rect = dialogRef.getBoundingClientRect();
-        if (
-            event.clientY < rect.top ||
-            event.clientY > rect.bottom ||
-            event.clientX < rect.left ||
-            event.clientX > rect.right
-        ) {
-            props.onDismiss?.();
-        }
-    }
-
-    function handleKeyDown(event: KeyboardEvent) {
-        if (event.key === "Escape") {
-            event.preventDefault();
-            props.onDismiss?.();
-        }
-    }
-
-    onUpdate(() => {
-        if (!dialogRef) return;
-
-        if (props.open) {
-            scrollLock.lock();
-            animateOpen();
-            dialogRef.showModal();
-            dialogRef.focus();
-        } else {
-            scrollLock.unlock();
-            animateClose(() => {
-                dialogRef.close();
-            });
-        }
-    }, [props.open]);
-
-    onUnMount(() => {
-        if (props.open) {
-            scrollLock.unlock();
-        }
-    });
 
     return (
-        <dialog
+        //@ts-ignore - Ignore Mitosis missing children error
+        <ModalCore
             id={props.id}
-            ref={dialogRef}
-            class={`dialog ${props.variant} ${props.shape}`}
-            onClick={(e) => handleClick(e)}
-            onKeyDown={(e) => handleKeyDown(e)}
+            cls={`dialog ${props.variant} ${props.shape}`}
+            open={props.open}
+            onOpen={(el) => handleOpen(el)}
+            onClose={(el) => handleClose(el)}
         >
             <Slot />
-        </dialog>
+        </ModalCore>
     );
 }

@@ -28,8 +28,7 @@ export default {
     args: {
         variant: "flat",
         open: false,
-        onDismiss: fn(),
-        onClosed: fn()
+        onClose: fn()
     },
     render: (args) => (
         <>
@@ -46,7 +45,7 @@ export default {
             </Dialog>
         </>
     ),
-    decorators: [syncArgs("onDismiss", "open", false)]
+    decorators: [syncArgs("onClose", "open", false)]
 } satisfies Meta;
 
 export const Flat: Story = {

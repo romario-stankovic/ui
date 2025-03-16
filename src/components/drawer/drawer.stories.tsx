@@ -29,8 +29,7 @@ export default {
         variant: "flat",
         position: "left",
         open: false,
-        onDismiss: fn(),
-        onClosed: fn()
+        onClose: fn()
     },
     render: (args) => (
         <>
@@ -47,7 +46,7 @@ export default {
             </Drawer>
         </>
     ),
-    decorators: [syncArgs("onDismiss", "open", false)]
+    decorators: [syncArgs("onClose", "open", false)]
 } satisfies Meta;
 
 export const Flat: Story = {
