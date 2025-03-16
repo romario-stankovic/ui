@@ -72,6 +72,12 @@ export default function ModalCore(props: ModalCoreProps) {
     });
 
     onMount(() => {
+        if (!modalRef) return;
+        if (props.open) {
+            scrollLock.lock();
+            modalRef.showModal();
+            modalRef.focus();
+        }
         setInitialized(true);
     });
 
