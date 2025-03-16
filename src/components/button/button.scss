@@ -7,10 +7,8 @@
 
     display: inline-block;
     flex-shrink: 0;
-    transition-timing-function: ease-in-out;
     cursor: pointer;
     box-sizing: border-box;
-
     border: none;
     padding: 0.5357143em 1em;
     min-width: 2.5714285714em;
@@ -19,7 +17,6 @@
     font-size: 0.875rem;
     line-height: 1ch;
     text-align: center;
-
     text-decoration: none;
 
     &:disabled,
@@ -44,7 +41,7 @@
         > span {
             justify-content: center;
             gap: 0;
-            min-width: 1.5em;
+            width: 1.5em;
             height: 1.5em;
             text-indent: -1000vw;
         }

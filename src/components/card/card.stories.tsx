@@ -16,11 +16,23 @@ export default {
             control: "select",
             options: ["flat", "raised", "soft", "outlined"],
             description: "Appearance of the card"
+        },
+        shape: {
+            control: "select",
+            options: ["box", "rounded"]
         }
     },
     args: {
         default: "Card",
-        variant: "flat"
+        variant: "outlined",
+        shape: "rounded"
+    },
+    parameters: {
+        docs: {
+            description: {
+                component: "A card is used to group other components together"
+            }
+        }
     },
     render: (args) => <Card {...args}>{args.default}</Card>
 } satisfies Meta;
@@ -72,6 +84,32 @@ export const Outlined: Story = {
         docs: {
             description: {
                 story: "An outlined card with a border"
+            }
+        }
+    }
+};
+
+export const Box: Story = {
+    args: {
+        shape: "box"
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: "A box-shaped card with sharp edges"
+            }
+        }
+    }
+};
+
+export const Rounded: Story = {
+    args: {
+        shape: "rounded"
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: "A rounded card with slightly rounded corners"
             }
         }
     }

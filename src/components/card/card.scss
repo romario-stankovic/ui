@@ -1,7 +1,9 @@
 @use "css/content-variants";
+@use "css/shapes";
 
 .card {
     @include content-variants.default;
+    @include shapes.default;
 
     box-sizing: border-box;
     border-radius: 0.5rem;

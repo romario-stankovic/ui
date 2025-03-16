@@ -14,7 +14,7 @@ export default {
     argTypes: {
         default: {
             control: "text",
-            description: "The text content of the button"
+            description: "The content of the button"
         },
         variant: {
             control: "select",
@@ -64,7 +64,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: "A component used to trigger an action or navigate to a new page"
+                component: "A button is used to trigger an action or navigate to a new page"
             }
         }
     },
@@ -78,7 +78,7 @@ export const Flat: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A flat button with no elevation and solid background"
+                story: "A flat button with a solid color background representing a primary action"
             }
         }
     }
@@ -91,7 +91,7 @@ export const Raised: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A raised button with a subtle shadow indicating elevation"
+                story: "A raised button with a subtle shadow indicating elevation which represents a primary action"
             }
         }
     }
@@ -104,7 +104,7 @@ export const Soft: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A soft button with a semi-transparent background"
+                story: "A soft button with a semi-transparent background representing a secondary action"
             }
         }
     }
@@ -117,7 +117,7 @@ export const Outlined: Story = {
     parameters: {
         docs: {
             description: {
-                story: "An outlined button with a border and transparent background"
+                story: "An outlined button with a border and transparent background representing a secondary action"
             }
         }
     }
@@ -130,7 +130,7 @@ export const ColoredOutline: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A colored outline button with a border that matches the text color"
+                story: "A colored outline button with a border and transparent background representing a secondary action"
             }
         }
     }
@@ -143,7 +143,7 @@ export const Text: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A text button with no background or border"
+                story: "A button with only text inside which represents a tertiary action"
             }
         }
     }
@@ -156,7 +156,7 @@ export const Box: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A box-shaped button with sharp corners"
+                story: "A box shaped button with sharp corners"
             }
         }
     }
@@ -196,7 +196,7 @@ export const Link: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A button that navigates to a new page"
+                story: "A button representing a link which navigates to a new page"
             }
         }
     }
@@ -209,7 +209,7 @@ export const Disabled: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A button that cannot be clicked"
+                story: "A button that cannot be interacted with"
             }
         }
     }
@@ -224,7 +224,7 @@ export const IconifyButton: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A button with an Iconify icon"
+                story: "A button with an Iconify icon inside of it"
             }
         }
     }
@@ -240,7 +240,7 @@ export const FontAwesomeButton: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A button with a FontAwesome icon"
+                story: "A button with a FontAwesome icon inside of it"
             }
         }
     }

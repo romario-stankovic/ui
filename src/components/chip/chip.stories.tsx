@@ -61,6 +61,13 @@ export default {
 
         onClick: fn()
     },
+    parameters: {
+        docs: {
+            description: {
+                component: "A chip is used to represent a small interactive or informative element"
+            }
+        }
+    },
     render: (args) => <Chip {...args}>{args.default}</Chip>
 } satisfies Meta;
 
@@ -71,7 +78,7 @@ export const Flat: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A flat chip with no elevation and a solid background"
+                story: "A flat chip with a solid background representing a primary element"
             }
         }
     }
@@ -84,7 +91,7 @@ export const Raised: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A raised chip with a subtle shadow indicating elevation"
+                story: "A raised chip with a subtle shadow indicating elevation which represents a primary element"
             }
         }
     }
@@ -97,7 +104,7 @@ export const Soft: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A soft chip with a semi-transparent background"
+                story: "A soft chip with a semi-transparent background representing a secondary element"
             }
         }
     }
@@ -110,7 +117,7 @@ export const Outline: Story = {
     parameters: {
         docs: {
             description: {
-                story: "An outlined chip with a border and transparent background"
+                story: "An outlined chip with a border and transparent background representing a secondary element"
             }
         }
     }
@@ -123,7 +130,7 @@ export const ColoredOutline: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A colored outline chip with a border that matches the text color"
+                story: "A colored outline chip with a border and transparent background representing a secondary action"
             }
         }
     }
@@ -136,7 +143,7 @@ export const Text: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A text chip with no background or border"
+                story: "A text chip with only text inside which represents a tertiary action"
             }
         }
     }
@@ -201,7 +208,7 @@ export const Disabled: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A chip that cannot be clicked"
+                story: "A chip that cannot be interacted with"
             }
         }
     }
@@ -216,7 +223,7 @@ export const IconifyChip: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A chip with an Iconify icon"
+                story: "A chip with an Iconify icon inside of it"
             }
         }
     }
@@ -232,7 +239,7 @@ export const FontAwesoneChip: Story = {
     parameters: {
         docs: {
             description: {
-                story: "A chip with a FontAwesome icon"
+                story: "A chip with a FontAwesome icon inside of it"
             }
         }
     }

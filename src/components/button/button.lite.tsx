@@ -29,6 +29,17 @@ export default function Button(props: ButtonProps) {
         disabled: false
     });
 
+    function handleAnchorKeyUp(
+        e: KeyboardEvent & {
+            currentTarget: HTMLAnchorElement;
+            target: HTMLAnchorElement;
+        }
+    ) {
+        if (e.key === " ") {
+            e.target.click();
+        }
+    }
+
     return (
         <Show
             when={!props.href}
@@ -39,6 +50,7 @@ export default function Button(props: ButtonProps) {
                     target={props.target}
                     class={`button ${props.variant} ${props.shape} ${props.iconOnly ? "icon-only" : ""}`}
                     onClick={(e) => props.onClick?.(e)}
+                    onKeyUp={(e) => handleAnchorKeyUp(e)}
                     aria-disabled={props.disabled}
                 >
                     <span>

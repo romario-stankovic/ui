@@ -28,6 +28,17 @@ export default function Chip(props: ChipProps) {
         disabled: false
     });
 
+    function handleAnchorKeyUp(
+        e: KeyboardEvent & {
+            currentTarget: HTMLAnchorElement;
+            target: HTMLAnchorElement;
+        }
+    ) {
+        if (e.key === " ") {
+            e.target.click();
+        }
+    }
+
     return (
         <Show
             when={!props.interactive}
@@ -41,6 +52,7 @@ export default function Chip(props: ChipProps) {
                             target={props.target}
                             class={`chip ${props.variant} ${props.shape} ${props.iconOnly ? "icon-only" : ""}`}
                             onClick={(e) => props.onClick?.(e)}
+                            onKeyUp={(e) => handleAnchorKeyUp(e)}
                             aria-disabled={props.disabled}
                         >
                             <span>
