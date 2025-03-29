@@ -62,7 +62,7 @@ export default function Paginator(props: PaginatorProps) {
         const delta = props.siblings ?? 2;
         const curr = props.page ?? 0;
 
-        const pageList = Array(props.totalPages)
+        const pageList = Array(max)
             .fill(0)
             .map((_, idx) => idx + 1)
             .filter((p) => {
