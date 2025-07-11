@@ -1,7 +1,7 @@
 import { syncArgs } from ".storybook/utils/utils.storybook";
 import { Dialog } from "@packages/react";
 import { Meta, StoryObj } from "@storybook/react/*";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
 
 type Story = StoryObj<typeof Dialog>;
 

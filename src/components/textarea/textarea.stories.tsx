@@ -1,7 +1,7 @@
 import { syncArgs } from ".storybook/utils/utils.storybook";
 import { Textarea } from "@packages/react";
 import { Meta, StoryObj } from "@storybook/react/*";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
 
 type Story = StoryObj<typeof Textarea>;
 

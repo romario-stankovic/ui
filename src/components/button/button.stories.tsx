@@ -3,7 +3,7 @@ import { Button } from "@packages/react";
 import { Icon as IconifyIcon } from "@iconify-icon/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
 
 type Story = StoryObj<typeof Button>;
 

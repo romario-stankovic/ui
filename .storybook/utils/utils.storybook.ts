@@ -1,5 +1,5 @@
-import { useArgs } from "@storybook/preview-api";
-import { Decorator } from "@storybook/react";
+import { useArgs } from "storybook/preview-api";
+import { Decorator } from "@storybook/react-vite";
 
 export function syncArgs(event: string, arg: string, value?: any) {
     let callback: Function | null | undefined;

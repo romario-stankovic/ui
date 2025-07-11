@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react/*";
 import { Paginator } from "@packages/react";
 import { syncArgs } from ".storybook/utils/utils.storybook";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
 
 type Story = StoryObj<typeof Paginator>;
 
