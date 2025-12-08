@@ -121,7 +121,6 @@ export default function Navbar(props: NavbarProps) {
             <nav id={props.id} ref={navbarRef} class={`navbar ${props.variant} ${props.sticky ? "sticky" : ""}`}>
                 <Slot />
             </nav>
-            <div ref={navbarPlaceholderRef} style={{ width: "100%" }}></div>
         </>
     );
 }
